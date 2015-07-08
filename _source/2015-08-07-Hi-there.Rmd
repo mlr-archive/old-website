@@ -1,0 +1,15 @@
+---
+layout: post
+title: Hi there!
+---
+
+This is just a test post to check if
+
+* `R` is working:
+  ```{r}
+  mean(rnorm(100))
+  ```
+* Plots are not broken
+  ```{r}
+  plot(1:10)
+  ```
