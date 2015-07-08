@@ -1,0 +1,10 @@
+---
+layout: post
+title: Another one!
+---
+
+This is just another test to see if everything works out.
+```{r mlr-example-plot}
+library(mlr)
+plotLearnerPrediction("classif.randomForest", iris.task)
+```

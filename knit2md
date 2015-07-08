@@ -11,7 +11,7 @@ if (!file.exists(rmd))
 setwd(dirname(rmd))
 rmd = basename(rmd)
 render_jekyll()
-opts_chunk$set(base.url = "/", dev = "svg", fig.path = "../_figures/")
+opts_chunk$set(base.url = "/", dev = "svg", fig.path = "../figures/")
 md = file.path("..", "_posts", sub("\\.Rmd$", ".md", rmd))
 knit(input = basename(rmd), output = md)
 
