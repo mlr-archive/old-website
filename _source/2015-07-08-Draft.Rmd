@@ -2,7 +2,7 @@
 layout: post
 title: Draft
 draft: true
-author: Michel
+author: michel
 ---
 
 Does the RSS feed include drafts?

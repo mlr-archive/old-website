@@ -1,6 +1,7 @@
 ---
 layout: post
 title: Hi there!
+author: michel
 ---
 
 This is just a test post to check if

@@ -76,4 +76,9 @@ exclude:
     - README.md
     - CNAME
     - knit2md
-
+authors:
+  michel:
+    display_name: Michel Lang
+    gravatar: ea6bf854650576f32e523c46c00c6d04
+    email: michellang@gmail.com
+    github: mllg

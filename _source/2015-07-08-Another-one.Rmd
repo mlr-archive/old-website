@@ -1,6 +1,7 @@
 ---
 layout: post
 title: Another one!
+author: michel
 ---
 
 This is just another test to see if everything works out.
