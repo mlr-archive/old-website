@@ -7,10 +7,10 @@ This is just a test post to check if
 
 * `R` is working:
   ```{r}
-  set.seed(1)
+  set.seed(2)
   mean(rnorm(100))
   ```
 * Plots are not broken
-  ```{r}
-  plot(1:10)
+  ```{r example-plot}
+  plot(1:11)
   ```

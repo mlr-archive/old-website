@@ -8,9 +8,11 @@ if (length(rmd) != 1L)
 if (!file.exists(rmd))
   stop("File not found")
 
+setwd(dirname(rmd))
+rmd = basename(rmd)
 render_jekyll()
-opts_chunk$set(base_url = "/", fig.path = "_figures/", dev = "svg")
-md = file.path("_posts", sub("\\.Rmd$", ".md", basename(rmd)))
-knit(input = rmd, output = md)
+opts_chunk$set(base.url = "/", dev = "svg", fig.path = "../_figures/")
+md = file.path("..", "_posts", sub("\\.Rmd$", ".md", rmd))
+knit(input = basename(rmd), output = md)
 
 # vim: ft=r
