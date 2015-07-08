@@ -9,7 +9,7 @@ if (!file.exists(rmd))
   stop("File not found")
 
 render_jekyll()
-opts_chunk$set(fig.path = "_figures/", dev = "svg")
+opts_chunk$set(base_url = "/", fig.path = "_figures/", dev = "svg")
 md = file.path("_posts", sub("\\.Rmd$", ".md", basename(rmd)))
 knit(input = rmd, output = md)
 
