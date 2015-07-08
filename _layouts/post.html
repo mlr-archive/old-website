@@ -7,16 +7,13 @@ layout: default
 <article class="post">
   <h1>{{ page.title }}</h1>
 
-  <div class="meta">
-      <img src="http://www.gravatar.com/avatar/{{ author.gravatar }}?s=40">
-      <span class="author">{{ author.display_name }}</span>
-  </div>
   <div class="entry">
     {{ content }}
   </div>
 
   <div class="date">
-    Written on {{ page.date | date: "%B %e, %Y" }}
+      Written on {{ page.date | date: "%B %e, %Y" }}
+      by <a href="mailto:{{ author.email }}"><span class="author">{{ author.display_name }}</span></a>
   </div>
 
   {% include disqus.html %}
