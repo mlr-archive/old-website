@@ -14,20 +14,22 @@ body {
   -moz-box-shadow: none;
   -webkit-box-shadow: none;
   margin: 0.5em 0 0.5em 0;
+  overflow: auto;
 }
 
-article.post {
+article{
   background-color: #fff;
-  padding: 0 15px;
+  padding: 0 15px 15px 15px;
   border: solid 1px #ddd
+  margin: 20px 0px;
 }
 
-article.post p img {
+article p img {
   border: solid 1px #f0f0f0;
   margin: 5px;
 }
 
-article.post h1 {
+article h1 {
   display: block;
   color: #333;
   margin-left: -40px;

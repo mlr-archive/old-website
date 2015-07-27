@@ -7,11 +7,16 @@ author: michel
 This is just a test post to check if
 
 * `R` is working:
+  
   ```{r}
   set.seed(2)
   mean(rnorm(100))
   ```
+
+<!--more-->
+
 * Plots are not broken
+  
   ```{r example-plot}
   plot(1:11)
   ```
