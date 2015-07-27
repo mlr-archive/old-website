@@ -4,12 +4,21 @@ title: About
 permalink: /about/
 ---
 
-Some information about you!
+This blog is the home for some *R* developers, Staticians and data scientists. 
+We try to post neat stuff we learned, we want to promote on an irregular basis.
 
-### More Information
+### Contributors
 
-A place to include any other types of information that you'd like to include about yourself.
+#### Michel Lang
 
-### Contact me
+#### Jakob Richter
 
-[email@domain.com](mailto:email@domain.com)
+* Working at TU Dortmund
+* M.Sc. Statistics
+* Contact me [rdatsci@jakob-r.de](mailto:rdatsci@jakob-r.de)
+* On github: [github.com/jakob-r](https://github.com/jakob-r)
+* Projects:
+  * [mlr](https://github.com/mlr-org/mlr)
+  * [mlrMBO](https://github.com/berndbischl/mlrMBO)
+
+#### Bernd Bischl

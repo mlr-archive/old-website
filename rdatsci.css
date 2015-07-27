@@ -1,0 +1,39 @@
+body {
+  font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+  font-size: 14px;
+  line-height: 1.428571429;
+  background-attachment: fixed;
+  background-color: #f4f4f9;
+  background-image: linear-gradient(#889BC2 0px, #E3E6F4 120px, #f4f4f9 200px)
+}
+
+.highlight {
+  background-color: #f3f3f0;
+  padding: 7px 7px 7px 10px;
+  border: solid 1px #e6e6e0;
+  -moz-box-shadow: none;
+  -webkit-box-shadow: none;
+  margin: 0.5em 0 0.5em 0;
+}
+
+article.post {
+  background-color: #fff;
+  padding: 0 15px;
+  border: solid 1px #ddd
+}
+
+article.post p img {
+  border: solid 1px #f0f0f0;
+  margin: 5px;
+}
+
+article.post h1 {
+  display: block;
+  color: #333;
+  margin-left: -40px;
+  padding: 1px 10px;
+  background-color: #fff;
+  -webkit-box-shadow: 5px 5px 0px 0px #f4f4f9;
+  -moz-box-shadow: 5px 5px 0px 0px #f4f4f9;
+  box-shadow: 5px 5px 0px 0px #f4f4f9;
+}
