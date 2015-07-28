@@ -7,6 +7,14 @@ layout: default
     {% unless post.draft %}
       <article class="post">
         <h1><a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a></h1>
+    {% assign images = post.content | split:"<img " %}
+    {% for image in images %}
+      {% if image contains 'src' %}
+          {% assign html = image | split:">" | first %}
+            <img class = "thumb" {{ html }} />
+            {% break %}
+      {% endif %}
+    {% endfor %}
         <div class="entry">
           {{ post.excerpt }}
         </div>

@@ -286,9 +286,19 @@ footer {
 }
 
 // added for rdatsci
-article p img {
+article {
+  overflow: hidden;
+}
+article img {
     border: solid 1px #f0f0f0;
     margin: 5px;
+}
+
+.posts .thumb {
+    float:right;
+    max-width: 200px;
+    max-height: 200px;
+    margin: -10px 0 0 20px;
 }
 
 // Settled on moving the import of syntax highlighting to the bottom of the CSS
