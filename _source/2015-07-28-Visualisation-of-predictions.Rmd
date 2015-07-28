@@ -4,7 +4,7 @@ title: Visualisation of predictions
 author: jakob
 ---
 
-In our second post we want to shortly introduce you to the great visualisation possibilites of `mlr`.
+In our second post we want to shortly introduce you to the great visualization possibilities of `mlr`.
 Within the last months a lot of work has been put into that field.
 This post is not a [tutorial](http://mlr-org.github.io/mlr-tutorial/) but more a demonstration of how little code you have write with `mlr` to get some nice plots showing the prediction areas of different learners.
 

@@ -4,7 +4,7 @@ title: About
 permalink: /about/
 ---
 
-This blog is the home for some *R* developers, Staticians and data scientists. 
+This blog is the home for some *R* developers, statisticians and data scientists. 
 We try to post neat stuff we learned, we want to promote on an irregular basis.
 
 ### Contributors
