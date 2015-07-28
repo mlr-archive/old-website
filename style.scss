@@ -18,8 +18,10 @@ html {
 }
 
 body {
-	background: $white;
-  font: 18px/1.4 $helvetica;
+  background-color: $white;
+	background: linear-gradient($headerKey 3px, $white 200px);
+  background-attachment: fixed;
+  font: 14px/1.45 $fira;
   color: $darkGray;
 }
 
@@ -31,7 +33,7 @@ body {
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: $helveticaNeue;
+  font-family: $fira;
   color: $darkerGray;
   font-weight: bold;
 
@@ -152,11 +154,11 @@ img {
 
 .wrapper-masthead {
   margin-bottom: 50px;
+  background-color: #ABC;
 }
 
 .masthead {
   padding: 20px 0;
-  border-bottom: 1px solid $lightGray;
 
   @include mobile {
     text-align: center;
@@ -202,7 +204,7 @@ img {
 
 .site-description {
   margin: -5px 0 0 0;
-  color: $gray;
+  color: $white;
   font-size: 16px;
 
   @include mobile {
@@ -281,6 +283,12 @@ nav {
 footer {
   padding: 20px 0;
   text-align: center;
+}
+
+// added for rdatsci
+article p img {
+    border: solid 1px #f0f0f0;
+    margin: 5px;
 }
 
 // Settled on moving the import of syntax highlighting to the bottom of the CSS
