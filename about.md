@@ -15,7 +15,7 @@ We try to post neat stuff we learned, we want to promote on an irregular basis.
 
 * Working at TU Dortmund
 * M.Sc. Statistics
-* Contact me [rdatsci@jakob-r.de](mailto:rdatsci@jakob-r.de)
+* Contact me [mlr@jakob-r.de](mailto:rdatsci@jakob-r.de)
 * On github: [github.com/jakob-r](https://github.com/jakob-r)
 * Projects:
   * [mlr](https://github.com/mlr-org/mlr)

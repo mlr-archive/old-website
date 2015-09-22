@@ -3,10 +3,10 @@
 #
 
 # Name of your site (displayed in the header)
-name: RDatSci
+name: mlr-org
 
 # Short bio or description (displayed in the header)
-description: The R Data Scientists.
+description: mlr: Machine Learning for R.
 
 # URL of your avatar or profile pic (you could use your GitHub profile pic)
 avatar: https://raw.githubusercontent.com/barryclark/jekyll-now/master/images/jekyll-logo.png
@@ -21,7 +21,7 @@ footer-links:
   email:
   facebook:
   flickr:
-  github: rdatsci
+  github: mlr-org
   instagram:
   linkedin:
   pinterest:
@@ -41,7 +41,7 @@ google_analytics:
 
 # Your website URL (e.g. http://barryclark.github.io or http://www.barryclark.co)
 # Used for Sitemap.xml and your RSS feed
-url: https://rdatsci.github.io
+url: https://mlr-org.github.io
 
 # If you're hosting your site at a Project repository on GitHub pages
 # (http://yourusername.github.io/repository-name)
@@ -86,5 +86,6 @@ authors:
     github: mllg
   jakob:
     display_name: Jakob Richter
-    email: rdatsci@jakob-r.de
+    email: mlr@jakob-r.de
+    github: jakob-r
     github: jakob-r
