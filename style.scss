@@ -301,6 +301,20 @@ article img {
     margin: -10px 0 0 20px;
 }
 
+a.site-avatar {
+  background: url("{{ site.avatar }}") top right;
+  text-indent: -9999px;
+  background-color: white;
+  border-radius: 5px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position-y: 18px;
+}
+
+a.site-avatar:hover {
+  background-color: #E7EBF3;
+}
+
 // Settled on moving the import of syntax highlighting to the bottom of the CSS
 // ... Otherwise it really bloats up the top of the CSS file and makes it difficult to find the start
 @import "highlights";
