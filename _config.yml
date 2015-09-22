@@ -6,7 +6,7 @@
 name: mlr-org
 
 # Short bio or description (displayed in the header)
-description: mlr: Machine Learning for R.
+description: "mlr: Machine Learning for R."
 
 # URL of your avatar or profile pic (you could use your GitHub profile pic)
 avatar: https://raw.githubusercontent.com/barryclark/jekyll-now/master/images/jekyll-logo.png
