@@ -1,5 +1,5 @@
 # mlr blog
-The mlr blog is build on [Jekyll](https://github.com/jekyll/jekyll) and it's more or less a fork of [that ground structure].
+[The mlr blog](https://mlr-org.github.io) is build on [Jekyll](https://github.com/jekyll/jekyll) and it's more or less a fork of [that ground structure].
 
 ## submit a post
 1. Clone this repository.
