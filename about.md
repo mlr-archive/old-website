@@ -22,3 +22,7 @@ We try to post neat stuff we learned, we want to promote on an irregular basis.
   * [mlrMBO](https://github.com/berndbischl/mlrMBO)
 
 #### Bernd Bischl
+
+I am professor of computational statistics at the LMU Munich and created mlr a long time ago.
+Go to my [personal page}(http://berndbischl.github.io/) for any further info on me.
+
