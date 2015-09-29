@@ -1,7 +1,6 @@
 ---
-title: "How do regression learners behave on a schoolbook example?"
+title: "A deeper insight into random forest regression"
 author: jakob
-date: "28. September 2015"
 layout: post
 ---
 
