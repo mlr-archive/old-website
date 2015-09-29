@@ -7,7 +7,7 @@ layout: post
 
 Let's try out a little toy example to see how all the regression methods integrated in **mlr** behave on a schoolbook example.
 Luckily this can be done with just a few lines of code - but let's narrow it done to those which support uncertainty estimation.
-<!-- more -->
+<!--more-->
 Let's generate a list with all mlr-learners fitting the criteria.
 
 {% highlight r %}
