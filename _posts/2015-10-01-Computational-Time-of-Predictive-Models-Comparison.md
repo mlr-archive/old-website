@@ -2,6 +2,7 @@
 title: "Computational Time of Predictive Models - A comparison of mlr and caret"
 author: "jakob"
 layout: post
+draft: true
 ---
 In [a recent blogpost](http://freakonometrics.hypotheses.org/20345) Arthur from freakonometrics had a closer look into the computational times of different classification methods.
 Interestingly he found out that that *caret* was way slower than calling the method directly in *R*.
@@ -45,7 +46,7 @@ system.time({
 
 {% highlight text %}
 ##    user  system elapsed 
-##  16.576   1.120  17.687
+##  16.596   0.848  17.431
 {% endhighlight %}
 
 
@@ -64,19 +65,6 @@ For *caret* we turn off any special training method to get as close as possible 
 
 {% highlight r %}
 library(caret)
-{% endhighlight %}
-
-
-
-{% highlight text %}
-## Loading required package: lattice
-## Loading required package: ggplot2
-## Loading required package: methods
-{% endhighlight %}
-
-
-
-{% highlight r %}
 system.time({
   caret.fit = train(PRONO~., 
                     data = myocarde_large_2, 
@@ -90,7 +78,7 @@ system.time({
 
 {% highlight text %}
 ##    user  system elapsed 
-##  67.744   1.060  68.761
+##  65.988   1.092  67.032
 {% endhighlight %}
 
 
@@ -122,7 +110,7 @@ system.time({
 
 {% highlight text %}
 ##    user  system elapsed 
-##  15.348   0.644  16.033
+##  14.824   0.832  15.644
 {% endhighlight %}
 
 
@@ -145,7 +133,7 @@ mlr.fit$time
 
 
 {% highlight text %}
-## [1] 16.03
+## [1] 15.641
 {% endhighlight %}
 We are happy that *mlr* doesn't bring you too much computational overhead.
 
