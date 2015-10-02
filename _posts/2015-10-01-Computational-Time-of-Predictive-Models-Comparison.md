@@ -6,6 +6,7 @@ layout: post
 In [a recent blogpost](http://freakonometrics.hypotheses.org/20345) Arthur from freakonometrics had a closer look into the computational times of different classification methods.
 Interestingly he found out that that *caret* was way slower than calling the method directly in *R*.
 It was pointed out in the comments that caret automatically does some kind of resampling and tuning and this makes it obviously slower.
+So we have to keep in mind that for *caret* `train` always means parameter tuning as well - although it is not always clear which parameters and regions are taken into account.
 For our comparison we will keep it fair and torn it off but still we got curious if *mlr* generates an computational overhead.
 
 <!--more-->
@@ -44,7 +45,7 @@ system.time({
 
 {% highlight text %}
 ##    user  system elapsed 
-##  16.364   0.288  16.638
+##  16.576   1.120  17.687
 {% endhighlight %}
 
 
@@ -59,7 +60,7 @@ print(object.size(fit), units = "Mb")
 ## 671.9 Mb
 {% endhighlight %}
 
-For caret we turn of any special training method which should get close to what the original `glm` does.
+For *caret* we turn off any special training method to get as close as possible to what the original `glm` does.
 
 {% highlight r %}
 library(caret)
@@ -89,7 +90,7 @@ system.time({
 
 {% highlight text %}
 ##    user  system elapsed 
-##  66.416   0.896  67.275
+##  67.744   1.060  68.761
 {% endhighlight %}
 
 
@@ -103,9 +104,8 @@ print(object.size(caret.fit), units = "Mb")
 {% highlight text %}
 ## 877.9 Mb
 {% endhighlight %}
-Strangely caret still is slower a bit. 
+Strangely *caret* still is a fair amount slower.
 It's not clear to us what happens here but one reason might also be that the `caret.fit` object contains also the complete training data.
-Note that for *caret* `train` always means parameter tuning as well - although it is not always clear which parameters and regions are taken into account.
 
 Finally we let *mlr* compute the model. 
 
@@ -122,7 +122,7 @@ system.time({
 
 {% highlight text %}
 ##    user  system elapsed 
-##  14.844   0.424  15.346
+##  15.348   0.644  16.033
 {% endhighlight %}
 
 
@@ -145,7 +145,7 @@ mlr.fit$time
 
 
 {% highlight text %}
-## [1] 15.342
+## [1] 16.03
 {% endhighlight %}
 We are happy that *mlr* doesn't bring you too much computational overhead.
 
