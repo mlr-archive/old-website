@@ -41,8 +41,8 @@ For fairness we always set the glm model parameter to FALSE so that the model da
 
 {% highlight r %}
 library(randomForest)
-glm.call = quote({glm.fit = glm(PRONO~., data=myocarde_large, family="binomial", model = FALSE)})
-rf.call = quote({set.seed(1); rf.fit = randomForest(PRONO~., data=myocarde_large, ntree=500)})
+glm.call = function() {glm(PRONO~., data=myocarde_large, family="binomial", model = FALSE)}
+rf.call = function() {set.seed(1); randomForest(PRONO~., data=myocarde_large, ntree=500)}
 {% endhighlight %}
 
 For *caret* we turn off any special training method to get as close as possible to what the original `glm` does.
@@ -51,24 +51,24 @@ Although we had some difficulties finding out how to train the *randomForest* in
 
 {% highlight r %}
 library(caret)
-glm.caret.call = quote({
-  glm.caret.fit = caret::train(
+glm.caret.call = function() {
+  caret::train(
     PRONO~., 
     data = myocarde_large, 
     method="glm", 
     model = FALSE,
     trControl = trainControl(method = "none"))
-  })
-rf.caret.call = quote({
+  }
+rf.caret.call = function() {
   set.seed(1)
-  rf.caret.fit = caret::train(
+  caret::train(
     PRONO~.,
     data = myocarde_large,
     method = "rf",
     ntree = 500,
     trControl = trainControl(method = "none"),
     tuneGrid = data.frame(mtry = floor(sqrt(ncol(myocarde_large)-1))))
-  })
+  }
 {% endhighlight %}
 
 Finally we define the call for *mlr*. 
@@ -78,8 +78,8 @@ library(mlr)
 lrn.glm = makeLearner("classif.binomial")
 lrn.rf = makeLearner("classif.randomForest", ntree = 500)
 tsk = makeClassifTask(id = "myocarde", data = myocarde_large, target = "PRONO")
-glm.mlr.call = quote({glm.mlr.fit = train(learner = lrn.glm, task = tsk)})
-rf.mlr.call = quote({set.seed(1); rf.mlr.fit = train(learner = lrn.rf, task = tsk)})  
+glm.mlr.call = function() {train(learner = lrn.glm, task = tsk)}
+rf.mlr.call = function() {set.seed(1); train(learner = lrn.rf, task = tsk)}
 {% endhighlight %}
 
 Now, using *microbenchmark* we can compare the runtimes of each call.
@@ -87,14 +87,20 @@ Notice that the benchmark does two warm up iterations per default wich will not 
 
 {% highlight r %}
 library("microbenchmark")
-mb.res = microbenchmark(
-  glm = eval(glm.call), glm.caret = eval(glm.caret.call), glm.mlr = eval(glm.mlr.call),
-  rf = eval(rf.call), rf.caret = eval(rf.caret.call), rf.mlr = eval(rf.mlr.call),
-  times = 50)
-boxplot(mb.res)
+glm.res = microbenchmark(
+  glm = glm.call(), glm.caret = glm.caret.call(), glm.mlr = glm.mlr.call(), times = 20, unit = "s")
+rf.res = microbenchmark(
+  rf = rf.call(), rf.caret = rf.caret.call(), rf.mlr = rf.mlr.call(), times = 20, unit = "s")
+boxplot(glm.res, unit = "s")
 {% endhighlight %}
 
 ![plot of chunk unnamed-chunk-5](../figures/2015-10-01-Computational-Time-of-Predictive-Models-Comparison/unnamed-chunk-5-1.svg) 
+
+{% highlight r %}
+boxplot(rf.res, unit = "s")
+{% endhighlight %}
+
+![plot of chunk unnamed-chunk-5](../figures/2015-10-01-Computational-Time-of-Predictive-Models-Comparison/unnamed-chunk-5-2.svg) 
 
 We are happy that *mlr* doesn't bring you too much computational overhead.
 Strangely *caret* still is a fair amount slower.
@@ -103,7 +109,9 @@ It's not clear to us what happens here but one reason might also be that the `ca
 Let's have a look if we did get the same model for *glm* with each call? 
 
 {% highlight r %}
-all.equal(glm.caret.fit$finalModel$coefficients, glm.fit$coefficients)
+fits = list(glm = glm.call(), glm.caret = glm.caret.call(), glm.mlr = glm.mlr.call(),
+            rf = rf.call(), rf.caret = rf.caret.call(), rf.mlr = rf.mlr.call())
+all.equal(fits$glm.caret$finalModel$coefficients, fits$glm$coefficients)
 {% endhighlight %}
 
 
@@ -115,7 +123,7 @@ all.equal(glm.caret.fit$finalModel$coefficients, glm.fit$coefficients)
 
 
 {% highlight r %}
-all.equal(glm.mlr.fit$learner.model$coefficients, glm.fit$coefficients)
+all.equal(fits$glm.mlr$learner.model$coefficients, fits$glm$coefficients)
 {% endhighlight %}
 
 
@@ -127,25 +135,25 @@ all.equal(glm.mlr.fit$learner.model$coefficients, glm.fit$coefficients)
 
 
 {% highlight r %}
-all.equal(rf.caret.fit$finalModel$votes, rf.fit$votes)
+all.equal(fit$rf.caret$finalModel$votes, fits$rf$votes)
 {% endhighlight %}
 
 
 
 {% highlight text %}
-## [1] "Mean relative difference: 0.01422764"
+## Error in all.equal(fit$rf.caret$finalModel$votes, fits$rf$votes): object 'fit' not found
 {% endhighlight %}
 
 
 
 {% highlight r %}
-all.equal(rf.mlr.fit$learner.model$votes, rf.fit$votes)
+all.equal(fit$rf.mlr$learner.model$votes, fits$rf$votes)
 {% endhighlight %}
 
 
 
 {% highlight text %}
-## [1] TRUE
+## Error in all.equal(fit$rf.mlr$learner.model$votes, fits$rf$votes): object 'fit' not found
 {% endhighlight %}
 
 We were not able to let caret run exactly as the *randomForest* although all important parameters seem to be the same when we run `Map(all.equal, rf.caret.fit$finalModel, rf.fit)`. 
@@ -153,8 +161,6 @@ We were not able to let caret run exactly as the *randomForest* although all imp
 The object sizes:
 
 {% highlight r %}
-fits = list(glm = glm.fit, glm.caret = glm.caret.fit, glm.mlr = glm.mlr.fit,
-            rf = rf.fit, rf.caret = rf.caret.fit, rf.mlr = rf.mlr.fit)
 sapply(fits, function(x) format(object.size(x), units = "KB"))
 {% endhighlight %}
 
@@ -162,7 +168,7 @@ sapply(fits, function(x) format(object.size(x), units = "KB"))
 
 {% highlight text %}
 ##         glm   glm.caret     glm.mlr          rf    rf.caret      rf.mlr 
-## "7066.3 Kb" "9334.9 Kb" "7108.9 Kb"   "6080 Kb" "8187.2 Kb" "6146.1 Kb"
+## "7066.3 Kb" "9334.9 Kb" "7108.9 Kb"   "5287 Kb" "7640.3 Kb" "5353.1 Kb"
 {% endhighlight %}
 
 Maybe a reason for *caret*s inferior runtime is the fact that it stores more information in its model objects.
