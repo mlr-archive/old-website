@@ -26,3 +26,12 @@ We try to post neat stuff we learned, we want to promote on an irregular basis.
 I am professor of computational statistics at the LMU Munich and created mlr a long time ago.
 Go to my [personal page](http://berndbischl.github.io/) for any further info on me.
 
+#### Philipp Probst
+* Working at IBE, LMU Munich
+* M.Sc. Statistics
+* Contact me [philipp_probst@gmx.de](mailto:philipp_probst@gmx.de)
+* On github: [github.com/philipppro](https://github.com/philipppro)
+* Projects:
+  * [mlr](https://github.com/mlr-org/mlr)
+  * [RFParset](https://github.com/PhilippPro/RFParset)
+
