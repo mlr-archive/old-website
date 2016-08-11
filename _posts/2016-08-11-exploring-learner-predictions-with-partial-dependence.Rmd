@@ -13,6 +13,7 @@ Learners use features to make predictions but how those features are used is oft
 
 <!--more-->
 
+
 Partial dependence plots reduce the potentially high dimensional function estimated by the learner, and display a marginalized version of this function in a lower dimensional space. For example suppose $\mathbb{E}[Y | X = x] = f(x)$. With $(x, y)$ pairs drawn independently, a learner may estimate $\hat{f}$, which,if $X$ is high dimensional can be uninterpretable. Suppose we want to approximate the relationship between some column-wise subset of $X$. We partition $X$ into two sets, $X_s$ and $X_c$ such that $X = X_s \cup X_c$, where $X_s$ is a subset of $X$ of interest.
 
 The partial dependence of $f$ on $X_c$ is
