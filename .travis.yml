@@ -1,0 +1,22 @@
+language: ruby
+
+# ruby version manager
+rvm:
+- 2.1
+
+# run build on container-based infrastructure
+sudo: false
+
+before_script:
+  # make jekyll build / htmlproofer script executable
+  - chmod +x ./script/cibuild
+
+script: ./script/cibuild
+
+env:
+  global:
+    # dramatically speed up installation of html-proofer!
+    # If not set a load of libraries must be compiled first.
+    - NOKOGIRI_USE_SYSTEM_LIBRARIES=true
+
+exclude: [vendor]

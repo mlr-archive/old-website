@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+# halt script on error
+set -e
+
+# check building the site
+bundle exec jekyll build
+
+# check html output (do not skip any testing)
+bundle exec htmlproofer ./_site
