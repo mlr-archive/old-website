@@ -11,6 +11,22 @@ We try to post neat stuff we learned, we want to promote on an irregular basis.
 
 #### Michel Lang
 
+* PostDoc in Statistics at TU Dortmund
+*  [github.com/mllg](https://github.com/mllg)
+* R Projects:
+  * [BatchExperiments](https://github.com/tudo-r/BatchExperiments)
+  * [BatchJobs](https://github.com/tudo-r/BatchJobs)
+  * [BiocParallel](http://bioconductor.org/packages/BiocParallel)
+  * [ParamHelpers](https://github.com/berndbischl/ParamHelpers)
+  * [backports](https://github.com/rdatsci/backports)
+  * [batchtools](https://github.com/mllg/batchtools)
+  * [checkmate](https://github.com/mllg/checkmate)
+  * [conditions](https://github.com/mllg/conditions)
+  * [mlrMBO](https://github.com/berndbischl/mlrMBO)
+  * [mlr](https://github.com/mlr-org/mlr)
+  * [parallelMap](https://github.com/berndbischl/parallelMap)
+  * [rt](https://github.com/rdatsci/rt)
+
 #### Jakob Richter
 
 * Working at TU Dortmund
