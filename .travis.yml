@@ -5,16 +5,17 @@ rvm:
 - 2.1
 
 # install gems
-install: gem install jekyll html-proofer jekyll-sitemap
+install: gem install jekyll html-proofer jekyll-sitemap redcarpet
 
 # run build on container-based infrastructure
 sudo: false
 
 before_script:
-  # make jekyll build / htmlproofer script executable
+  # make scripts executable
   - chmod +x ./script/cibuild
 
-script: ./script/cibuild
+script:
+  - ./script/cibuild
 
 env:
   global:
