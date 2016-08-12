@@ -5,7 +5,7 @@ rvm:
 - 2.1
 
 # install gems
-install: gem install jekyll html-proofer jekyll-sitemap redcarpet
+install: gem install jekyll html-proofer jekyll-sitemap redcarpet pygments.rb
 
 # run build on container-based infrastructure
 sudo: false
