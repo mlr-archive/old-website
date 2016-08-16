@@ -1,8 +1,7 @@
 ---
 layout: post
 title: Exploring Learner Predictions with Partial Dependence and Functional ANOVA
-author: "zach"
-draft: true 
+author: zach
 ---
 
 Learners use features to make predictions but how those features are used is often not apparent.
@@ -72,12 +71,13 @@ pd
 ## Interaction: FALSE
 ## Individual: FALSE
 ##    Class Probability Petal.Width
-## 1 setosa   0.4741944   0.1000000
-## 2 setosa   0.4204938   0.3666667
-## 3 setosa   0.3656160   0.6333333
-## 4 setosa   0.3175789   0.9000000
-## 5 setosa   0.2577483   1.1666667
-## 6 setosa   0.1876999   1.4333333
+## 1 setosa   0.4873105   0.1000000
+## 2 setosa   0.4582915   0.3666667
+## 3 setosa   0.3979901   0.6333333
+## 4 setosa   0.3048093   0.9000000
+## 5 setosa   0.1968385   1.1666667
+## 6 setosa   0.1296126   1.4333333
+## ... (30 rows, 3 cols)
 {% endhighlight %}
 
 
@@ -101,12 +101,12 @@ head(pd.lst$data)
 
 {% highlight text %}
 ##    Class Probability Petal.Width Petal.Length
-## 1 setosa   0.4741944   0.1000000           NA
-## 2 setosa   0.4204938   0.3666667           NA
-## 3 setosa   0.3656160   0.6333333           NA
-## 4 setosa   0.3175789   0.9000000           NA
-## 5 setosa   0.2577483   1.1666667           NA
-## 6 setosa   0.1876999   1.4333333           NA
+## 1 setosa   0.4873105   0.1000000           NA
+## 2 setosa   0.4582915   0.3666667           NA
+## 3 setosa   0.3979901   0.6333333           NA
+## 4 setosa   0.3048093   0.9000000           NA
+## 5 setosa   0.1968385   1.1666667           NA
+## 6 setosa   0.1296126   1.4333333           NA
 {% endhighlight %}
 
 
@@ -119,12 +119,12 @@ tail(pd.lst$data)
 
 {% highlight text %}
 ##        Class Probability Petal.Width Petal.Length
-## 55 virginica   0.1825171          NA     3.622222
-## 56 virginica   0.2910917          NA     4.277778
-## 57 virginica   0.4179105          NA     4.933333
-## 58 virginica   0.5754209          NA     5.588889
-## 59 virginica   0.6990343          NA     6.244444
-## 60 virginica   0.7329522          NA     6.900000
+## 55 virginica   0.2599675          NA     3.622222
+## 56 virginica   0.3564074          NA     4.277778
+## 57 virginica   0.4710247          NA     4.933333
+## 58 virginica   0.6211941          NA     5.588889
+## 59 virginica   0.6996395          NA     6.244444
+## 60 virginica   0.6698248          NA     6.900000
 {% endhighlight %}
 
 
@@ -152,12 +152,13 @@ pd.int
 ## Interaction: TRUE
 ## Individual: FALSE
 ##    Class Probability Petal.Width Petal.Length
-## 1 setosa   0.6803480   0.1000000            1
-## 2 setosa   0.6741062   0.3666667            1
-## 3 setosa   0.6366862   0.6333333            1
-## 4 setosa   0.5645673   0.9000000            1
-## 5 setosa   0.4635873   1.1666667            1
-## 6 setosa   0.3604284   1.4333333            1
+## 1 setosa   0.5870841   0.1000000            1
+## 2 setosa   0.5853768   0.3666667            1
+## 3 setosa   0.5478996   0.6333333            1
+## 4 setosa   0.4619282   0.9000000            1
+## 5 setosa   0.3512372   1.1666667            1
+## 6 setosa   0.2831554   1.4333333            1
+## ... (300 rows, 4 cols)
 {% endhighlight %}
 
 
@@ -195,12 +196,13 @@ pd.ci
 ## Interaction: FALSE
 ## Individual: FALSE
 ##       medv     lstat    lower    upper
-## 1 24.75944  1.730000 21.33501 29.63060
-## 2 23.74400  5.756667 20.76304 27.63689
-## 3 22.35525  9.783333 19.99925 25.17810
-## 4 20.68648 13.810000 18.66757 23.59334
-## 5 19.58178 17.836667 16.51997 22.94526
-## 6 19.17164 21.863333 14.99665 22.16159
+## 1 24.91493  1.730000 21.37001 29.50338
+## 2 23.73227  5.756667 20.82674 27.43423
+## 3 22.35233  9.783333 19.92511 25.05530
+## 4 20.71295 13.810000 18.70646 23.67669
+## 5 19.61552 17.836667 16.53312 22.89534
+## 6 19.04378 21.863333 14.95929 22.10961
+## ... (10 rows, 4 cols)
 {% endhighlight %}
 
 
@@ -224,12 +226,12 @@ head(pd.se$data)
 
 {% highlight text %}
 ##       medv     lstat crim    lower    upper
-## 1 30.97969  1.730000   NA 27.11506 34.84433
-## 2 26.04587  5.756667   NA 23.49166 28.60009
-## 3 23.56299  9.783333   NA 21.40747 25.71850
-## 4 22.12596 13.810000   NA 20.35076 23.90117
-## 5 20.48505 17.836667   NA 18.75385 22.21625
-## 6 19.84129 21.863333   NA 17.95946 21.72312
+## 1 31.35704  1.730000   NA 27.70872 35.00535
+## 2 25.97681  5.756667   NA 23.52112 28.43251
+## 3 23.38082  9.783333   NA 21.17199 25.58964
+## 4 22.07574 13.810000   NA 20.30795 23.84353
+## 5 20.43102 17.836667   NA 18.68259 22.17945
+## 6 19.73287 21.863333   NA 17.91616 21.54959
 {% endhighlight %}
 
 
@@ -242,12 +244,12 @@ tail(pd.se$data)
 
 {% highlight text %}
 ##        medv lstat     crim    lower    upper
-## 15 21.76787    NA 39.54849 19.53633 23.99940
-## 16 21.74762    NA 49.43403 19.51169 23.98355
-## 17 21.73179    NA 59.31957 19.48485 23.97873
-## 18 21.72738    NA 69.20512 19.48251 23.97224
-## 19 21.73074    NA 79.09066 19.48924 23.97224
-## 20 21.73092    NA 88.97620 19.48950 23.97235
+## 15 21.67019    NA 39.54849 19.44479 23.89559
+## 16 21.64020    NA 49.43403 19.41202 23.86837
+## 17 21.62345    NA 59.31957 19.38769 23.85920
+## 18 21.61554    NA 69.20512 19.37889 23.85218
+## 19 21.61634    NA 79.09066 19.38122 23.85145
+## 20 21.61713    NA 88.97620 19.38203 23.85223
 {% endhighlight %}
 
 
@@ -278,12 +280,13 @@ pd.ind.regr
 ## Individual: TRUE
 ## Predictions centered: FALSE
 ##       medv     lstat idx
-## 1 26.24167  1.730000   1
-## 2 25.30163  5.756667   1
-## 3 24.21531  9.783333   1
-## 4 23.17910 13.810000   1
-## 5 22.28992 17.836667   1
-## 6 21.55922 21.863333   1
+## 1 26.77258  1.730000   1
+## 2 25.75198  5.756667   1
+## 3 24.57015  9.783333   1
+## 4 23.41468 13.810000   1
+## 5 22.39885 17.836667   1
+## 6 21.56274 21.863333   1
+## ... (5060 rows, 3 cols)
 {% endhighlight %}
 
 
@@ -316,12 +319,13 @@ pd.ind.classif
 ## Individual: TRUE
 ## Predictions centered: FALSE
 ##    Class Probability Petal.Length      idx
-## 1 setosa   0.9745010            1 1.setosa
-## 2 setosa   0.9673611            1 2.setosa
-## 3 setosa   0.9742826            1 3.setosa
-## 4 setosa   0.9719389            1 4.setosa
-## 5 setosa   0.9734602            1 5.setosa
-## 6 setosa   0.9684905            1 6.setosa
+## 1 setosa   0.9843143            1 1.setosa
+## 2 setosa   0.9730105            1 2.setosa
+## 3 setosa   0.9841302            1 3.setosa
+## 4 setosa   0.9828398            1 4.setosa
+## 5 setosa   0.9843206            1 5.setosa
+## 6 setosa   0.9744153            1 6.setosa
+## ... (4500 rows, 4 cols)
 {% endhighlight %}
 
 
@@ -355,12 +359,12 @@ head(pd.regr.der.ind$data)
 
 {% highlight text %}
 ##         medv     lstat idx
-## 1 -0.1956334  1.730000   1
-## 2 -0.2612831  5.756667   1
-## 3 -0.2698493  9.783333   1
-## 4 -0.2408942 13.810000   1
-## 5 -0.2005821 17.836667   1
-## 6 -0.1630254 21.863333   1
+## 1 -0.2156005  1.730000   1
+## 2 -0.2823219  5.756667   1
+## 3 -0.2966757  9.783333   1
+## 4 -0.2725602 13.810000   1
+## 5 -0.2305234 17.836667   1
+## 6 -0.1846955 21.863333   1
 {% endhighlight %}
 
 
@@ -381,12 +385,12 @@ head(pd.classif.der.ind$data)
 
 {% highlight text %}
 ##    Class Probability Petal.Width      idx
-## 1 setosa  0.02872499         0.1 1.setosa
-## 2 setosa  0.01905399         0.1 2.setosa
-## 3 setosa  0.01988824         0.1 3.setosa
-## 4 setosa  0.01821432         0.1 4.setosa
-## 5 setosa  0.03065588         0.1 5.setosa
-## 6 setosa  0.04638407         0.1 6.setosa
+## 1 setosa  0.04505876         0.1 1.setosa
+## 2 setosa  0.03199980         0.1 2.setosa
+## 3 setosa  0.02638916         0.1 3.setosa
+## 4 setosa  0.02272976         0.1 4.setosa
+## 5 setosa  0.04573864         0.1 5.setosa
+## 6 setosa  0.05096558         0.1 6.setosa
 {% endhighlight %}
 
 
@@ -426,14 +430,15 @@ fa
 ## Features: lstat
 ## Target: medv
 ## 
-## Effects Computed: lstat
+## 
 ##   effect     medv     lstat
-## 1  lstat 24.91596  1.730000
-## 2  lstat 23.73031  5.756667
-## 3  lstat 22.35010  9.783333
-## 4  lstat 20.71222 13.810000
-## 5  lstat 19.61578 17.836667
-## 6  lstat 19.04526 21.863333
+## 1  lstat 25.03554  1.730000
+## 2  lstat 23.77921  5.756667
+## 3  lstat 22.36452  9.783333
+## 4  lstat 20.70732 13.810000
+## 5  lstat 19.56395 17.836667
+## 6  lstat 18.91802 21.863333
+## ... (10 rows, 3 cols)
 {% endhighlight %}
 
 
@@ -454,12 +459,13 @@ pd.regr
 ## Interaction: FALSE
 ## Individual: FALSE
 ##       medv     lstat
-## 1 24.91596  1.730000
-## 2 23.73031  5.756667
-## 3 22.35010  9.783333
-## 4 20.71222 13.810000
-## 5 19.61578 17.836667
-## 6 19.04526 21.863333
+## 1 25.03554  1.730000
+## 2 23.77921  5.756667
+## 3 22.36452  9.783333
+## 4 20.70732 13.810000
+## 5 19.56395 17.836667
+## 6 18.91802 21.863333
+## ... (10 rows, 2 cols)
 {% endhighlight %}
 
 The `depth` argument is similar to the `interaction` argument in [&generatePartialDependenceData] but instead of specifying whether all of joint "effect" of all the `features` is computed, it determines whether "effects" of all subsets of the features given the specified `depth` are computed. So, for example, with $p$ features and depth 1, the univariate partial dependence is returned. If, instead, `depth = 2`, then all possible bivariate functional ANOVA effects are returned. This is done by computing the univariate partial dependence for each feature and subtracting it from the bivariate partial dependence for each possible pair.
@@ -478,14 +484,15 @@ fa.bv
 ## Features: crim, lstat, age
 ## Target: medv
 ## 
-## Effects Computed: crim:lstat, crim:age, lstat:age
+## 
 ##       effect      medv      crim lstat age
-## 1 crim:lstat -22.69572  0.006320  1.73  NA
-## 2 crim:lstat -23.21917  9.891862  1.73  NA
-## 3 crim:lstat -24.83502 19.777404  1.73  NA
-## 4 crim:lstat -26.50815 29.662947  1.73  NA
-## 5 crim:lstat -27.61202 39.548489  1.73  NA
-## 6 crim:lstat -28.23027 49.434031  1.73  NA
+## 1 crim:lstat -22.63601  0.006320  1.73  NA
+## 2 crim:lstat -23.10764  9.891862  1.73  NA
+## 3 crim:lstat -24.48731 19.777404  1.73  NA
+## 4 crim:lstat -26.07454 29.662947  1.73  NA
+## 5 crim:lstat -27.37663 39.548489  1.73  NA
+## 6 crim:lstat -28.34065 49.434031  1.73  NA
+## ... (300 rows, 5 cols)
 {% endhighlight %}
 
 
@@ -497,7 +504,7 @@ names(table(fa.bv$data$effect)) ## interaction effects estimated
 
 
 {% highlight text %}
-## [1] "crim:lstat" "crim:age"   "lstat:age"
+## [1] "crim:age"   "crim:lstat" "lstat:age"
 {% endhighlight %}
 
 Plotting univariate and bivariate functional ANOVA components works the same as for partial dependence.

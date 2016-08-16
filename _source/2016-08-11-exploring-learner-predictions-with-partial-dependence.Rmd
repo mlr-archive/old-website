@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Exploring Learner Predictions with Partial Dependence and Functional ANOVA
-author: "zach"
+author: zach
 ---
 
 Learners use features to make predictions but how those features are used is often not apparent.
