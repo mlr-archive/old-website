@@ -8,7 +8,7 @@ layout: post
 
 The *mlr developer team* is quite international: Germany, USA, Canada. The time difference between these countries sometimes makes it hard to communicate and develop new features.
 
-The idea for this workshop or [sprint](https://en.wikipedia.org/wiki/Sprint_(software_development) was to have the possibility to talk about the project status, future and structure, exterminate imperishable bugs and start developing some fancy features.
+The idea for this workshop or [sprint](http://en.wikipedia.org/wiki/Sprint_(software_development)) was to have the possibility to talk about the project status, future and structure, exterminate imperishable bugs and start developing some fancy features.
 
 <!--more-->
 
