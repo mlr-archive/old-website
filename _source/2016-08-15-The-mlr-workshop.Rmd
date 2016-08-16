@@ -1,15 +1,15 @@
 ---
 title: "Result of the mlr summer workshop in Palermo"
-author: "janek"
+author: janek
 layout: post
 draft: true
 ---
 
 ## The mlr workshop
 
-The mlr developer team is quite international: Germany, USA, Canada. The time difference between these countries sometimes makes it hard to communicate and develop new features.
+The *mlr developer team* is quite international: Germany, USA, Canada. The time difference between these countries sometimes makes it hard to communicate and develop new features.
 
-The idea for this workshop or [sprint](https://en.wikipedia.org/wiki/Sprint_(software_development) was to have the possibility to talk about the project status, future and structure, exterminate imperishable bugs and start to developing some fancy features.
+The idea for this workshop or [sprint](https://en.wikipedia.org/wiki/Sprint_(software_development) was to have the possibility to talk about the project status, future and structure, exterminate imperishable bugs and start developing some fancy features.
 
 Since we wanted to meet at a nice place we decided to go to Palermo, where the [department of statistics](https://www.unipa.it/dipartimenti/seas/) provided us with a room in the university for the workshop.
 
@@ -18,7 +18,7 @@ Twelve people from the developer team met from the 8. to 15. August to work on a
 
 ## Result of the workhop
 
-We could close a lot of issues and develop new features so that we will release version 2.10 of mlr in the next few days.
+We closed a lot of issues and developed new features that we will release with version 2.10 of *mlr* in the next few days.
 
 We also head a great time in a great city aside from the workhop, here are some impressions:
 
