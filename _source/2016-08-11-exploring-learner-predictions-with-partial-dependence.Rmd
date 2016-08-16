@@ -11,23 +11,23 @@ Learners use features to make predictions but how those features are used is oft
 <!--more-->
 
 
-Partial dependence plots reduce the potentially high dimensional function estimated by the learner, and display a marginalized version of this function in a lower dimensional space. For example suppose $\mathbb{E}[Y | X = x] = f(x)$. With $(x, y)$ pairs drawn independently, a learner may estimate $\hat{f}$, which, if $X$ is high dimensional can be uninterpretable. Suppose we want to approximate the relationship between some column-wise subset of $X$. We partition $X$ into two sets, $X\_s$ and $X\_c$ such that $X = X\_s \cup X\_c$, where $X\_s$ is a subset of $X$ of interest.
+Partial dependence plots reduce the potentially high dimensional function estimated by the learner, and display a marginalized version of this function in a lower dimensional space. For example suppose $\mathbb{E}[Y \ \| \ X = x] = f(x)$. With $(x, y)$ pairs drawn independently, a learner may estimate $\hat{f}$, which, if $X$ is high dimensional can be uninterpretable. Suppose we want to approximate the relationship between some column-wise subset of $X$. We partition $X$ into two sets, $X_s$ and $X_c$ such that $X = X_s \cup X_c$, where $X_s$ is a subset of $X$ of interest.
 
-The partial dependence of $f$ on $X\_c$ is
+The partial dependence of $f$ on $X_c$ is
 
-$$f\_{X\_s} = \mathbb{E}\_{X\_c}f(X\_s, X\_c).$$
+$$f_{X_s} = \mathbb{E}_{X_c}f(X_s, X_c).$$
 
 We can use the following estimator:
 
-$$\hat{f}\_{x\_s} = \frac{1}{N} \sum\_{i = 1}^N \hat{f}(x\_s, x\_{ic}).$$
+$$\hat{f}_{x_s} = \frac{1}{N} \sum_{i = 1}^N \hat{f}(x_s, x_{ic}).$$
 
 This is described by [Friedman (2001)](https://projecteuclid.org/euclid.aos/1013203451) and in [Hastie, Tibsharani, and Friedman (2009)](http://statweb.stanford.edu/~tibs/ElemStatLearn/).
 
-The individual conditional expectation of an observation can also be estimated using the above algorithm absent the averaging, giving $\hat{f}^{(i)}\_{x\_s}$ as described in [Goldstein, Kapelner, Bleich, and Pitkin (2014)](https://arxiv.org/abs/1309.6392). This allows the discovery of features of $\hat{f}$ that may be obscured by an aggregated summary of $\hat{f}$.
+The individual conditional expectation of an observation can also be estimated using the above algorithm absent the averaging, giving $\hat{f}^{(i)}_{x_s}$ as described in [Goldstein, Kapelner, Bleich, and Pitkin (2014)](https://arxiv.org/abs/1309.6392). This allows the discovery of features of $\hat{f}$ that may be obscured by an aggregated summary of $\hat{f}$.
 
-The partial derivative of the partial dependence function, $\frac{\partial \hat{f}\_{x\_s}}{\partial x\_s}$, and the individual conditional expectation function, $\frac{\partial \hat{f}^{(i)}\_{x\_s}}{\partial x\_s}$, can also be computed. For regression and survival tasks the partial derivative of a single feature $x\_s$ is the gradient of the partial dependence function, and for classification tasks where the learner can output class probabilities the Jacobian. Note that if the learner produces discontinuous partial dependence (e.g., piecewise constant functions such as decision trees, ensembles of decision trees, etc.) the derivative will be 0 (where the function is not changing) or trending towards positive or negative infinity (at the discontinuities where the derivative is undefined). Plotting the partial dependence function of such learners may give the impression that the function is not discontinuous because the prediction grid is not composed of all discontinuous points in the predictor space. This results in a line interpolating that makes the function appear to be piecewise linear (where the derivative would be defined except at the boundaries of each piece).
+The partial derivative of the partial dependence function, $\frac{\partial \hat{f}_{x_s}}{\partial x_s}$, and the individual conditional expectation function, $\frac{\partial \hat{f}^{(i)}_{x_s}}{\partial x_s}$, can also be computed. For regression and survival tasks the partial derivative of a single feature $x_s$ is the gradient of the partial dependence function, and for classification tasks where the learner can output class probabilities the Jacobian. Note that if the learner produces discontinuous partial dependence (e.g., piecewise constant functions such as decision trees, ensembles of decision trees, etc.) the derivative will be 0 (where the function is not changing) or trending towards positive or negative infinity (at the discontinuities where the derivative is undefined). Plotting the partial dependence function of such learners may give the impression that the function is not discontinuous because the prediction grid is not composed of all discontinuous points in the predictor space. This results in a line interpolating that makes the function appear to be piecewise linear (where the derivative would be defined except at the boundaries of each piece).
 
-The partial derivative can be informative regarding the additivity of the learned function in certain features. If $\hat{f}^{(i)}\_{x\_s}$ is an additive function in a feature $x\_s$, then its partial derivative will not depend on any other features ($x\_c$) that may have been used by the learner. Variation in the estimated partial derivative indicates that there is a region of interaction between $x\_s$ and $x\_c$ in $\hat{f}$. Similarly, instead of using the mean to estimate the expected value of the function at different values of $x\_s$, instead computing the variance can highlight regions of interaction between $x\_s$ and $x\_c$.
+The partial derivative can be informative regarding the additivity of the learned function in certain features. If $\hat{f}^{(i)}_{x_s}$ is an additive function in a feature $x_s$, then its partial derivative will not depend on any other features ($x_c$) that may have been used by the learner. Variation in the estimated partial derivative indicates that there is a region of interaction between $x_s$ and $x_c$ in $\hat{f}$. Similarly, instead of using the mean to estimate the expected value of the function at different values of $x_s$, instead computing the variance can highlight regions of interaction between $x_s$ and $x_c$.
 
 Again, see [Goldstein, Kapelner, Bleich, and Pitkin (2014)](http://arxiv.org/abs/1309.6392) for more details and their package [ICEbox](https://cran.r-project.org/web/packages/ICEbox/index.html) for the original implementation. The algorithm works for any supervised learner with classification, regression, and survival tasks.
 
@@ -51,7 +51,7 @@ pd
 plotPartialDependence(pd, data = iris)
 ```
 
-As noted above, $x\_s$ does not have to be unidimensional. If it is not, the `interaction` flag must be set to `TRUE`. Then the individual feature grids are combined using the Cartesian product, and the estimator above is applied, producing the partial dependence for every combination of unique feature values. If the `interaction` flag is `FALSE` (the default) then by default $x\_s$ is assumed unidimensional, and partial dependencies are generated for each feature separately. The resulting output when `interaction = FALSE` has a column for each feature, and `NA` where the feature was not used. With one feature and a regression task the output is a line plot, with a point for each point in the corresponding feature's grid. For classification tasks there is a line for each class (except for binary classification tasks, where the negative class is automatically dropped). The `data` argument to `plotPartialPrediction` allows the training data to be input to show the empirical marginal distribution of the data.
+As noted above, $x_s$ does not have to be unidimensional. If it is not, the `interaction` flag must be set to `TRUE`. Then the individual feature grids are combined using the Cartesian product, and the estimator above is applied, producing the partial dependence for every combination of unique feature values. If the `interaction` flag is `FALSE` (the default) then by default $x_s$ is assumed unidimensional, and partial dependencies are generated for each feature separately. The resulting output when `interaction = FALSE` has a column for each feature, and `NA` where the feature was not used. With one feature and a regression task the output is a line plot, with a point for each point in the corresponding feature's grid. For classification tasks there is a line for each class (except for binary classification tasks, where the negative class is automatically dropped). The `data` argument to `plotPartialPrediction` allows the training data to be input to show the empirical marginal distribution of the data.
 
 
 ```{r, fig.width = 8, fig.height = 4}
@@ -72,9 +72,9 @@ plotPartialDependence(pd.int, facet = "Petal.Length")
 
 When `interaction = TRUE`, `plotPartialDependence` can either facet over one feature, showing the conditional relationship between the other feature and $\hat{f}$ in each panel, or a tile plot. The latter is, however, not possible with multiclass classification (an example of a tile plot will be shown later).
 
-At each step in the estimation of $\hat{f}\_{x\_s}$ a set of predictions of length $N$ is generated. By default the mean prediction is used. For classification where `predict.type = "prob"` this entails the mean class probabilities. However, other summaries of the predictions may be used. For regression and survival tasks the function used here must either return one number or three, and, if the latter, the numbers must be sorted lowest to highest. For classification tasks the function must return a number for each level of the target feature.
+At each step in the estimation of $\hat{f}_{x_s}$ a set of predictions of length $N$ is generated. By default the mean prediction is used. For classification where `predict.type = "prob"` this entails the mean class probabilities. However, other summaries of the predictions may be used. For regression and survival tasks the function used here must either return one number or three, and, if the latter, the numbers must be sorted lowest to highest. For classification tasks the function must return a number for each level of the target feature.
 
-As noted, the `fun` argument can be a function which returns three numbers (sorted low to high) for a regression task. This allows further exploration of relative feature importance. If a feature is relatively important, the bounds are necessarily tighter because the feature accounts for more of the variance of the predictions, i.e., it is "used" more by the learner. More directly setting `fun = var` identifies regions of interaction between $x\_s$ and $x\_c$. This can also be accomplished by computing quantiles. The wider the quantile bounds, the more variation in $\hat{f}$ is due to features other than $x\_s$ that is shown in the plot.
+As noted, the `fun` argument can be a function which returns three numbers (sorted low to high) for a regression task. This allows further exploration of relative feature importance. If a feature is relatively important, the bounds are necessarily tighter because the feature accounts for more of the variance of the predictions, i.e., it is "used" more by the learner. More directly setting `fun = var` identifies regions of interaction between $x_s$ and $x_c$. This can also be accomplished by computing quantiles. The wider the quantile bounds, the more variation in $\hat{f}$ is due to features other than $x_s$ that is shown in the plot.
 
 ```{r}
 lrn.regr = makeLearner("regr.ksvm")
@@ -99,7 +99,7 @@ tail(pd.se$data)
 plotPartialDependence(pd.se)
 ```
 
-As previously mentioned if the aggregation function is not used, i.e., it is the identity, then the conditional expectation of $\hat{f}^{(i)}\_{x\_s}$ is estimated. If `individual = TRUE` then `generatePartialDependenceData` returns $N$ partial dependence estimates made at each point in the prediction grid constructed from the features.
+As previously mentioned if the aggregation function is not used, i.e., it is the identity, then the conditional expectation of $\hat{f}^{(i)}_{x_s}$ is estimated. If `individual = TRUE` then `generatePartialDependenceData` returns $N$ partial dependence estimates made at each point in the prediction grid constructed from the features.
 
 ```{r}
 pd.ind.regr = generatePartialDependenceData(fit.regr, bh.task, "lstat", individual = TRUE)
@@ -146,11 +146,11 @@ This suggests that `Petal.Width` interacts with some other feature in the neighb
 
 ## Functional ANOVA
 
-[Hooker (2004)](http://dl.acm.org/citation.cfm?id=1014122) proposed the decomposition of a learned function $\hat{f}$ as a sum of lower dimensional functions $$f(\mathbf{x}) = g\_0 + \sum\_{i = 1}^p g\_{i}(x\_i) + \sum\_{i \neq j} g\_{ij}(x\_{ij}) + \ldots$$ where $p$ is the number of features. [&generateFunctionalANOVAData] estimates the individual $g$ functions using partial dependence. When functions depend only on one feature, they are equivalent to partial dependence, but a $g$ function which depends on more than one feature is the "effect" of only those features: lower dimensional "effects" are removed.
+[Hooker (2004)](http://dl.acm.org/citation.cfm?id=1014122) proposed the decomposition of a learned function $\hat{f}$ as a sum of lower dimensional functions $$f(\mathbf{x}) = g_0 + \sum_{i = 1}^p g_{i}(x_i) + \sum_{i \neq j} g_{ij}(x_{ij}) + \ldots$$ where $p$ is the number of features. [&generateFunctionalANOVAData] estimates the individual $g$ functions using partial dependence. When functions depend only on one feature, they are equivalent to partial dependence, but a $g$ function which depends on more than one feature is the "effect" of only those features: lower dimensional "effects" are removed.
 
-$$\hat{g}\_u(x) = \frac{1}{N} \sum\_{i = 1}^N \left( \hat{f}(x) - \sum\_{v \subset u} g\_v(x) \right)$$
+$$\hat{g}_u(x) = \frac{1}{N} \sum_{i = 1}^N \left( \hat{f}(x) - \sum_{v \subset u} g_v(x) \right)$$
 
-Here $u$ is a subset of ${1, \ldots, p}$. When $|v| = 1$ $g\_v$ can be directly computed by computing the bivariate partial dependence of $\hat{f}$ on $x\_u$ and then subtracting off the univariate partial dependences of the features contained in $v$.
+Here $u$ is a subset of ${1, \ldots, p}$. When $|v| = 1$ $g_v$ can be directly computed by computing the bivariate partial dependence of $\hat{f}$ on $x_u$ and then subtracting off the univariate partial dependences of the features contained in $v$.
 
 Although this decomposition is generalizable to classification it is currently only available for regression tasks.
 
