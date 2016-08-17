@@ -24,7 +24,7 @@ Thanks to all `sample(participants)`: [Giuseppe Casalicchio](http://compstat-lmu
 
 We also head a great time in a great city aside from the workhop, here are some impressions:
 
-![](../images/palermo/IMG_20160805_194946.jpg)
-![](../images/palermo/IMG_20160806_094042.jpg)
-![](../images/palermo/IMG_20160806_112236.jpg)
+![View from Hotel 1](../images/palermo/IMG_20160805_194946.jpg)
+![View from Hotel 2](../images/palermo/IMG_20160806_094042.jpg)
+![some fountain](../images/palermo/IMG_20160806_112236.jpg)
 
