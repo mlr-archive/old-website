@@ -24,3 +24,6 @@ env:
     - NOKOGIRI_USE_SYSTEM_LIBRARIES=true
 
 exclude: [vendor]
+
+notifications:
+  slack: mlr-org:YQnzHKpngcveRUZgGJmm2eXB#buildnotifications
