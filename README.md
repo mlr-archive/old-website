@@ -1,6 +1,12 @@
 # mlr blog
 [The mlr blog](https://mlr-org.github.io) is build on [Jekyll](https://github.com/jekyll/jekyll) and it's more or less a fork of [that ground structure].
 
+## blog build status
+[![Build Status](https://travis-ci.org/mlr-org/mlr-org.github.io.svg?branch=master)](https://travis-ci.org/mlr-org/mlr-org.github.io)
+Note: To get a green Travis Icon we need amongst others
+* All images with alt attribute
+* No links on 404 pages
+
 ## submit a post
 1. Clone this repository.
 2. Make sure `./knit2md` is executable (`chmod +x knit2md`)
