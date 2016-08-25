@@ -52,7 +52,7 @@ Perhaps we decide we want to try [kernlab's svm](http://www.rdocumentation.org/p
 classification task. Knowing that svm has several hyperparameters to tune, we 
 can ask mlr to list the hyperparameters to refresh our memory:
 
-```{r, message = FALSE, warning = FALSE}
+```{r}
 library(mlr)
 # to make sure our results are replicable we set the seed
 set.seed(7)
@@ -63,7 +63,7 @@ Noting that we have default values for each of the hyperparameters, we could
 simply accept the defaults for each of the hyperparameters and evaluate our 
 `mmce` performance using 3-fold cross validation:
 
-```{r, message = FALSE, warning = FALSE}
+```{r}
 rdesc = makeResampleDesc("CV", iters = 3)
 r = resample("classif.ksvm", pid.task, rdesc)
 print(r)
@@ -78,14 +78,14 @@ regularization to get better performance. For [kernlab's svm](http://www.rdocume
 is represented using the `C` hyperparameter. Calling `getParamSet` again to 
 refresh our memory, we see that `C` defaults to 1.
 
-```{r, message = FALSE, warning = FALSE}
+```{r}
 getParamSet("classif.ksvm")
 ```
 
 Let's tell [mlr](http://github.com/mlr-org/mlr) to randomly pick `C` values 
 between `2^-5` and `2^5`, evaluating `mmce` using 3-fold cross validation:
 
-```{r, message = FALSE, warning = FALSE}
+```{r}
 # create the C parameter in continuous space: 2^-5 : 2^5
 ps = makeParamSet(
   makeNumericParam("C", lower = -5, upper = 5, trafo = function(x) 2^x)
@@ -114,7 +114,7 @@ built-in for the user to plot the data.
 
 Let's investigate the results from before where we tuned `C`:
 
-```{r first_chart, message = FALSE, warning = FALSE}
+```{r first_chart}
 data = generateHyperParsEffectData(res)
 plotHyperParsEffect(data, x = "C", y = "mmce.test.mean")
 ```
@@ -125,7 +125,7 @@ explore if we wanted to try to get even better performance!
 
 We could also evaluate how "long" it takes us to find that optimal value:
 
-```{r second_chart, message = FALSE, warning = FALSE}
+```{r second_chart}
 plotHyperParsEffect(data, x = "iteration", y = "mmce.test.mean")
 ```
 
@@ -136,7 +136,7 @@ But wait, I hear you saying. I also want to tune `sigma`, the inverse kernel
 width of the radial basis kernel function. So now we have 2 hyperparameters that 
 we want to simultaneously tune: `C` and `sigma`. 
 
-```{r, message = FALSE, warning = FALSE}
+```{r}
 # create the C and sigma parameter in continuous space: 2^-5 : 2^5
 ps = makeParamSet(
   makeNumericParam("C", lower = -5, upper = 5, trafo = function(x) 2^x),
@@ -160,7 +160,7 @@ will automatically interpolate the grid to get an estimate for values we didn't
 even test! All we need to do is pass a regression learner to the `interpolate` 
 argument:
 
-```{r third_chart, message = FALSE, warning = FALSE}
+```{r third_chart}
 plotHyperParsEffect(data, x = "C", y = "sigma", z = "mmce.test.mean",
   plot.type = "heatmap", interpolate = "regr.earth")
 ```
@@ -168,7 +168,7 @@ plotHyperParsEffect(data, x = "C", y = "sigma", z = "mmce.test.mean",
 If we use the `show.experiments` argument, we can see which points were 
 actually tested and which were interpolated:
 
-```{r fourth_chart, message = FALSE, warning = FALSE}
+```{r fourth_chart}
 plotHyperParsEffect(data, x = "C", y = "sigma", z = "mmce.test.mean",
   plot.type = "heatmap", interpolate = "regr.earth", show.experiments = TRUE)
 ```
@@ -176,7 +176,7 @@ plotHyperParsEffect(data, x = "C", y = "sigma", z = "mmce.test.mean",
 `plotHyperParsEffect` returns a `ggplot2` object, so we can always customize it 
 to better fit our needs downstream:
 
-```{r fifth_chart, message = FALSE, warning = FALSE}
+```{r fifth_chart}
 plt = plotHyperParsEffect(data, x = "C", y = "sigma", z = "mmce.test.mean",
   plot.type = "heatmap", interpolate = "regr.earth", show.experiments = TRUE)
 min_plt = min(plt$data$mmce.test.mean, na.rm = TRUE)

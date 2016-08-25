@@ -60,6 +60,8 @@ set.seed(7)
 getParamSet("classif.ksvm")
 {% endhighlight %}
 
+
+
 {% highlight text %}
 ##                        Type  len    Def
 ## scaled              logical    -   TRUE
@@ -108,6 +110,8 @@ r = resample("classif.ksvm", pid.task, rdesc)
 print(r)
 {% endhighlight %}
 
+
+
 {% highlight text %}
 ## Resample Result
 ## Task: PimaIndiansDiabetes-example
@@ -115,7 +119,7 @@ print(r)
 ## mmce.aggr: 0.24
 ## mmce.mean: 0.24
 ## mmce.sd: 0.03
-## Runtime: 0.104749
+## Runtime: 0.068306
 {% endhighlight %}
 
 While this result may seem decent, we have a nagging doubt: what if we chose 
@@ -131,6 +135,8 @@ refresh our memory, we see that `C` defaults to 1.
 {% highlight r %}
 getParamSet("classif.ksvm")
 {% endhighlight %}
+
+
 
 {% highlight text %}
 ##                        Type  len    Def
@@ -216,7 +222,7 @@ data = generateHyperParsEffectData(res)
 plotHyperParsEffect(data, x = "C", y = "mmce.test.mean")
 {% endhighlight %}
 
-![plot of chunk unnamed-chunk-5](../figures/2016-08-21-gsoc-hyperparameter-tuning-visualization/first_chart-1.png)
+![plot of chunk first_chart](../figures/2016-08-21-gsoc-hyperparameter-tuning-visualization/first_chart-1.svg)
 
 From the scatterplot, it appears our optimal performance is somewhere in the 
 region between `2^-2.5` and `2^-1.75`. This could provide us a region to further 
@@ -229,7 +235,7 @@ We could also evaluate how "long" it takes us to find that optimal value:
 plotHyperParsEffect(data, x = "iteration", y = "mmce.test.mean")
 {% endhighlight %}
 
-![plot of chunk unnamed-chunk-6](../figures/2016-08-21-gsoc-hyperparameter-tuning-visualization/second_chart-1.png)
+![plot of chunk second_chart](../figures/2016-08-21-gsoc-hyperparameter-tuning-visualization/second_chart-1.svg)
 
 By default, the plot only shows the global optimum, so we can see that we found 
 the "best" performance in less than 25 iterations!
@@ -282,7 +288,7 @@ plotHyperParsEffect(data, x = "C", y = "sigma", z = "mmce.test.mean",
   plot.type = "heatmap", interpolate = "regr.earth")
 {% endhighlight %}
 
-![plot of chunk unnamed-chunk-8](../figures/2016-08-21-gsoc-hyperparameter-tuning-visualization/third_chart-1.png)
+![plot of chunk third_chart](../figures/2016-08-21-gsoc-hyperparameter-tuning-visualization/third_chart-1.svg)
 
 If we use the `show.experiments` argument, we can see which points were 
 actually tested and which were interpolated:
@@ -293,7 +299,7 @@ plotHyperParsEffect(data, x = "C", y = "sigma", z = "mmce.test.mean",
   plot.type = "heatmap", interpolate = "regr.earth", show.experiments = TRUE)
 {% endhighlight %}
 
-![plot of chunk unnamed-chunk-9](../figures/2016-08-21-gsoc-hyperparameter-tuning-visualization/fourth_chart-1.png)
+![plot of chunk fourth_chart](../figures/2016-08-21-gsoc-hyperparameter-tuning-visualization/fourth_chart-1.svg)
 
 `plotHyperParsEffect` returns a `ggplot2` object, so we can always customize it 
 to better fit our needs downstream:
@@ -309,7 +315,7 @@ plt + scale_fill_gradient2(breaks = seq(min_plt, max_plt, length.out = 4),
   low = "red", mid = "white", high = "blue", midpoint = mean_plt)
 {% endhighlight %}
 
-![plot of chunk unnamed-chunk-10](../figures/2016-08-21-gsoc-hyperparameter-tuning-visualization/fifth_chart-1.png)
+![plot of chunk fifth_chart](../figures/2016-08-21-gsoc-hyperparameter-tuning-visualization/fifth_chart-1.svg)
 
 Now we can get a good sense of where the separation happens for each of the 
 hyperparameters: in this particular example, we want lower values for `sigma` 
