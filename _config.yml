@@ -33,6 +33,7 @@ footer-links:
   stackoverflow: questions/tagged/mlr # your stackoverflow profile, e.g. "users/50476/bart-kiers"
   youtube: # channel/<your_long_string> or user/<user-name>
   googleplus: # anything in your profile username that comes after plus.google.com/
+  rbloggers: https://www.r-bloggers.com/
 
 
 # Enter your Disqus shortname (not your username) to enable commenting on posts
