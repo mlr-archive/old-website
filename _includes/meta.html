@@ -15,7 +15,7 @@
     <meta property="og:description" content="{{ site.description }}" />
     {% endif %}
     {% if page.author %}
-    <meta name="author" content="{{ page.author }}" />
+    <meta name="author" content="{{ site.authors[page.author].display_name }}" />
     {% else %}
     <meta name="author" content="{{ site.name }}" />
     {% endif %}
