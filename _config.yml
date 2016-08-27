@@ -9,7 +9,10 @@ name: mlr-org
 description: "mlr: Machine Learning for R."
 
 # URL of your avatar or profile pic (you could use your GitHub profile pic)
-avatar: https://raw.githubusercontent.com/mlr-org/mlr-tutorial/gh-pages/images/mlrLogo_blue_141x64.png
+avatar: http://mlr-org.github.io/mlr-tutorial/images/mlrLogo_blue_141x64.png
+
+# URL for Open Graph Information (will be included when sharing a post on twitter/facebook)
+shareimage: http://mlr-org.github.io/mlr-tutorial/images/mlrLogo_blue_566x256.png
 
 #
 # Flags below are optional
@@ -27,7 +30,7 @@ footer-links:
   pinterest:
   rss: rss # just type anything here for a working RSS icon, make sure you set the "url" above!
   twitter:
-  stackoverflow: # your stackoverflow profile, e.g. "users/50476/bart-kiers"
+  stackoverflow: questions/tagged/mlr # your stackoverflow profile, e.g. "users/50476/bart-kiers"
   youtube: # channel/<your_long_string> or user/<user-name>
   googleplus: # anything in your profile username that comes after plus.google.com/
 
