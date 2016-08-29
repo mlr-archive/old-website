@@ -9,10 +9,11 @@ name: mlr-org
 description: "mlr: Machine Learning for R."
 
 # URL of your avatar or profile pic (you could use your GitHub profile pic)
-avatar: http://mlr-org.github.io/mlr-tutorial/images/mlrLogo_blue_141x64.png
+avatar: /images/mlrLogo_blue_on_white320square.png
 
-# URL for Open Graph Information (will be included when sharing a post on twitter/facebook)
-shareimage: http://mlr-org.github.io/mlr-tutorial/images/mlrLogo_blue_566x256.png
+# Image for Open Graph Information (will be included when sharing a post on twitter/facebook)
+shareimage: /images/mlrLogo_blue_on_white320square.png
+rsslogo: /images/mlrLogo_blue_on_white320square.png
 
 #
 # Flags below are optional

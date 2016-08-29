@@ -2,22 +2,30 @@
 layout: null
 ---
 <?xml version="1.0" encoding="UTF-8"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
   <channel>
     <title>{{ site.name | xml_escape }}</title>
     <description>{{ site.description | xml_escape }}</description>
     <link>{{ site.url }}</link>
-    <icon>{{ site.url }}/favicon.ico</icon>
     <atom:link href="{{ site.url }}/feed.xml" rel="self" type="application/rss+xml" />
+    <image>
+      <url>{{ site.url }}{{ site.rsslogo }}</url>
+      <title>{{ site.name | xml_escape }}</title>
+      <link>{{ site.url }}</link>
+      <width>16</width>
+      <height>16</height>
+      <description>{{ site.description | xml_escape }}</description>
+    </image>
     {% for post in site.posts limit:10 %}
       {% unless post.draft %}
         <item>
           <title>{{ post.title | xml_escape }}</title>
-          <description>{{ post.content | xml_escape }}</description>
+          <description>{{ post.excerpt | xml_escape}}</description>
+          <content>{{ post.content | xml_escape }}</content>
           <pubDate>{{ post.date | date: "%a, %d %b %Y %H:%M:%S %z" }}</pubDate>
           <link>{{ site.url }}{{ post.url }}</link>
           <guid isPermaLink="true">{{ site.url }}{{ post.url }}</guid>
-          <dc:creator>{{ site.authors[page.author].display_name }}</dc:creator>
+          <dc:creator>{{ site.authors[post.author].display_name }}</dc:creator>
         </item>
       {% endunless %}
     {% endfor %}
