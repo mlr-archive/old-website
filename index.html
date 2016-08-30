@@ -10,7 +10,7 @@ layout: default
         {% assign image_content = post.content %}
         {% include JB/first_image %}
         {% if img_src %}
-          <img class = "thumb" src = "{{ img_src | replace:'svg','png'}}">
+          <img class = "thumb" src = "{{ img_src | replace:'svg','png'}}" alt = "Thumbnail of {{ img_src }}">
         {% endif %}
         <div class="entry">
           {{ post.excerpt }}
