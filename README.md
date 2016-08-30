@@ -15,7 +15,7 @@ Note: To get a green Travis Icon we need amongst others
 4. **Your first post:** Create a `YYYY-MM-DD-Your-catchy-headline.Rmd` file in `./_source`. IMPORTANT: The filename should represent your headline as close as possible as this will later be the URL of your post!
 5. Add header information in the Rmd File (see below).
 6. Add your own R-Markdown content below the header information. 
-7. Run *R* and call `servr::jekyll()` in the projet root **or** use the makefile and run `make` in `_source/`. 
+7. Run *R* and call `servr::jekyll()` in the projet root **or** use the makefile and run `make` in `_source/`. This will knit all Rmd files that do not have an corresponding md file in `_posts`. To update a post you have to delete it in `_posts`.
 8. Git add the source `.Rmd` and the generated `.md` file as well as plots (png + svg!), commit and push.
 9. Go to `http://mlr-org.github.io/Your-catchy-headline/`. Everything looks nice? Then you can remove the `draft = true`. Next time it might not be necessary anymore because you did `jekyll serve` on your local machine. (If you don't have Jekyll: `gem install jekyll`)
 10. After your post is not a draft anymore you should see it in the blog after some minutes. No? [Check here](https://github.com/mlr-org/mlr-org.github.io/settings) if something went wrong.
