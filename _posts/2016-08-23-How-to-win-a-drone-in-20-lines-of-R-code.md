@@ -84,7 +84,7 @@ even nicer because we can use a Gaussian process as our surrogate model. In the 
 For an in-depth introduction to model-based optimization you can read [Jones(1998)](http://www.ressources-actuarielles.net/EXT/ISFA/1226.nsf/0/f84f7ac703bf5862c12576d8002f5259/$FILE/Jones98.pdf).
 
 
-<img src="../figures/2016-08-23-How-to-win-a-drone-in-20-lines-of-R-code/unnamed-chunk-3-1.svg" title="plot of chunk unnamed-chunk-3" alt="plot of chunk unnamed-chunk-3" style="display: block; margin: auto;" />
+<img src="/figures/2016-08-23-How-to-win-a-drone-in-20-lines-of-R-code/unnamed-chunk-3-1.svg" title="plot of chunk unnamed-chunk-3" alt="plot of chunk unnamed-chunk-3" style="display: block; margin: auto;" />
 
 We use [mlrMBO](https://github.com/mlr-org/mlrMBO) as a general black-box optimization toolkit with is already nicely connected to mlr. The optimization definition looks like this:
 

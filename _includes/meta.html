@@ -8,19 +8,27 @@
     <link rel="icon" href="/favicon.ico">
 
     {% if page.excerpt %}
-    <meta name="description" content="{{ page.excerpt| strip_html }}" />
-    <meta property="og:description" content="{{ page.excerpt| strip_html }}" />
+    <meta name="description" content="{{ page.excerpt | strip_html }}" />
+    <meta property="og:description" content="{{ page.excerpt | strip_html }}" />
     {% else %}
-    <meta name="description" content="{{ site.description }}">
-    <meta property="og:description" content="{{ site.description }}" />
+    <meta name="description" content="{{ site.description | strip_html }}">
+    <meta property="og:description" content="{{ site.description | strip_html }}" />
     {% endif %}
     {% if page.author %}
     <meta name="author" content="{{ site.authors[page.author].display_name }}" />
     {% else %}
     <meta name="author" content="{{ site.name }}" />
     {% endif %}
-    <meta property="og:image" content="{{ site.url }}{{ site.shareimage }}" />
-
+    {% if page.content or site.shareimage %}
+        {% assign image_content = page.content %}
+        {% include JB/first_image %}
+        {% if img_src %}
+            {% assign shareimage = img_src | replace:'svg','png' %}
+        {% else %}
+            {% assign shareimage = site.shareimage %}
+        {% endif %}
+        <meta property="og:image" content="{{ site.url }}{{ shareimage }}" />
+    {% endif %}
     {% if page.title %}
     <meta property="og:title" content="{{ page.title }}" />
     <meta property="twitter:title" content="{{ page.title }}" />

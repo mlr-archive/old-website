@@ -71,12 +71,12 @@ pd
 ## Interaction: FALSE
 ## Individual: FALSE
 ##    Class Probability Petal.Width
-## 1 setosa   0.4872634   0.1000000
-## 2 setosa   0.4553176   0.3666667
-## 3 setosa   0.3940011   0.6333333
-## 4 setosa   0.3107103   0.9000000
-## 5 setosa   0.2114968   1.1666667
-## 6 setosa   0.1394269   1.4333333
+## 1 setosa   0.4811436   0.1000000
+## 2 setosa   0.4191032   0.3666667
+## 3 setosa   0.3664371   0.6333333
+## 4 setosa   0.3260354   0.9000000
+## 5 setosa   0.2790033   1.1666667
+## 6 setosa   0.2181847   1.4333333
 ## ... (30 rows, 3 cols)
 {% endhighlight %}
 
@@ -86,7 +86,7 @@ pd
 plotPartialDependence(pd, data = iris)
 {% endhighlight %}
 
-![plot of chunk unnamed-chunk-1](../figures/2016-08-11-exploring-learner-predictions-with-partial-dependence/unnamed-chunk-1-1.svg)
+![plot of chunk unnamed-chunk-1](/figures/2016-08-11-exploring-learner-predictions-with-partial-dependence/unnamed-chunk-1-1.svg)
 
 As noted above, $x_s$ does not have to be unidimensional. If it is not, the `interaction` flag must be set to `TRUE`. Then the individual feature grids are combined using the Cartesian product, and the estimator above is applied, producing the partial dependence for every combination of unique feature values. If the `interaction` flag is `FALSE` (the default) then by default $x_s$ is assumed unidimensional, and partial dependencies are generated for each feature separately. The resulting output when `interaction = FALSE` has a column for each feature, and `NA` where the feature was not used. With one feature and a regression task the output is a line plot, with a point for each point in the corresponding feature's grid. For classification tasks there is a line for each class (except for binary classification tasks, where the negative class is automatically dropped). The `data` argument to `plotPartialPrediction` allows the training data to be input to show the empirical marginal distribution of the data.
 
@@ -101,12 +101,12 @@ head(pd.lst$data)
 
 {% highlight text %}
 ##    Class Probability Petal.Width Petal.Length
-## 1 setosa   0.4872634   0.1000000           NA
-## 2 setosa   0.4553176   0.3666667           NA
-## 3 setosa   0.3940011   0.6333333           NA
-## 4 setosa   0.3107103   0.9000000           NA
-## 5 setosa   0.2114968   1.1666667           NA
-## 6 setosa   0.1394269   1.4333333           NA
+## 1 setosa   0.4811436   0.1000000           NA
+## 2 setosa   0.4191032   0.3666667           NA
+## 3 setosa   0.3664371   0.6333333           NA
+## 4 setosa   0.3260354   0.9000000           NA
+## 5 setosa   0.2790033   1.1666667           NA
+## 6 setosa   0.2181847   1.4333333           NA
 {% endhighlight %}
 
 
@@ -119,12 +119,12 @@ tail(pd.lst$data)
 
 {% highlight text %}
 ##        Class Probability Petal.Width Petal.Length
-## 55 virginica   0.2622712          NA     3.622222
-## 56 virginica   0.3697957          NA     4.277778
-## 57 virginica   0.4854980          NA     4.933333
-## 58 virginica   0.6436039          NA     5.588889
-## 59 virginica   0.7344045          NA     6.244444
-## 60 virginica   0.7195496          NA     6.900000
+## 55 virginica   0.1438679          NA     3.622222
+## 56 virginica   0.2463018          NA     4.277778
+## 57 virginica   0.3673735          NA     4.933333
+## 58 virginica   0.5096536          NA     5.588889
+## 59 virginica   0.6393553          NA     6.244444
+## 60 virginica   0.6880033          NA     6.900000
 {% endhighlight %}
 
 
@@ -133,7 +133,7 @@ tail(pd.lst$data)
 plotPartialDependence(pd.lst, data = iris)
 {% endhighlight %}
 
-![plot of chunk unnamed-chunk-2](../figures/2016-08-11-exploring-learner-predictions-with-partial-dependence/unnamed-chunk-2-1.svg)
+![plot of chunk unnamed-chunk-2](/figures/2016-08-11-exploring-learner-predictions-with-partial-dependence/unnamed-chunk-2-1.svg)
 
 
 {% highlight r %}
@@ -152,12 +152,12 @@ pd.int
 ## Interaction: TRUE
 ## Individual: FALSE
 ##    Class Probability Petal.Width Petal.Length
-## 1 setosa   0.6043750   0.1000000            1
-## 2 setosa   0.6023896   0.3666667            1
-## 3 setosa   0.5660952   0.6333333            1
-## 4 setosa   0.4858965   0.9000000            1
-## 5 setosa   0.3759139   1.1666667            1
-## 6 setosa   0.2968125   1.4333333            1
+## 1 setosa   0.7348742   0.1000000            1
+## 2 setosa   0.7240707   0.3666667            1
+## 3 setosa   0.6824330   0.6333333            1
+## 4 setosa   0.6083937   0.9000000            1
+## 5 setosa   0.5105935   1.1666667            1
+## 6 setosa   0.4086833   1.4333333            1
 ## ... (300 rows, 4 cols)
 {% endhighlight %}
 
@@ -167,7 +167,7 @@ pd.int
 plotPartialDependence(pd.int, facet = "Petal.Length")
 {% endhighlight %}
 
-![plot of chunk unnamed-chunk-3](../figures/2016-08-11-exploring-learner-predictions-with-partial-dependence/unnamed-chunk-3-1.svg)
+![plot of chunk unnamed-chunk-3](/figures/2016-08-11-exploring-learner-predictions-with-partial-dependence/unnamed-chunk-3-1.svg)
 
 When `interaction = TRUE`, `plotPartialDependence` can either facet over one feature, showing the conditional relationship between the other feature and $\hat{f}$ in each panel, or a tile plot. The latter is, however, not possible with multiclass classification (an example of a tile plot will be shown later).
 
@@ -196,12 +196,12 @@ pd.ci
 ## Interaction: FALSE
 ## Individual: FALSE
 ##       medv     lstat    lower    upper
-## 1 24.92828  1.730000 21.33593 29.56459
-## 2 23.76195  5.756667 20.77038 27.37917
-## 3 22.37299  9.783333 19.85725 25.00549
-## 4 20.70007 13.810000 18.70272 23.63418
-## 5 19.57004 17.836667 16.54922 23.02968
-## 6 18.95529 21.863333 14.80123 22.28493
+## 1 24.92736  1.730000 21.36334 29.57345
+## 2 23.75549  5.756667 20.75573 27.40484
+## 3 22.36287  9.783333 19.84764 24.95723
+## 4 20.69011 13.810000 18.68240 23.65400
+## 5 19.58562 17.836667 16.53427 22.99210
+## 6 18.96948 21.863333 14.80436 22.26209
 ## ... (10 rows, 4 cols)
 {% endhighlight %}
 
@@ -211,7 +211,7 @@ pd.ci
 plotPartialDependence(pd.ci)
 {% endhighlight %}
 
-![plot of chunk unnamed-chunk-4](../figures/2016-08-11-exploring-learner-predictions-with-partial-dependence/unnamed-chunk-4-1.svg)
+![plot of chunk unnamed-chunk-4](/figures/2016-08-11-exploring-learner-predictions-with-partial-dependence/unnamed-chunk-4-1.svg)
 
 In addition to bounds based on a summary of the distribution of the conditional expectation of each observation, learners which can estimate the variance of their predictions can also be used. The argument `bounds` is a numeric vector of length two which is added (so the first number should be negative) to the point prediction to produce a confidence interval for the partial dependence. The default is the .025 and .975 quantiles of the Gaussian distribution.
 
@@ -226,12 +226,12 @@ head(pd.se$data)
 
 {% highlight text %}
 ##       medv     lstat crim    lower    upper
-## 1 31.16866  1.730000   NA 27.33761 34.99971
-## 2 25.98765  5.756667   NA 23.53881 28.43648
-## 3 23.49603  9.783333   NA 21.33348 25.65858
-## 4 22.04595 13.810000   NA 20.29177 23.80014
-## 5 20.40087 17.836667   NA 18.69259 22.10916
-## 6 19.75266 21.863333   NA 17.96500 21.54032
+## 1 31.27158  1.730000   NA 28.04379 34.49937
+## 2 25.98791  5.756667   NA 23.56919 28.40664
+## 3 23.32955  9.783333   NA 21.13094 25.52815
+## 4 21.98422 13.810000   NA 20.14339 23.82506
+## 5 20.43811 17.836667   NA 18.68851 22.18770
+## 6 19.79357 21.863333   NA 18.01147 21.57567
 {% endhighlight %}
 
 
@@ -244,12 +244,12 @@ tail(pd.se$data)
 
 {% highlight text %}
 ##        medv lstat     crim    lower    upper
-## 15 21.80198    NA 39.54849 19.50150 24.10246
-## 16 21.77178    NA 49.43403 19.46862 24.07494
-## 17 21.75443    NA 59.31957 19.45200 24.05685
-## 18 21.74859    NA 69.20512 19.43800 24.05917
-## 19 21.74845    NA 79.09066 19.43743 24.05946
-## 20 21.74862    NA 88.97620 19.43756 24.05969
+## 15 21.63965    NA 39.54849 19.32541 23.95389
+## 16 21.62309    NA 49.43403 19.31087 23.93530
+## 17 21.60348    NA 59.31957 19.28845 23.91851
+## 18 21.59664    NA 69.20512 19.27426 23.91902
+## 19 21.60165    NA 79.09066 19.28748 23.91582
+## 20 21.60205    NA 88.97620 19.28824 23.91586
 {% endhighlight %}
 
 
@@ -258,7 +258,7 @@ tail(pd.se$data)
 plotPartialDependence(pd.se)
 {% endhighlight %}
 
-![plot of chunk unnamed-chunk-5](../figures/2016-08-11-exploring-learner-predictions-with-partial-dependence/unnamed-chunk-5-1.svg)
+![plot of chunk unnamed-chunk-5](/figures/2016-08-11-exploring-learner-predictions-with-partial-dependence/unnamed-chunk-5-1.svg)
 
 As previously mentioned if the aggregation function is not used, i.e., it is the identity, then the conditional expectation of $\hat{f}^{(i)}_{x_s}$ is estimated. If `individual = TRUE` then `generatePartialDependenceData` returns $N$ partial dependence estimates made at each point in the prediction grid constructed from the features.
 
@@ -280,12 +280,12 @@ pd.ind.regr
 ## Individual: TRUE
 ## Predictions centered: FALSE
 ##       medv     lstat idx
-## 1 27.34360  1.730000   1
-## 2 26.21121  5.756667   1
-## 3 24.91534  9.783333   1
-## 4 23.63205 13.810000   1
-## 5 22.47994 17.836667   1
-## 6 21.51669 21.863333   1
+## 1 27.25479  1.730000   1
+## 2 26.13844  5.756667   1
+## 3 24.85818  9.783333   1
+## 4 23.59251 13.810000   1
+## 5 22.46005 17.836667   1
+## 6 21.51647 21.863333   1
 ## ... (5060 rows, 3 cols)
 {% endhighlight %}
 
@@ -295,7 +295,7 @@ pd.ind.regr
 plotPartialDependence(pd.ind.regr)
 {% endhighlight %}
 
-![plot of chunk unnamed-chunk-6](../figures/2016-08-11-exploring-learner-predictions-with-partial-dependence/unnamed-chunk-6-1.svg)
+![plot of chunk unnamed-chunk-6](/figures/2016-08-11-exploring-learner-predictions-with-partial-dependence/unnamed-chunk-6-1.svg)
 
 The resulting output, particularly the element `data` in the returned object, has an additional column `idx` which gives the index of the observation to which the row pertains.
 
@@ -319,12 +319,12 @@ pd.ind.classif
 ## Individual: TRUE
 ## Predictions centered: FALSE
 ##    Class Probability Petal.Length      idx
-## 1 setosa   0.9824128            1 1.setosa
-## 2 setosa   0.9717450            1 2.setosa
-## 3 setosa   0.9830395            1 3.setosa
-## 4 setosa   0.9810668            1 4.setosa
-## 5 setosa   0.9820302            1 5.setosa
-## 6 setosa   0.9733090            1 6.setosa
+## 1 setosa   0.9773405            1 1.setosa
+## 2 setosa   0.9727026            1 2.setosa
+## 3 setosa   0.9769482            1 3.setosa
+## 4 setosa   0.9749352            1 4.setosa
+## 5 setosa   0.9760089            1 5.setosa
+## 6 setosa   0.9722481            1 6.setosa
 ## ... (4500 rows, 4 cols)
 {% endhighlight %}
 
@@ -334,7 +334,7 @@ pd.ind.classif
 plotPartialDependence(pd.ind.classif)
 {% endhighlight %}
 
-![plot of chunk unnamed-chunk-7](../figures/2016-08-11-exploring-learner-predictions-with-partial-dependence/unnamed-chunk-7-1.svg)
+![plot of chunk unnamed-chunk-7](/figures/2016-08-11-exploring-learner-predictions-with-partial-dependence/unnamed-chunk-7-1.svg)
 
 The plots, at least in these forms, are difficult to interpet. Individual estimates of partial dependence can also be centered by predictions made at all $N$ observations
 for a particular point in the prediction grid created by the features. This is controlled by the argument `center` which is a list of the same length as the length of the `features` argument and contains the values of the `features` desired.
@@ -345,7 +345,7 @@ pd.ind.classif = generatePartialDependenceData(fit.classif, iris.task, "Petal.Le
 plotPartialDependence(pd.ind.classif)
 {% endhighlight %}
 
-![plot of chunk unnamed-chunk-8](../figures/2016-08-11-exploring-learner-predictions-with-partial-dependence/unnamed-chunk-8-1.svg)
+![plot of chunk unnamed-chunk-8](/figures/2016-08-11-exploring-learner-predictions-with-partial-dependence/unnamed-chunk-8-1.svg)
 
 Partial derivatives can also be computed for individual partial dependence estimates and aggregate partial dependence. This is restricted to a single feature at a time. The derivatives of individual partial dependence estimates can be useful in finding regions of interaction between the feature for which the derivative is estimated and the features excluded. Applied to the aggregated partial dependence function they are not very informative, but when applied to the individual conditional expectations, they can be used to find regions of interaction.
 
@@ -359,12 +359,12 @@ head(pd.regr.der.ind$data)
 
 {% highlight text %}
 ##         medv     lstat idx
-## 1 -0.2446031  1.730000   1
-## 2 -0.3096243  5.756667   1
-## 3 -0.3265486  9.783333   1
-## 4 -0.3059314 13.810000   1
-## 5 -0.2640377 17.836667   1
-## 6 -0.2136498 21.863333   1
+## 1 -0.2402929  1.730000   1
+## 2 -0.3058292  5.756667   1
+## 3 -0.3224788  9.783333   1
+## 4 -0.3012511 13.810000   1
+## 5 -0.2590538 17.836667   1
+## 6 -0.2089605 21.863333   1
 {% endhighlight %}
 
 
@@ -373,7 +373,7 @@ head(pd.regr.der.ind$data)
 plotPartialDependence(pd.regr.der.ind)
 {% endhighlight %}
 
-![plot of chunk unnamed-chunk-9](../figures/2016-08-11-exploring-learner-predictions-with-partial-dependence/unnamed-chunk-9-1.svg)
+![plot of chunk unnamed-chunk-9](/figures/2016-08-11-exploring-learner-predictions-with-partial-dependence/unnamed-chunk-9-1.svg)
 
 
 {% highlight r %}
@@ -385,12 +385,12 @@ head(pd.classif.der.ind$data)
 
 {% highlight text %}
 ##    Class Probability Petal.Width      idx
-## 1 setosa  0.04088195         0.1 1.setosa
-## 2 setosa  0.03010277         0.1 2.setosa
-## 3 setosa  0.02441696         0.1 3.setosa
-## 4 setosa  0.02231513         0.1 4.setosa
-## 5 setosa  0.04178867         0.1 5.setosa
-## 6 setosa  0.05093621         0.1 6.setosa
+## 1 setosa  0.02235690         0.1 1.setosa
+## 2 setosa  0.01124756         0.1 2.setosa
+## 3 setosa  0.01535849         0.1 3.setosa
+## 4 setosa  0.01301889         0.1 4.setosa
+## 5 setosa  0.02452259         0.1 5.setosa
+## 6 setosa  0.03647999         0.1 6.setosa
 {% endhighlight %}
 
 
@@ -399,7 +399,7 @@ head(pd.classif.der.ind$data)
 plotPartialDependence(pd.classif.der.ind)
 {% endhighlight %}
 
-![plot of chunk unnamed-chunk-10](../figures/2016-08-11-exploring-learner-predictions-with-partial-dependence/unnamed-chunk-10-1.svg)
+![plot of chunk unnamed-chunk-10](/figures/2016-08-11-exploring-learner-predictions-with-partial-dependence/unnamed-chunk-10-1.svg)
 
 This suggests that `Petal.Width` interacts with some other feature in the neighborhood of $(1.5, 2)$ for classes "virginica" and "versicolor".
 
@@ -432,12 +432,12 @@ fa
 ## 
 ## 
 ##   effect     medv     lstat
-## 1  lstat 24.88912  1.730000
-## 2  lstat 23.75931  5.756667
-## 3  lstat 22.35706  9.783333
-## 4  lstat 20.67813 13.810000
-## 5  lstat 19.60456 17.836667
-## 6  lstat 19.01695 21.863333
+## 1  lstat 24.91385  1.730000
+## 2  lstat 23.73464  5.756667
+## 3  lstat 22.35037  9.783333
+## 4  lstat 20.71122 13.810000
+## 5  lstat 19.61762 17.836667
+## 6  lstat 19.04580 21.863333
 ## ... (10 rows, 3 cols)
 {% endhighlight %}
 
@@ -459,12 +459,12 @@ pd.regr
 ## Interaction: FALSE
 ## Individual: FALSE
 ##       medv     lstat
-## 1 24.88912  1.730000
-## 2 23.75931  5.756667
-## 3 22.35706  9.783333
-## 4 20.67813 13.810000
-## 5 19.60456 17.836667
-## 6 19.01695 21.863333
+## 1 24.91385  1.730000
+## 2 23.73464  5.756667
+## 3 22.35037  9.783333
+## 4 20.71122 13.810000
+## 5 19.61762 17.836667
+## 6 19.04580 21.863333
 ## ... (10 rows, 2 cols)
 {% endhighlight %}
 
@@ -486,12 +486,12 @@ fa.bv
 ## 
 ## 
 ##       effect      medv      crim lstat age
-## 1 crim:lstat -22.68839  0.006320  1.73  NA
-## 2 crim:lstat -23.22034  9.891862  1.73  NA
-## 3 crim:lstat -24.78243 19.777404  1.73  NA
-## 4 crim:lstat -26.42732 29.662947  1.73  NA
-## 5 crim:lstat -27.57391 39.548489  1.73  NA
-## 6 crim:lstat -28.27667 49.434031  1.73  NA
+## 1 crim:lstat -22.69672  0.006320  1.73  NA
+## 2 crim:lstat -23.22093  9.891862  1.73  NA
+## 3 crim:lstat -24.84547 19.777404  1.73  NA
+## 4 crim:lstat -26.52179 29.662947  1.73  NA
+## 5 crim:lstat -27.61820 39.548489  1.73  NA
+## 6 crim:lstat -28.22374 49.434031  1.73  NA
 ## ... (300 rows, 5 cols)
 {% endhighlight %}
 
@@ -515,7 +515,7 @@ fa.bv = generateFunctionalANOVAData(fit.regr, bh.task, c("crim", "lstat"), depth
 plotPartialDependence(fa.bv, geom = "tile", data = getTaskData(bh.task))
 {% endhighlight %}
 
-![plot of chunk unnamed-chunk-13](../figures/2016-08-11-exploring-learner-predictions-with-partial-dependence/unnamed-chunk-13-1.svg)
+![plot of chunk unnamed-chunk-13](/figures/2016-08-11-exploring-learner-predictions-with-partial-dependence/unnamed-chunk-13-1.svg)
 
 When overplotting the training data on the plot it is easy to see that much of the variation of the effect is due to extrapolation. Although it hasn't been implemented yet, weighting the functional ANOVA appropriately can ensure that the estimated effects do not depend (or depend less) on regions of the feature space which are sparse.
 

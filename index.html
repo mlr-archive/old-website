@@ -7,14 +7,11 @@ layout: default
     {% unless post.draft %}
       <article class="post">
         <h1><a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a></h1>
-    {% assign images = post.content | split:"<img " %}
-    {% for image in images %}
-      {% if image contains 'src' %}
-          {% assign html = image | split:">" | first %}
-            <img class = "thumb" {{ html }} />
-            {% break %}
-      {% endif %}
-    {% endfor %}
+        {% assign image_content = post.content %}
+        {% include JB/first_image %}
+        {% if img_src %}
+          <img class = "thumb" src = "{{ img_src | replace:'svg','png'}}">
+        {% endif %}
         <div class="entry">
           {{ post.excerpt }}
         </div>

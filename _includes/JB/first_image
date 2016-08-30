@@ -1,0 +1,32 @@
+{% assign img_src = nil %}
+{% if page.titleimage %}
+  {% assign titleimage = page.titleimage %}
+  {% assign pathtoimage = page.url | split:"/" %}
+  {% assign dateurl = page.date | date: "%Y-%m-%d-" %}
+{% elsif post.titleimage %}
+  {% assign titleimage = post.titleimage %}
+  {% assign pathtoimage = post.url | split:"/"  %}
+  {% assign dateurl = post.date | date: "%Y-%m-%d-" %}
+{% endif %}
+{% if page.titleimage or post.titleimage %}
+  {% assign img_src_candidate = "/figures/" | append: dateurl | append: pathtoimage[1] | append: '/' | append: titleimage | append: '.svg'  %}
+  {% assign img_src = img_src_candidate %}
+  {% comment %}
+  {% for static_file in site.static_files %}
+    {% if static_file.path == img_src_candidate %}
+        {% assign img_src = img_src_candidate %}
+        {% break %}
+    {% endif %}
+  {% endfor %}
+  {% endcomment %}
+{% endif %}
+{% unless img_src %}
+  {% assign images = image_content | split:"<img " %}
+  {% for image in images %}
+    {% if image contains 'src' %}
+        {% assign img_src = image | split:"/>" | first | split:'src="' %}
+        {% assign img_src = img_src[1] | split:'"' | first %}
+        {% break %}
+    {% endif %}
+  {% endfor %}
+{% endunless %}
