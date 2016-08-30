@@ -1,13 +1,29 @@
 ---
 layout: page
 title: About
-permalink: /about/
+permalink: about/
 ---
 
-This blog is the home for some *R* developers, statisticians and data scientists. 
-We try to post neat stuff we learned, we want to promote on an irregular basis.
+## The Package
 
-### Contributors
+[**mlr**](https://github.com/mlr-org/mlr) is our *R* package to make *machine learning in R* easy for you and for us.
+Trying out and comparing different machine learning methods in *R* was always a tedious task as you had to check every documentation to see how each function is called.
+And not even the output is directly comparable.
+Worry no more!
+**mlr** has you covered: **cross-validation**, **variable selection**, **tuning** and many more can be easily done with **mlr** and a standardized interface!
+
+## The Blog
+
+This blog is the platform for some *R* developers, statisticians and data scientists to post hopefully interesting bits of knowledge about *machine learning*.
+In one way or another we all contributed to **mlr** and want to present you some **highlights**, **hints** and **insights** of **mlr**.
+We try to post neat stuff we learned and we want to promote on an irregular basis.
+
+
+## The Contributors
+
+All **mlr developers** are listed [here](https://github.com/mlr-org/mlr/wiki/mlr-developer-team-and-contributors-page).
+
+### Blog Authors
 
 #### Michel Lang
 
@@ -29,11 +45,10 @@ We try to post neat stuff we learned, we want to promote on an irregular basis.
 
 #### Jakob Richter
 
-* Working at TU Dortmund
-* M.Sc. Statistics
+* Working at TU Dortmund as a PhD candidate.
 * Contact me [mlr@jakob-r.de](mailto:rdatsci@jakob-r.de)
 * On github: [github.com/jakob-r](https://github.com/jakob-r)
-* Projects:
+* Main projects:
   * [mlr](https://github.com/mlr-org/mlr)
   * [mlrMBO](https://github.com/berndbischl/mlrMBO)
 
