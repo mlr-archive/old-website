@@ -12,7 +12,7 @@ from the [UCI](https://archive.ics.uci.edu/ml/datasets.html) site. They exclude 
 (number of observations or number of features) are too high, they are not in a proper format or because of other reasons. 
 There are also summarized some criticism about the representability of the datasets and the generability of benchmarking results. 
 It remains a bit unclear if their tuning process is done also on the test data or only on the training data (page 3154). 
-They reported the random forest algorithms algorithms to be the best one (in general) for multiclass classification datasets and 
+They reported the random forest algorithms to be the best one (in general) for multiclass classification datasets and 
 the support vector machine (svm) the second best one. On binary class classification tasks neural networks also perform 
 competitively. They recommend the R library **caret** for choosing a classifier. 
 
