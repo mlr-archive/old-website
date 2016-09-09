@@ -43,7 +43,7 @@ We want to create a little study on the [OpenML
 website](http://www.openml.org/), in which we compare different types of Support
 Vector Machines.  The study gets an ID assigned to it, which in our case is 27.
 We use the function ksvm (with different settings of the function argument type)
-from package kernlab, which is itegrated in mlr ("classif.ksvm").
+from package kernlab, which is integrated in mlr ("classif.ksvm").
 
 ![](../images/openml_screenshot_study.png) 
 
@@ -103,7 +103,9 @@ runs = lapply(seq_row(grid), function(i) {
 
 - And finally upload the runs to OpenML.  The upload function (uploadOMLRun)
   returns the ID of the uploaded run object.  When uploading runs that are part
-of a certain study, tag it with study_ and the study ID.
+of a certain study, tag it with study_ and the study ID. After uploading the runs appear
+on the website and can be found using the tag or via the
+[study homepage](http://www.openml.org/index.php/s/27).
 
 ```{r}
 ## please do not spam the OpenML server by uploading these
@@ -111,19 +113,10 @@ of a certain study, tag it with study_ and the study ID.
 run.id = lapply(runs, uploadOMLRun, tags = "study_27")
 ```
 
-As you should not actually upload the same tasks that I already uploaded,
-here the run IDs
-<!-- TODO: Add the IDs here -->
-```{r}
-run.id = c()
-```
 
+- To show the results of our study, list the run evaluations and make a nice plot.
 
-The runs are now on the website and can be found using the tag or via the
-[study homepage](http://www.openml.org/index.php/s/27).
-
-<!-- TODO: change eval to TRUE -->
-```{r, eval=FALSE} 
+```{r, eval=TRUE} 
 evals = listOMLRunEvaluations(tag = "study_27")
 
 evals$task.id = as.factor(evals$task.id)
@@ -135,6 +128,8 @@ ggplot(evals, aes(x = setup.id, y = predictive.accuracy,
   geom_point() + geom_line()
 
 ```
+
+Now you can go ahead and create a bigger study using the techniques you have learned.
 
 
 ## Further infos
