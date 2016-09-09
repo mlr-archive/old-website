@@ -57,15 +57,11 @@ All **mlr developers** are listed [here](https://github.com/mlr-org/mlr/wiki/mlr
 I am professor of computational statistics at the LMU Munich and created mlr a long time ago.
 Go to my [personal page](http://berndbischl.github.io/) for any further info on me.
 
-
 #### Philipp Probst
-* Working at IBE, LMU Munich
-* M.Sc. Statistics
-* Contact me [philipp_probst@gmx.de](mailto:philipp_probst@gmx.de)
-* On github: [github.com/philipppro](https://github.com/philipppro)
-* Projects:
-  * [mlr](https://github.com/mlr-org/mlr)
-  * [RFParset](https://github.com/PhilippPro/RFParset)
+
+I am a PhD Student in statistics and machine learning at IBE, LMU Munich. 
+My research interests cover tree-based methods and ensemble techniques, hyperparameters of ML algorithms, benchmark experiments and multilabel classification. 
+More information about me and some other blog posts can be found at my [blog](http://philipppro.github.io/).
 
 #### Zachary Jones
 
