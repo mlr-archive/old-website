@@ -63,3 +63,8 @@ to my research and open-source work, I am also passionate about training and edu
 learning courses at General Assembly, and I'm also on the adjunct faculty at Columbia University. Go to
 my [personal page](http://masongallo.github.io/) to learn more about me.
 
+#### Janek Thomas
+I am a PhD student in the working group computational statistics at the Ludwig-Maximilians-University Munich.
+Most on my work is on hyperparameter tuning, variable selection and gradient boosting.
+Further information and contact info is at my [university website](http://compstat-lmu.github.io/people/thomas/). 
+
