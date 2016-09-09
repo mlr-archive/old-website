@@ -7,7 +7,7 @@ draft: true
 
 ```{r, include=FALSE}
 library("knitr")
-opts_chunk$set(eval=FALSE)
+opts_chunk$set(eval=FALSE, message=FALSE)
 ```
 
 
@@ -21,6 +21,9 @@ workshop](http://openml2016dev.openml.org/), where developers and scientists
 meet to work on improving the project. Some of these people are R users and they (we)
 are developing an [R package](https://github.com/openml/openml-r) that
 communicates with the OpenML platform.
+
+
+![](../images/mlr_loves_openml.png) 
 
 ## OpenML in R
 The OpenML R package can list and download data sets and machine
@@ -45,13 +48,13 @@ from package kernlab, which is itegrated in mlr ("classif.ksvm").
 ![](../images/openml_screenshot_study.png) 
 
 
-For details on installing and setting up please see the
+For details on installing and setting up the OpenML R package please see the
 [guide](https://github.com/openml/openml-r) on GitHub.
 
 Let's start conducting the study:
 
-- Load the packages and list data sets and tasks which have between 100 and 500
-  observations. Then merge the infos on data sets and tasks.
+- Load the packages and list all tasks which have between 100 and 500
+  observations. 
 ```{r, eval=TRUE, message=FALSE}
 library("OpenML")
 library("mlr")
@@ -60,24 +63,20 @@ library("farff")
 
 ```{r}
 dsize = c(100, 500)
-dchars = listOMLDataSets(number.of.instances = dsize)
-tchars = listOMLTasks(number.of.instances = dsize)
-
-mergeby = intersect(names(tchars), names(dchars))
-mergeby = mergeby[mergeby != "tags"]
-chars_all = merge(dchars, tchars, by = mergeby)
+taskinfo_all = listOMLTasks(number.of.instances = dsize)
 ```
 
-- Select all supervised classification tasks the do 10-fold cross-validation
-  and choose only one task per data set. To make it fast, we focus on only the
-first three tasks.
+- Select all supervised classification tasks that do 10-fold cross-validation
+  and choose only one task per data set. To keep the study simple and fast to compute, 
+  select only the first three tasks.
 ```{r}
-chars_10cv = subset(chars_all, task.type == "Supervised Classification"
-                    & estimation.procedure == "10-fold Crossvalidation"
-                    & is.na(evaluation.measures))
-dups = duplicated(chars_10cv$data.id)
-chars = chars_10cv[!dups, ]
-chars = chars[1:3, ]
+taskinfo_10cv = subset(taskinfo_all, task.type == "Supervised Classification" & 
+                    estimation.procedure == "10-fold Crossvalidation" &
+                    evaluation.measures == "predictive_accuracy" &
+                    number.of.missing.values == 0 &
+                    number.of.classes %in% c(3, 4))
+taskinfo = taskinfo_10cv[1:3, ]
+
 ```
 
 - Create the learners we want to compare.
@@ -91,7 +90,7 @@ lrn.list = list(
 
 - Run the learners on the three tasks.
 ```{r}
-grid = expand.grid(task.id = chars$task.id, 
+grid = expand.grid(task.id = taskinfo$task.id, 
                    lrn.ind = seq_along(lrn.list))
 
 runs = lapply(seq_row(grid), function(i) {
@@ -105,14 +104,24 @@ runs = lapply(seq_row(grid), function(i) {
 - And finally upload the runs to OpenML.  The upload function (uploadOMLRun)
   returns the ID of the uploaded run object.  When uploading runs that are part
 of a certain study, tag it with study_ and the study ID.
+
 ```{r}
+## please do not spam the OpenML server by uploading these
+## tasks. I already did that.
 run.id = lapply(runs, uploadOMLRun, tags = "study_27")
 ```
 
-The runs are now on the website and can be found using the tag or via the
-[study homepage]()
+As you should not actually upload the same tasks that I already uploaded,
+here the run IDs
+```{r}
+run.id = c()
+```
 
-% TODO: change eval to TRUE
+
+The runs are now on the website and can be found using the tag or via the
+[study homepage](http://www.openml.org/index.php/s/27).
+
+<!-- TODO: change eval to TRUE -->
 ```{r, eval=FALSE} 
 evals = listOMLRunEvaluations(tag = "study_27")
 
