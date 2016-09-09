@@ -63,3 +63,15 @@ to my research and open-source work, I am also passionate about training and edu
 learning courses at General Assembly, and I'm also on the adjunct faculty at Columbia University. Go to
 my [personal page](http://masongallo.github.io/) to learn more about me.
 
+
+#### Heidi Seibold
+I am a PhD candidate in Biostatistics at the Universtiy of Zurich 
+([EBPI](http://www.ebpi.uzh.ch/en/aboutus/people.html)).
+My research is on model-based recursive partitioning in the context of clinical trials.
+More information on my research is on my [website](http://www.ebpi.uzh.ch/en/aboutus/departments/biostatistics/teambiostats/seibold.html).
+I organize the [Zurich R User meetup](http://www.meetup.com/Zurich-R-User-Group/) and write a 
+[blog](http://heidiseibold.github.io/). 
+
+
+
+
