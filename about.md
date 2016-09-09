@@ -45,12 +45,11 @@ All **mlr developers** are listed [here](https://github.com/mlr-org/mlr/wiki/mlr
 
 #### Jakob Richter
 
-* Working at TU Dortmund as a PhD candidate.
-* Contact me [mlr@jakob-r.de](mailto:rdatsci@jakob-r.de)
-* On github: [github.com/jakob-r](https://github.com/jakob-r)
-* Main projects:
-  * [mlr](https://github.com/mlr-org/mlr)
-  * [mlrMBO](https://github.com/berndbischl/mlrMBO)
+Hi, I am a PhD candidate working full time at [TU Dortmund](https://www.statistik.tu-dortmund.de/richter.html) for the [SFB 876](http://sfb876.tu-dortmund.de/).
+There we focus on *Resource-Constraint Data Analysis*. 
+My research interests are *hyperparameter optimization*, *model based optimization* ([mlrMBO](https://github.com/berndbischl/mlrMBO)) and both in combination.
+For the latter we develop new algorithms focused especially on resource awareness.
+You can check out my contributions on [my github](https://github.com/jakob-r) and check out my irregularly updated [blog](https://jakob-r.github.io).
 
 #### Bernd Bischl
 
