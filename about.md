@@ -27,26 +27,14 @@ All **mlr developers** are listed [here](https://github.com/mlr-org/mlr/wiki/mlr
 
 #### Michel Lang
 
-* PostDoc in Statistics at TU Dortmund
-*  [github.com/mllg](https://github.com/mllg)
-* R Projects:
-  * [BatchExperiments](https://github.com/tudo-r/BatchExperiments)
-  * [BatchJobs](https://github.com/tudo-r/BatchJobs)
-  * [BiocParallel](http://bioconductor.org/packages/BiocParallel)
-  * [ParamHelpers](https://github.com/berndbischl/ParamHelpers)
-  * [backports](https://github.com/mllg/backports)
-  * [batchtools](https://github.com/mllg/batchtools)
-  * [checkmate](https://github.com/mllg/checkmate)
-  * [conditions](https://github.com/mllg/conditions)
-  * [mlrMBO](https://github.com/berndbischl/mlrMBO)
-  * [mlr](https://github.com/mlr-org/mlr)
-  * [parallelMap](https://github.com/berndbischl/parallelMap)
-  * [rt](https://github.com/rdatsci/rt)
+I am PostDoc at the Statistics Department at the University Dortmund.
+I work on parallelization, hyperparameter optimization and survival analysis.
+More information can be found at my [website](https://www.statistik.tu-dortmund.de/lang00.html) or [GitHub](https://github.com/mllg).
 
 #### Jakob Richter
 
 Hi, I am a PhD candidate working full time at [TU Dortmund](https://www.statistik.tu-dortmund.de/richter.html) for the [SFB 876](http://sfb876.tu-dortmund.de/).
-There we focus on *Resource-Constraint Data Analysis*. 
+There we focus on *Resource-Constraint Data Analysis*.
 My research interests are *hyperparameter optimization*, *model based optimization* ([mlrMBO](https://github.com/berndbischl/mlrMBO)) and both in combination.
 For the latter we develop new algorithms focused especially on resource awareness.
 You can check out my contributions on [my github](https://github.com/jakob-r) and check out my irregularly updated [blog](https://jakob-r.github.io).
@@ -58,8 +46,8 @@ Go to my [personal page](http://berndbischl.github.io/) for any further info on 
 
 #### Philipp Probst
 
-I am a PhD Student in statistics and machine learning at IBE, LMU Munich. 
-My research interests cover tree-based methods and ensemble techniques, hyperparameters of ML algorithms, benchmark experiments and multilabel classification. 
+I am a PhD Student in statistics and machine learning at IBE, LMU Munich.
+My research interests cover tree-based methods and ensemble techniques, hyperparameters of ML algorithms, benchmark experiments and multilabel classification.
 More information about me and some other blog posts can be found at my [blog](http://philipppro.github.io/).
 
 #### Zachary Jones
@@ -70,8 +58,8 @@ methods in the social sciences. More information is on my [website](http://zmjon
 
 #### Mason Gallo
 
-I am a graduate student at Georgia Institute of Technology specializing in machine learning. In addition 
-to my research and open-source work, I am also passionate about training and education. I teach machine 
-learning courses at General Assembly, and I'm also on the adjunct faculty at Columbia University. Go to 
+I am a graduate student at Georgia Institute of Technology specializing in machine learning. In addition
+to my research and open-source work, I am also passionate about training and education. I teach machine
+learning courses at General Assembly, and I'm also on the adjunct faculty at Columbia University. Go to
 my [personal page](http://masongallo.github.io/) to learn more about me.
- 
+
