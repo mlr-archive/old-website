@@ -74,7 +74,7 @@ taskinfo_10cv = subset(taskinfo_all, task.type == "Supervised Classification" &
                     estimation.procedure == "10-fold Crossvalidation" &
                     evaluation.measures == "predictive_accuracy" &
                     number.of.missing.values == 0 &
-                    number.of.classes %in% c(3, 4))
+                    number.of.classes %in% c(2, 4))
 taskinfo = taskinfo_10cv[1:3, ]
 
 ```
@@ -113,6 +113,7 @@ run.id = lapply(runs, uploadOMLRun, tags = "study_27")
 
 As you should not actually upload the same tasks that I already uploaded,
 here the run IDs
+<!-- TODO: Add the IDs here -->
 ```{r}
 run.id = c()
 ```
