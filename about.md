@@ -63,8 +63,8 @@ to my research and open-source work, I am also passionate about training and edu
 learning courses at General Assembly, and I'm also on the adjunct faculty at Columbia University. Go to
 my [personal page](http://masongallo.github.io/) to learn more about me.
 
-
 #### Heidi Seibold
+
 I am a PhD candidate in Biostatistics at the Universtiy of Zurich 
 ([EBPI](http://www.ebpi.uzh.ch/en/aboutus/people.html)).
 My research is on model-based recursive partitioning in the context of clinical trials.
@@ -72,6 +72,9 @@ More information on my research is on my [website](http://www.ebpi.uzh.ch/en/abo
 I organize the [Zurich R User meetup](http://www.meetup.com/Zurich-R-User-Group/) and write a 
 [blog](http://heidiseibold.github.io/). 
 
+#### Janek Thomas
 
-
+I am a PhD student in the working group computational statistics at the Ludwig-Maximilians-University Munich.
+Most on my work is on hyperparameter tuning, variable selection and gradient boosting.
+Further information and contact info is at my [university website](http://compstat-lmu.github.io/people/thomas/). 
 
