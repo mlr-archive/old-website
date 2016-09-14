@@ -18,6 +18,7 @@ meet to work on improving the project. Some of these people are R users and they
 are developing an [R package](https://github.com/openml/openml-r) that
 communicates with the OpenML platform.
 
+<!--more-->
 
 ![graphic](/images/2016-09-09-mlr-loves-OpenML/mlr_loves_openml.png) 
 
