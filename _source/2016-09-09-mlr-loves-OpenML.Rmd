@@ -1,7 +1,7 @@
 ---
 layout: post
 title: mlr loves OpenML
-author: Heidi Seibold
+author: heidi
 draft: true
 ---
 
@@ -23,7 +23,7 @@ are developing an [R package](https://github.com/openml/openml-r) that
 communicates with the OpenML platform.
 
 
-![](../images/2016-09-09-mlr-loves-OpenML/mlr_loves_openml.png) 
+![graphic](/images/2016-09-09-mlr-loves-OpenML/mlr_loves_openml.png) 
 
 ## OpenML in R
 The OpenML R package can list and download data sets and machine
@@ -45,7 +45,7 @@ Vector Machines.  The study gets an ID assigned to it, which in our case is 27.
 We use the function ksvm (with different settings of the function argument type)
 from package kernlab, which is integrated in mlr ("classif.ksvm").
 
-![](../images/2016-09-09-mlr-loves-OpenML/openml_screenshot_study.png) 
+![graphic](/images/2016-09-09-mlr-loves-OpenML/openml_screenshot_study.png) 
 
 
 For details on installing and setting up the OpenML R package please see the
