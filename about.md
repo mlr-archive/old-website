@@ -58,9 +58,8 @@ methods in the social sciences. More information is on my [website](http://zmjon
 
 #### Mason Gallo
 
-I am a graduate student at Georgia Institute of Technology specializing in machine learning. In addition
-to my research and open-source work, I am also passionate about training and education. I teach machine
-learning courses at General Assembly, and I'm also on the adjunct faculty at Columbia University. Go to
+I am a graduate student at Georgia Tech with industry experience in machine learning. In addition
+to my research and open-source work, I am also passionate about training and education. Go to
 my [personal page](http://masongallo.github.io/) to learn more about me.
 
 #### Heidi Seibold
