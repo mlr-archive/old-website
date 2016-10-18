@@ -1,0 +1,28 @@
+---
+layout: post
+title: "Paper is out; mlr: Machine Learning in R"
+author: jakob
+---
+
+We are happy to announce that our paper is out and finally we can answer your question on how to cite *mlr* in your publication.
+
+The paper is published in the Journal of Machine Learning Research (JMLR) and is open access. 
+You can find the abstract, the bib-file and the PDF following this [link](http://www.jmlr.org/papers/v17/15-066.html).
+
+<!--more-->
+
+It offers a brief overview of the features of *mlr* and a short comparision to similar toolkits.
+For an in-depth understanding we still recommend our [excellent mlr tutorial](https://mlr-org.github.io/mlr-tutorial/) which is also available as a [PDF on arxiv.org](https://arxiv.org/abs/1609.06146) - but due to technical limitations missing parts of the appendix. 
+
+For offline enjoyment you can always download the [latest version of the tutorial zipped](https://mlr-org.github.io/mlr-tutorial/devel/mlr_tutorial.zip).
+
+Once *mlr 2.10* is on cran you will find citation information calling:
+```{r, eval=FALSE}
+citation("mlr")
+```
+```{r, echo=FALSE}
+tmp = capture.output(citation("mlr"))
+tmp = stringi::stri_replace_all_fixed(tmp, "{{", "{% raw %}{{{% endraw %}")
+cat(paste0(tmp, "\n"))
+```
+
