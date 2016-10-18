@@ -1,22 +1,19 @@
 ---
 layout: post
-title: "Paper is out; mlr: Machine Learning in R"
+title: "Paper published: mlr - Machine Learning in R"
 author: jakob
 ---
 
-We are happy to announce that our paper is out and finally we can answer your question on how to cite *mlr* in your publication.
+We are happy to announce that we can finally answer the question on how to cite *mlr* properly in publications.
 
-The paper is published in the Journal of Machine Learning Research (JMLR) and is open access. 
-You can find the abstract, the bib-file and the PDF following this [link](http://www.jmlr.org/papers/v17/15-066.html).
+Our paper on *mlr* has been published in the open-access Journal of Machine Learning Research (JMLR) and can be downloaded on the [journal home page](http://www.jmlr.org/papers/v17/15-066.html).
 
 <!--more-->
 
-It offers a brief overview of the features of *mlr* and a short comparision to similar toolkits.
-For an in-depth understanding we still recommend our [excellent mlr tutorial](https://mlr-org.github.io/mlr-tutorial/) which is also available as a [PDF on arxiv.org](https://arxiv.org/abs/1609.06146) - but due to technical limitations missing parts of the appendix. 
+The paper gives a brief overview of the features of *mlr* and also includes a comparison with similar toolkits.
+For an in-depth understanding we still recommend our excellent [online mlr tutorial](https://mlr-org.github.io/mlr-tutorial/) which is now also available as a [PDF](https://arxiv.org/abs/1609.06146) on arxiv.org or as [zipped HTML files](https://mlr-org.github.io/mlr-tutorial/devel/mlr_tutorial.zip) for offline reading.
 
-For offline enjoyment you can always download the [latest version of the tutorial zipped](https://mlr-org.github.io/mlr-tutorial/devel/mlr_tutorial.zip).
-
-Once *mlr 2.10* is on cran you will find citation information calling:
+Once *mlr 2.10* hits CRAN you can retrieve the citation information from within R:
 ```{r, eval=FALSE}
 citation("mlr")
 ```
