@@ -23,7 +23,7 @@ clustering. You get your dataset together and pick a few learners to evaluate.
 The majority of learners that you might use for any of these tasks 
 have hyperparameters that the user must tune. Hyperparameters may be able to take 
 on a lot of possible values, so it's typically left to the user to specify the 
-values. If you're using a popular machine learning library like [sci-kit learn](http://scikit-learn.org/stable/), 
+values. If you're using a popular machine learning library like [sci-kit learn](http://scikit-learn.org/), 
 the library will take care of this for you via cross-validation: auto-generating 
 the optimal values for your hyperparameters. We'll then take these best-performing 
 hyperparameters and use those values for our learner. Essentially, we treat the 
@@ -105,7 +105,7 @@ print(res)
 [mlr](http://github.com/mlr-org/mlr) gives us the best performing value for `C`, 
 and we can see that we've improved our results vs. just accepting the default 
 value for `C`. This functionality is available in other machine learning packages, like 
-sci-kit learn's [random search](http://scikit-learn.org/stable/modules/generated/sklearn.grid_search.RandomizedSearchCV.html), but this functionality is essentially treating our
+sci-kit learn's [random search](http://scikit-learn.org/0.17/modules/generated/sklearn.grid_search.RandomizedSearchCV.html), but this functionality is essentially treating our
 choice of `C` as a black box method: we give a search strategy and just accept 
 the optimal value. What if we wanted to get a sense of the relationship between 
 `C` and `mmce`? Maybe the relationship is linear in a certain range and we can 
