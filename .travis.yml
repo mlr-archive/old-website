@@ -2,7 +2,7 @@ language: ruby
 
 # ruby version manager
 rvm:
-- 2.1
+- 2.2
 
 # install gems
 install: gem install jekyll html-proofer jekyll-sitemap pygments.rb
