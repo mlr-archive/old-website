@@ -8,6 +8,7 @@ draft: true
 ## When and Where?
 
 In 2017, we are hosting the workshop at LMU Munich. The workshop will run from 6 March to 10 March 2017 (potentially including the sunday before and the saturday at the end), hosted by the Ludwig-Maximilians-University Munich (Address: [Geschwister-Scholl-Platz 1](https://goo.gl/maps/qZtJHsjQcMw), Room: M203).
+**It is also possible to arrive on Saturday or Sunday, as we already have the rooms and are able to work there. But this is totally optional and the official workshop starts on Monday. Same thing for the Saturday after the workshop.**
 
 <!--more-->
 
