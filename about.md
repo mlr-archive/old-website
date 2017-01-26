@@ -75,5 +75,5 @@ I organize the [Zurich R User meetup](http://www.meetup.com/Zurich-R-User-Group/
 
 I am a PhD student in the working group computational statistics at the Ludwig-Maximilians-University Munich.
 Most on my work is on hyperparameter tuning, variable selection and gradient boosting.
-Further information and contact info is at my [university website](http://compstat-lmu.github.io/people/thomas/). 
+Further information and contact info is at my [university website](http://www.compstat.statistik.uni-muenchen.de/people/thomas/). 
 

@@ -2,7 +2,6 @@
 layout: post
 title: "mlr Workshop 2017"
 author: janek
-draft: true
 ---
 
 ## When and Where?
