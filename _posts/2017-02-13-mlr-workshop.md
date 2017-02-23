@@ -26,6 +26,15 @@ If you are interested, please register in the following form, and we are looking
 
 <br>
 
+## Sponsors
+
+We want to thank all our sponsors. Without them this workshop would not be possible.
+
+![graphic](../images/2017-02-13-mlr-workshop/accenture.PNG "Accenture")
+
+![graphic](../images/2017-02-13-mlr-workshop/alexanderthamm.png "alexanderthamm")
+![graphic](../images/2017-02-13-mlr-workshop/bosch.png "BOSCH")
+![graphic](../images/2017-02-13-mlr-workshop/burdaforward.png "BurdaForward")
 
 ## Results of the previous workshop
 
