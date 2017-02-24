@@ -77,3 +77,8 @@ I am a PhD student in the working group computational statistics at the Ludwig-M
 Most on my work is on hyperparameter tuning, variable selection and gradient boosting.
 Further information and contact info is at my [university website](http://www.compstat.statistik.uni-muenchen.de/people/thomas/). 
 
+#### Giuseppe Casalicchio
+
+I am a PhD student in the working group computational statistics at the Ludwig-Maximilians-University Munich.
+My research interests focus on hyperparameter tuning, variable selection, visualizing the predictive performance and gaining insights from machine learning algorithms.
+Further information and contact info is at my [university website](http://www.compstat.statistik.uni-muenchen.de/people/casalicchio/). 
