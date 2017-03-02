@@ -1,0 +1,55 @@
+---
+layout: post
+title: "Parallel benchmarking with OpenML and mlr"
+author: heidi
+draft: true
+---
+
+With this post I want to show you how to benchmark several learners 
+(or learners with different parameter settings) using 
+several data sets.
+
+First of all we need the data and the info on what should be done with this
+data (the task). For this we download several tasks from OpenML:
+
+```{r}
+library("OpenML")
+set.seed(123)
+
+## get useful tasks
+task_infos = listOMLTasks(tag = "study_14")
+
+## take a sample of 5 tasks from these
+task_ids = sample(task_infos$task.id, size = 5)
+tasks = lapply(task_ids, getOMLTask)
+```
+
+Now we need to define the learners for this 
+
+There are different ways how this can be done. 
+
+
+scope: mehere lerner, (mit manuell gesetzten params), mehrere tasks ---> schönen vgl erzeugen
+- kein: tuning, featsel, preproc
+
+
+1) runTaskMlr: 1 oml task, 1 mlr learner --> OMLRun, upload geht
+
+2) benchmark: viele MLR learner, VIELE mlr tasks --> geiler container kommt raus.
+geht parallel.
+problem:
+- OML tasks gehen nicht direkt rein
+--> lösung: konvert geht
+- Upload geht nicht (einfach)
+--> BMRResult kann man aktuell nicht konvertieren-.... doof, ist aber so
+
+3) batchmark:
+ist 2) in "geiler", aber das upload problem ist aktuell das gleiche.
+aber bessere OML anbindung, man kann direkt task ids eingeben, effizienter, weil batchtools andbingund
+
+4) runtaskMLR könnte man min parallel;ap oder so parallel machen.
+(BB: find ich aber eher nicht soooo fleixbel.)
+
+
+5) beste optuin aktuell:
+batchtools mit runTask 
