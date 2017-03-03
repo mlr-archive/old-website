@@ -79,13 +79,18 @@ parallel_benchmarking_blogpost/
 ```
 
 
+In the next step we get to the interesting point. We need to define...
 
+- the **problems**, which in our case are simply the OpenML tasks we downloaded.
+- the **algorithm**, which with mlr and OpenML is quite simply achieved using 
+`makeLearner` and `runTaskMlr`. We do not have to save the run results (result of applying the learner
+to the task), but we can directly upload it to OpenML where the results are automatically evaluated.
+- the machine learning **experiment**, i.e. in our case which parameters do we want to set for which learner. 
 ```{r}
 ## add the problem, in our case the tasks from OpenML
 for(task in tasks) {
   addProblem(name = paste("omltask", task$task.id, sep = "_"), data = task)
 }
-
 
 
 ##' Function that takes the task (data) and the learner, runs the learner on
@@ -121,35 +126,38 @@ addExperiments(algo.designs = algo.design, repls = 1)
 ## get an overview of what we will submit
 summarizeExperiments()
 
-submitJobs(reg = reg)
+```
+
+Now we can simply run our experiment:
+```{r}
+submitJobs()
 ```
 
 
-
-There are different ways how this can be done. 
-
-
-scope: mehere lerner, (mit manuell gesetzten params), mehrere tasks ---> schönen vgl erzeugen
-- kein: tuning, featsel, preproc
+<!-- There are different ways how this can be done.  -->
 
 
-1) runTaskMlr: 1 oml task, 1 mlr learner --> OMLRun, upload geht
-
-2) benchmark: viele MLR learner, VIELE mlr tasks --> geiler container kommt raus.
-geht parallel.
-problem:
-- OML tasks gehen nicht direkt rein
---> lösung: konvert geht
-- Upload geht nicht (einfach)
---> BMRResult kann man aktuell nicht konvertieren-.... doof, ist aber so
-
-3) batchmark:
-ist 2) in "geiler", aber das upload problem ist aktuell das gleiche.
-aber bessere OML anbindung, man kann direkt task ids eingeben, effizienter, weil batchtools andbingund
-
-4) runtaskMLR könnte man min parallel;ap oder so parallel machen.
-(BB: find ich aber eher nicht soooo fleixbel.)
+<!-- scope: mehere lerner, (mit manuell gesetzten params), mehrere tasks -> schönen vgl erzeugen -->
+<!-- - kein: tuning, featsel, preproc -->
 
 
-5) beste optuin aktuell:
-batchtools mit runTask 
+<!-- 1) runTaskMlr: 1 oml task, 1 mlr learner > OMLRun, upload geht -->
+
+<!-- 2) benchmark: viele MLR learner, VIELE mlr tasks > geiler container kommt raus. -->
+<!-- geht parallel. -->
+<!-- problem: -->
+<!-- - OML tasks gehen nicht direkt rein -->
+<!-- > lösung: konvert geht -->
+<!-- - Upload geht nicht (einfach) -->
+<!-- > BMRResult kann man aktuell nicht konvertieren-.... doof, ist aber so -->
+
+<!-- 3) batchmark: -->
+<!-- ist 2) in "geiler", aber das upload problem ist aktuell das gleiche. -->
+<!-- aber bessere OML anbindung, man kann direkt task ids eingeben, effizienter, weil batchtools andbingund -->
+
+<!-- 4) runtaskMLR könnte man min parallel;ap oder so parallel machen. -->
+<!-- (BB: find ich aber eher nicht soooo fleixbel.) -->
+
+
+<!-- 5) beste optuin aktuell: -->
+<!-- batchtools mit runTask  -->
