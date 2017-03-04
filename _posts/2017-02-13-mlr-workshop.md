@@ -6,7 +6,13 @@ author: janek
 
 ## When and Where?
 
-In 2017, we are hosting the workshop at LMU Munich. The workshop will run from 6 March to 10 March 2017 (potentially including the sunday before and the saturday at the end), hosted by the Ludwig-Maximilians-University Munich (Address: [Geschwister-Scholl-Platz 1](https://goo.gl/maps/qZtJHsjQcMw), Room: M203).
+In 2017, we are hosting the workshop at LMU Munich. The workshop will run from 6 March to 10 March 2017 (potentially including the sunday before and the saturday at the end), hosted by the Ludwig-Maximilians-University Munich.
+
+*Important Dates:*
+
+* Address: [Geschwister-Scholl-Platz 1](https://goo.gl/maps/qZtJHsjQcMw), Room: M203.
+* Start: 6th of March: 10:00 AM.
+
 **It is also possible to arrive on Saturday or Sunday, as we already have the rooms and are able to work there. But this is totally optional and the official workshop starts on Monday. Same thing for the Saturday after the workshop.**
 
 <!--more-->
@@ -35,6 +41,11 @@ We want to thank all our sponsors. Without them this workshop would not be possi
 ![graphic](../images/2017-02-13-mlr-workshop/alexanderthamm.png "alexanderthamm")
 ![graphic](../images/2017-02-13-mlr-workshop/bosch.png "BOSCH")
 ![graphic](../images/2017-02-13-mlr-workshop/burdaforward.png "BurdaForward")
+
+
+## Timetable and schedule
+
+You can find the workshop schedule [here](https://docs.google.com/spreadsheets/d/1lsdcxIdoz1acxwKScXjmhNmGgQyH2dDkN04h1HRxAYo/edit?usp=sharing)
 
 ## Results of the previous workshop
 
