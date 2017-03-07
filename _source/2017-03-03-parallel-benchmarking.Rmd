@@ -27,10 +27,7 @@ library("OpenML")
 library("mlr")
 library("batchtools")
 ```
-and you need to know how many cores are available on your machine:
-```{r}
-(ncores <- parallel::detectCores() - 1)
-```
+
 
 
 Now we download five tasks from OpenML:
@@ -60,7 +57,7 @@ names(reg)
 reg$cluster.functions
 
 ## allow for parallel computing, for other options see ?makeClusterFunctions
-reg$cluster.functions = makeClusterFunctionsMulticore(ncpus = ncores)
+reg$cluster.functions = makeClusterFunctionsMulticore()
 ```
 
 Now you should have a new folder in your working directory with the name
@@ -115,8 +112,8 @@ addAlgorithm(name = "mlr", fun = runTask_uploadRun)
 
 
 ## what versions of the two algorithms do we want to compute
-algo.design = list(mlr = expand.grid(learner = c("classif.ctree", "classif.cforest"),
-                                     teststat = c("quad", "max"),
+algo.design = list(mlr = expand.grid(learner = "classif.ctree", #c("classif.ctree", "classif.cforest"),
+                                     # teststat = c("quad", "max"),
                                      stump = c(FALSE, TRUE),
                                      stringsAsFactors = FALSE))
 algo.design$mlr
