@@ -7,6 +7,7 @@
 
 @import "reset";
 @import "variables";
+@import "svg-icons";
 // Syntax highlighting @import is at the bottom of this file
 
 /**************/
@@ -213,7 +214,7 @@ img {
 
 nav {
   float: right;
-  margin-top: 23px; // @TODO: Vertically middle align
+  margin-top: 35px; // @TODO: Vertically middle align
   font-family: $helveticaNeue;
   font-size: 18px;
 
@@ -235,6 +236,13 @@ nav {
       margin: 0 10px;
       color: $blue;
     }
+  }
+
+  .svg-icon {
+    height: 1.5em;
+    width: 1.5em;
+    background-size: cover;
+    margin-bottom: -0.3em;
   }
 }
 
@@ -316,4 +324,3 @@ a.site-avatar:hover {
 // Settled on moving the import of syntax highlighting to the bottom of the CSS
 // ... Otherwise it really bloats up the top of the CSS file and makes it difficult to find the start
 @import "highlights";
-@import "svg-icons";
