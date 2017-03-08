@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Being successful on Kaggle using mlr"
+title: "Being successful on Kaggle using `mlr`"
 author: giuseppe
 draft: true
 ---
@@ -40,14 +40,14 @@ in your workflow like:
   
 Examples of these meta-packages are: 
 
-  - For python: scikit-learn \
-  (http://scikit-learn.org/stable/auto_examples).
+  - For python: scikit-learn (http://scikit-learn.org/stable/auto_examples).
   - For R: `mlr` (https://mlr-org.github.io/mlr-tutorial) or `caret`.
 
 
 ### 2. Zoom in on the problem to solve
   
 To develop a good understanding of the kaggle challenge you should:
+
   - Understand the problem domain:
     - Read the description and try to understand the aim of the competition. 
     - Keep reading the forum and looking into scripts/kernels of others, learn from them!
@@ -56,11 +56,10 @@ To develop a good understanding of the kaggle challenge you should:
     
   - Explore the dataset:
     - Which features are numerical/categorical/ordinal or time dependent?
-    - Decide how to handle missing values, it is often enough to 
-      - impute missing values with the mean, median or with values that are out of
-      range (for numerical features).
-      - interpolate missing values if the feature is time dependent.
-      - introduce a new category for the missing values (for categorical features).
+    - Decide how to handle [*missing values*](https://mlr-org.github.io/mlr-tutorial/devel/html/impute/index.html), it is often enough to 
+        - impute missing values with the mean, median or with values that are out of range (for numerical features).
+        - interpolate missing values if the feature is time dependent.
+        - introduce a new category for the missing values (for categorical features).
     - Do exploratory data analysis (for the lazy: wait until someone else uploads an EDA kernel). 
     - Insights you learn here, will also help you later (creating new features).
     
@@ -91,19 +90,14 @@ leaderboard for testing, you might overfit it and lose many ranks once the priva
 leaderboard is revealed.
 A better approach is the use of a validation scheme on the train data: 
 
-  - First figure out how the kaggle-data was split into train and test data. Your resampling strategy should follow the same method. So if kaggle uses a team feature for splitting the data, you should not use random samples for creating cross-validation folds.
+  - First figure out how the kaggle-data was split into train and test data. Your resampling strategy should follow the same method. So if kaggle uses, e.g. a feature for splitting the data, you should not use random samples for creating cross-validation folds.
   - Set up a [*resampling procedure*](https://mlr-org.github.io/mlr-tutorial/devel/html/resample), e.g., cross-validation (CV) to measure your model performance
   - Improvements on your local CV score should also lead to improvements on the leaderboard. 
   - If this is not the case, you can try
-    - several CV folds (e.g., 3-fold, 5-fold, 8-fold)
-    - repeated CV (e.g., 3 times 3-fold, 3 times 5-fold)
-    - stratified CV
-
-  Time series data, e.g., from the [*bike sharing*](https://www.kaggle.com/c/bike-sharing-demand/data) competition:
-  \begin{center}
-  \includegraphics[width=0.7\textwidth]{bike.png}
-  \end{center}
-  
+      - several CV folds (e.g., 3-fold, 5-fold, 8-fold)
+      - repeated CV (e.g., 3 times 3-fold, 3 times 5-fold)
+      - stratified CV
+  - `mlr` offers nice [*visualizations to benchmark*](https://mlr-org.github.io/mlr-tutorial/devel/html/benchmark_experiments/index.html#benchmark-analysis-and-visualization) different algorithms.
   
 ### 4. Tune your model
 
@@ -139,9 +133,10 @@ You should therefore try to introduce new features containing valuable informati
 ### 6. Ensemble **different** models (see, e.g. [*this guide*](http://mlwave.com/kaggle-ensembling-guide)): 
 
 After training many different models, you might want to ensemble them into one strong model using one of these methods:
-    - simple averaging
-    - finding optimal weights for averaging 
-    - stacking
+
+  - simple averaging
+  - finding optimal weights for averaging 
+  - stacking
   
   
 ### 7. Track your progress
@@ -158,10 +153,3 @@ many different ideas. To avoid getting lost, make sure to keep track of:
 If you do not want to use a tool like git, at least make sure you create subfolders
 for each commit. This way you can later analyse which models you might want to ensemble
 or use for your final commits for the competition.
-
-  
-  
-  
-  
-  
-
