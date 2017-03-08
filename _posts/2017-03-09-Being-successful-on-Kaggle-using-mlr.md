@@ -76,8 +76,8 @@ Example:
   <!-- $\rightarrow$ transform the target in the same way before modeling. -->
   - For strange measures: Use algorithms where you can implement your own objective 
   function, see e.g. 
-    - [*tuning parameters of a custom objective*](https://www.kaggle.com/casalicchio/allstate-claims-severity/tuning-the-parameter-of-a-custom-objective-1120) or 
-    - [*customize loss function, and evaluation metric*](https://github.com/tqchen/xgboost/tree/master/demo#features-walkthrough).
+      - [*tuning parameters of a custom objective*](https://www.kaggle.com/casalicchio/allstate-claims-severity/tuning-the-parameter-of-a-custom-objective-1120) or 
+      - [*customize loss function, and evaluation metric*](https://github.com/tqchen/xgboost/tree/master/demo#features-walkthrough).
 
 
 ### 3. Validate your model
