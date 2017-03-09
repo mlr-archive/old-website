@@ -15,7 +15,7 @@ that shows how the `mlr` package can be used to tune a xgboost model with random
 
 ## 7 Rules
 
-  1. Use a meta-package
+  1. Use a good software
   1. Zoom in on the problem to solve
   1. Validate your model 
   1. Tune your model
@@ -24,12 +24,12 @@ that shows how the `mlr` package can be used to tune a xgboost model with random
   1. Track your progress
 
 
-### 1. Use a meta-package
+### 1. Use a good software
 
 No matter if you choose R, Python or another language to work on kaggle, chances
-are, that you have to deal with dozens of packages to follow a state of the art 
-machine learning workflow. To save time you should start using a meta-package,
-that offers one standardized and well tested interface for the important steps 
+are, that you have to deal with quite a few packages to follow a state of the art 
+machine learning workflow. To save time you should start using a 'software'
+that offers a standardized and well tested interface for the important steps 
 in your workflow like:
 
   - Benchmarking different machine learning algorithms (learners)
@@ -38,7 +38,7 @@ in your workflow like:
   - Creating and selecting features or dealing with missing values
   - Parallelizing the points above
   
-Examples of these meta-packages are: 
+Examples of such a good 'software' are: 
 
   - For python: scikit-learn (http://scikit-learn.org/stable/auto_examples).
   - For R: `mlr` (https://mlr-org.github.io/mlr-tutorial) or `caret`.
@@ -55,7 +55,7 @@ To develop a good understanding of the kaggle challenge you should:
     - Use external data if it is allowed (e.g., google trends, historical weather data, ...).
     
   - Explore the dataset:
-    - Which features are numerical/categorical/ordinal or time dependent?
+    - Which features are numerical, categorical, ordinal or time dependent?
     - Decide how to handle [*missing values*](https://mlr-org.github.io/mlr-tutorial/devel/html/impute/index.html), it is often enough to 
         - impute missing values with the mean, median or with values that are out of range (for numerical features).
         - interpolate missing values if the feature is time dependent.
@@ -85,7 +85,7 @@ Example:
 Good machine learning models not only work on the data they were trained on, but
 also on test data that was not used for training the model. Everytime you use data
 to make any kind of decision (like feature or model selection, hyperparameter tuning, ...),
-the data becomes less valuable for the test case. So if you always use the kaggle 
+the data becomes less valuable for the test case. So if you always use the public 
 leaderboard for testing, you might overfit it and lose many ranks once the private
 leaderboard is revealed.
 A better approach is the use of a validation scheme on the train data: 
@@ -103,9 +103,9 @@ A better approach is the use of a validation scheme on the train data:
 
 It is often enough to focus on a single model (e.g. [*xgboost*](https://xgboost.readthedocs.io/en/latest)) and to tune its hyperparameters.
 
-  - Aim: \newline
+  - Aim: 
   Find the best hyperparameters that, for the given data set, optimize the pre-defined measure.
-  - Problem: \newline
+  - Problem: 
   Some models have many hyperparameters that can be tuned.
   - Possible solutions: 
     - [*Grid search or random search*](https://mlr-org.github.io/mlr-tutorial/devel/html/tune/index.html)
@@ -125,7 +125,7 @@ You should therefore try to introduce new features containing valuable informati
   - Create dummy features from factor columns
   -  For time series, you could try
       - to add the weekday as new feature
-      - to use rolling mean/median of any other numerical feature
+      - to use rolling mean or median of any other numerical feature
       - to add features with a lag...
   - Remove noisy features: [*Feature selection / filtering*](https://mlr-org.github.io/mlr-tutorial/devel/html/feature_selection/index.html)
   
