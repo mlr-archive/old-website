@@ -2,7 +2,7 @@
 layout: post
 title: "Being successful on Kaggle using `mlr`"
 author: giuseppe
-draft: true
+draft: false
 ---
 
 Achieving a good score on a Kaggle competition is typically quite difficult. 
