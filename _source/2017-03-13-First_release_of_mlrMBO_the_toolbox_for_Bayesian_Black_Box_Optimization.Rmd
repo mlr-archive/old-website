@@ -1,0 +1,36 @@
+---
+layout: post
+title: First release of mlrMBO - the toolbox for (Bayesian) Black-Box Optimization
+author: jakob
+drafr: true
+---
+
+We are happt to be able to finally announce the first release of [**mlrMBO** on cran](https://cran.r-project.org/package=mlrMBO) after a quite long development time.
+For the theoretical background and a nearly complete overview of mlrMBOs capabilities you can check our [paper on **mlrMBO** that we presubmitted to arxiv](https://arxiv.org/abs/1703.03373).
+
+The key features of **mlrMBO** are:
+
+* Global optimization of expensive Black-Box functions.
+* Mulit-Criteria Optimization.
+* Parallelization rhrough multi-point proposals.
+* Support for optimization over categorical variables using random forests as a surrogate.
+
+For some applicational examples we have multiple Vignettes that are also available as an (online documentation)[https://mlr-org.github.io/mlrMBO/].
+For **mlr** users **mlrMBO** is especially interesting for hyperparameter optimization.
+
+<!-- more -->
+
+**mlrMBO** for **mlr** hyperparameter tuning was already used in [an earlier blog post](How-to-win-a-drone-in-20-lines-of-R-code). 
+Nonetheless we want to provide a small toy example to demonstrate the work flow of **mlrMBO** in this post.
+
+### Example
+
+First we define an objective function that we are going to minimize:
+
+```{r objectiveFunction}
+
+```
+
+
+
+
