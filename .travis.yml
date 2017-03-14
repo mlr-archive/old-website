@@ -1,15 +1,19 @@
 language: ruby
 sudo: false
 
+cache: bundler
+
 # ruby version manager
 rvm:
-- 2.2.2
+- 2.2.0
 
 env:
   global:
     # dramatically speed up installation of html-proofer!
     # If not set a load of libraries must be compiled first.
     - NOKOGIRI_USE_SYSTEM_LIBRARIES=true
+
+before_script: "bundle update"
 
 script: "bundle exec rake test"
 
