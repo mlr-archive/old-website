@@ -9,7 +9,7 @@ env:
   global:
     # dramatically speed up installation of html-proofer!
     # If not set a load of libraries must be compiled first.
-    - NOKOGIRI_USE_SYSTEM_LIBRARIES=true44444444
+    - NOKOGIRI_USE_SYSTEM_LIBRARIES=true
 
 script: "bundle exec rake test"
 
