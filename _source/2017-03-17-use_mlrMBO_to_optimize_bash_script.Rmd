@@ -1,0 +1,54 @@
+---
+layout: post
+title: Use mlrMBO to optimize bash script
+author: jakob
+draft: true
+---
+
+```{r setup, include = FALSE, cache = FALSE, message = FALSE}
+knitr::opts_chunk$set(cache = TRUE, collapse = FALSE)
+knitr::knit_hooks$set(document = function(x){
+  gsub("```\n*```r*\n*", "", x)
+})
+```
+
+Many people who want to use **mlrMBO**, actually want to use it to optimize an algorithm that is not actually implemented in **R** but runs on the command line.
+
+In this post I want to show in a small example how it can be done.
+At the same time I will highlight some issues you can probably run into.
+
+<!--more-->
+
+First of all we need a bash script that we want to optimize.
+To keep it realy simple we will just do some simple calculation directly inside the bash console.
+
+```{r}
+#write bash
+lines = '#!/bin/bash
+fun ()
+{
+  x1=$1
+  x2=$2
+  command="(($x1-3)+($x2-3))^2+0.1*($x1+1)^3+0.3*($x2+0.4*$x2)^3"
+  result=$(bc -l <<< $command)
+}
+fun $1 $2
+echo "The result is $result"
+'
+#result=(($x1-3)+($x2-3))**2+0.1*($x1+1)**3+0.3*($x2+0.4*$x2)**3
+writeLines(lines, "fun.sh")
+system("chmod +x fun.sh")
+```
+
+```{r simplefun}
+library(smoof)
+readConsole = function(x) {
+  
+}
+fn = makeSingleObjectiveFunction(
+  id = "fun.sh", 
+  fn = readConsole(x),
+  par.set = makeNumericParamSet(len = 2, lower = -3, upper = 6)
+)
+ggplot2::autoplot(fn, render.levels = TRUE)
+```
