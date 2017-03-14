@@ -86,6 +86,7 @@ exclude:
     - knit2md
     - _source
     - "*.Rmd"
+    - Rakefile
 authors:
   michel:
     display_name: Michel Lang
