@@ -1,20 +1,15 @@
 language: ruby
+sudo: false
 
 # ruby version manager
 rvm:
 - 2.2.2
 
-# install gems
-install: gem install jekyll html-proofer jekyll-sitemap pygments.rb
-
-# run build on container-based infrastructure
-sudo: false
-
 env:
   global:
     # dramatically speed up installation of html-proofer!
     # If not set a load of libraries must be compiled first.
-    - NOKOGIRI_USE_SYSTEM_LIBRARIES=true
+    - NOKOGIRI_USE_SYSTEM_LIBRARIES=true44444444
 
 script: "bundle exec rake test"
 
