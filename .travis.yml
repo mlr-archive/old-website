@@ -5,7 +5,7 @@ cache: bundler
 
 # ruby version manager
 rvm:
-- 2.2.0
+- 2.2.2
 
 env:
   global:
