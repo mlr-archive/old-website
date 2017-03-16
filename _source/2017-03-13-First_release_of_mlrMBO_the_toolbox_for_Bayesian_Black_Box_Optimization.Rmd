@@ -17,7 +17,7 @@ For the theoretical background and a nearly complete overview of mlrMBOs capabil
 The key features of **mlrMBO** are:
 
 * Global optimization of expensive Black-Box functions.
-* Mulit-Criteria Optimization.
+* Multi-Criteria Optimization.
 * Parallelization through multi-point proposals.
 * Support for optimization over categorical variables using random forests as a surrogate.
 
@@ -26,7 +26,7 @@ For **mlr** users **mlrMBO** is especially interesting for hyperparameter optimi
 
 <!--more-->
 
-**mlrMBO** for **mlr** hyperparameter tuning was already used in [an earlier blog post](/How-to-win-a-drone-in-20-lines-of-R-code). 
+**mlrMBO** for **mlr** hyperparameter tuning was already used in [an earlier blog post](/How-to-win-a-drone-in-20-lines-of-R-code).
 Nonetheless we want to provide a small toy example to demonstrate the work flow of **mlrMBO** in this post.
 
 ### Example
