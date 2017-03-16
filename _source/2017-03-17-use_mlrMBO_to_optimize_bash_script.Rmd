@@ -20,7 +20,9 @@ At the same time I will highlight some issues you can probably run into.
 <!--more-->
 
 First of all we need a bash script that we want to optimize.
-To keep it realy simple we will just do some simple calculation directly inside the bash console.
+The following will write a tiny bash script that uses `bc` to calculate $((x_1-3)+(x_2-3))^2+ 0.1 (x_1+1)^3+0.3(x_1+0.4x_2)^3$ and write the result "hidden" in a sentence (`The result is 12.34.`) in a `result.txt` text file.
+
+### The bash script
 
 ```{r}
 #write bash
@@ -29,26 +31,76 @@ fun ()
 {
   x1=$1
   x2=$2
-  command="(($x1-3)+($x2-3))^2+0.1*($x1+1)^3+0.3*($x2+0.4*$x2)^3"
+  command="(($x1-3)+($x2-3))^2+0.1*($x1+1)^3+0.3*($x1+0.4*$x2)^3"
   result=$(bc -l <<< $command)
 }
+echo "Start calculation."
 fun $1 $2
-echo "The result is $result"
+echo "The result is $result." > "result.txt"
+echo "Finish calculation."
 '
-#result=(($x1-3)+($x2-3))**2+0.1*($x1+1)**3+0.3*($x2+0.4*$x2)**3
 writeLines(lines, "fun.sh")
 system("chmod +x fun.sh")
 ```
 
-```{r simplefun}
-library(smoof)
-readConsole = function(x) {
-  
+### Running the script from R
+
+Now we need a R function that starts the script, reads the result from the text file and returns it.
+
+```{r runScript}
+library(stringi)
+runScript = function(x) {
+  command = sprintf("./fun.sh %f %f", x['x'], x['y'])
+  error.code = system(command)
+  if (error.code != 0) {
+    stop("Simulation had error.code != 0!")
+  }
+  result = readLines("result.txt")
+  # the pattern matches 12 as well as 12.34
+  # the ?: makes the decimals a non-capturing group.
+  result = stri_match_first_regex(result, pattern = "\\d+(?:\\.\\d+)?")
+  as.numeric(result)
 }
+```
+
+This function uses `strigi` to match the result within the sentence.
+Depending on the output different strategies to read the result make sense.
+If, for example, the output is written in file like
+
+```{bash}
+value1 = 23.45
+value2 = 13.82
+```
+
+You can easily use `source()` like that
+
+```{r, eval=FALSE}
+EV = new.env()
+source(file = "result.txt", local = EV)
+res = as.list(EV)
+rm(EV)
+```
+
+which will return a list with the entries `$value1` and `$value2`.
+
+### Make it ready for mlrMBO
+
+To evaluate the function from within **mlrMBO** it has to be wrapped in **smoof** function.
+The smoof function also contains information about the bounds and scales of the domain of the objective function defined in a _ParameterSet_.
+
+```{r smoof}
+library(mlrMBO)
+par.set = makeParamSet(
+  makeNumericParam("x", lower = -3, upper = 6),
+  makeNumericParam("y", lower = -5, upper = 5)
+)
 fn = makeSingleObjectiveFunction(
   id = "fun.sh", 
-  fn = readConsole(x),
-  par.set = makeNumericParamSet(len = 2, lower = -3, upper = 6)
+  fn = runScript,
+  par.set = par.set,
+  has.simple.signature = FALSE
 )
-ggplot2::autoplot(fn, render.levels = TRUE)
+des = generateGridDesign(par.set, resolution = 10)
+apply(des, 1, fn)
+
 ```
