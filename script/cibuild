@@ -7,4 +7,4 @@ set -e
 bundle exec jekyll build
 
 # check html output (do not skip any testing)
-bundle exec htmlproofer ./_site
+bundle exec htmlproofer --http-status-ignore "0,999,429,403" ./_site
