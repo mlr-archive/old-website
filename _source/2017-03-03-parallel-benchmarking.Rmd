@@ -147,11 +147,11 @@ results = cbind(run.id = results0$V1, job.pars)
 ```
 
 ```{r, echo=FALSE, eval=FALSE}
-saveRDS(results, file = "parallel_benchmarking_blogpost_results.csv")
+saveRDS(results, file = "parallel_benchmarking_blogpost_results.rds")
 ```
 
 ```{r, echo=FALSE, eval=TRUE}
-results = readRDS(file = "parallel_benchmarking_blogpost_results.csv")
+results = readRDS(file = "parallel_benchmarking_blogpost_results.rds")
 ```
 
 ```{r, eval=TRUE}
