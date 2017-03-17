@@ -4,7 +4,7 @@ title: "Parallel benchmarking with OpenML and mlr"
 author: heidi
 draft: true
 ---
-```{r}
+```{r, echo=FALSE}
 knitr::opts_chunk$set(eval = FALSE)
 ```
 
@@ -22,17 +22,18 @@ If you have a small project and don't need to parallelize, you might want to
 just look at the previous blogpost called [mlr loves OpenML](http://mlr-org.github.io/mlr-loves-OpenML/).
 
 The following packages are needed for this:
-```{r}
+```{r, eval=TRUE, message=FALSE}
 library("OpenML")
 library("mlr")
 library("batchtools")
+library("ggplot2")
 ```
 
 
 
 Now we download five tasks from OpenML:
 ```{r}
-set.seed(123)
+set.seed(2017)
 
 ## get useful tasks
 task_infos = listOMLTasks(tag = "study_14")
@@ -83,6 +84,9 @@ In the next step we get to the interesting point. We need to define...
 `makeLearner` and `runTaskMlr`. We do not have to save the run results (result of applying the learner
 to the task), but we can directly upload it to OpenML where the results are automatically evaluated.
 - the machine learning **experiment**, i.e. in our case which parameters do we want to set for which learner. 
+As an example here, we will look at the ctree algorithm from the party package and see whether Bonferroni
+correction (correction for mulitple testing) helps getting better predictions and also we want to check
+whether we need a tree that has more than two leaf nodes (stump = FALSE) or if a small tree is enough (stump = TRUE).
 ```{r}
 ## add the problem, in our case the tasks from OpenML
 for(task in tasks) {
@@ -111,9 +115,9 @@ runTask_uploadRun = function(job, instance, data, learner, ...) {
 addAlgorithm(name = "mlr", fun = runTask_uploadRun)
 
 
-## what versions of the two algorithms do we want to compute
-algo.design = list(mlr = expand.grid(learner = "classif.ctree", #c("classif.ctree", "classif.cforest"),
-                                     # teststat = c("quad", "max"),
+## what versions of the algorithm do we want to compute
+algo.design = list(mlr = expand.grid(learner = "classif.ctree",
+                                     testtype = c("Bonferroni", "Univariate"),
                                      stump = c(FALSE, TRUE),
                                      stringsAsFactors = FALSE))
 algo.design$mlr
@@ -130,31 +134,46 @@ Now we can simply run our experiment:
 submitJobs()
 ```
 
+While your job is running, you can check the progress using `getStatus()`.
+As soon as `getStatus()` tells us that all our runs are done, we can collect the
+results of our experiment from OpenML. To be able to do this we need to collect
+the run IDs from the uploaded runs we did during the experiment. Also we want to
+add the info of the parameters used (`getJobPars()`).
 
-<!-- There are different ways how this can be done.  -->
+```{r}
+results0 = reduceResultsDataTable()
+job.pars = getJobPars()
+results = cbind(run.id = results0$V1, job.pars)
+```
 
+```{r, echo=FALSE, eval=FALSE}
+saveRDS(results, file = "parallel_benchmarking_blogpost_results.csv")
+```
 
-<!-- scope: mehere lerner, (mit manuell gesetzten params), mehrere tasks -> schönen vgl erzeugen -->
-<!-- - kein: tuning, featsel, preproc -->
+```{r, echo=FALSE, eval=TRUE}
+results = readRDS(file = "parallel_benchmarking_blogpost_results.csv")
+```
 
+```{r, eval=TRUE}
+results
+```
 
-<!-- 1) runTaskMlr: 1 oml task, 1 mlr learner > OMLRun, upload geht -->
+With the run ID information we can now grab the evaluations from OpenML and
+plot for example the parameter settings against the predictive accuracy.
 
-<!-- 2) benchmark: viele MLR learner, VIELE mlr tasks > geiler container kommt raus. -->
-<!-- geht parallel. -->
-<!-- problem: -->
-<!-- - OML tasks gehen nicht direkt rein -->
-<!-- > lösung: konvert geht -->
-<!-- - Upload geht nicht (einfach) -->
-<!-- > BMRResult kann man aktuell nicht konvertieren-.... doof, ist aber so -->
+```{r, eval=TRUE, fig.width=8}
+run.evals0 = listOMLRunEvaluations(run.id = results$run.id)
+run.evals = merge(results, run.evals0, by = "run.id")
 
-<!-- 3) batchmark: -->
-<!-- ist 2) in "geiler", aber das upload problem ist aktuell das gleiche. -->
-<!-- aber bessere OML anbindung, man kann direkt task ids eingeben, effizienter, weil batchtools andbingund -->
+ggplot(run.evals, aes(x = interaction(testtype, stump), y = predictive.accuracy,
+                      group = data.name, color = interaction(task.id, data.name))) +
+  geom_point() + geom_line()
+```
 
-<!-- 4) runtaskMLR könnte man min parallel;ap oder so parallel machen. -->
-<!-- (BB: find ich aber eher nicht soooo fleixbel.) -->
+We see that the only data set where a stump is good enough is the pc1 data set.
+For the madelon data set Bonferroni correction helps. For the others it does not
+seem to matter. You can check out the results online by going to the task 
+websites (e.g. for task 9976 for the madelon data set go to 
+[openml.org/t/9976](https://www.openml.org/t/9976)) or the run websites
+(e.g. [openml.org/r/1852889](https://www.openml.org/r/1852889)).
 
-
-<!-- 5) beste optuin aktuell: -->
-<!-- batchtools mit runTask  -->
