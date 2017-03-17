@@ -82,3 +82,9 @@ Further information and contact info is at my [university website](http://www.co
 I am a PhD student in the working group computational statistics at the Ludwig-Maximilians-University Munich.
 My research interests focus on hyperparameter tuning, variable selection, visualizing the predictive performance and gaining insights from machine learning algorithms.
 Further information and contact info is at my [university website](http://www.compstat.statistik.uni-muenchen.de/people/casalicchio/). 
+
+#### Quay Au
+
+I am a PhD student in the working group computational statistics at the Ludwig-Maximilians-University Munich.
+My research interests are in the area of machine learning, especially reinforcement learning in the context of Human-Machine-Interaction.
+You can find me on my [university website](http://www.compstat.statistik.uni-muenchen.de/people/au/). 

@@ -119,3 +119,7 @@ authors:
     display_name: Giuseppe Casalicchio
     email: giuseppe.casalicchio@stat.uni-muenchen.de
     github: giuseppec
+  quay:
+    display_name: Quay Au
+    email: quay.au@stat.uni-muenchen.de
+    github: QuayAu
