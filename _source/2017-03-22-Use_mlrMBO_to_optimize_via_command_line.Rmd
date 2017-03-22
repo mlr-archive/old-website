@@ -1,8 +1,8 @@
 ---
 layout: post
-title: Use mlrMBO to optimize bash script
+title: Use mlrMBO to optimize via command line
 author: jakob
-draft: true
+draft: false
 ---
 
 ```{r setup, include = FALSE, cache = FALSE, message = FALSE}
@@ -12,18 +12,19 @@ knitr::knit_hooks$set(document = function(x){
 })
 library(mlrMBO)
 library(rgenoud)
+set.seed(123)
 ```
 
-Many people who want to use **mlrMBO**, actually want to use it to optimize an algorithm that is not actually implemented in **R** but runs on the command line.
+Many people who want to use [**mlrMBO**](http://mlr-org.github.io/mlrMBO/), actually want to use it to optimize an algorithm that is not actually implemented in **R** but runs on the command line as a shell script or an executable. 
 
 In this post I want to show in a small example how it can be done.
-At the same time I will highlight some issues you can probably run into.
+At the same time I will highlight some issues you can likely run into.
 
 <!--more-->
 
 First of all we need a bash script that we want to optimize.
-This tutorial will only run on Unix systems (Linux) but should also be informative for windows users.
-The following will write a tiny bash script that uses `bc` to calculate $sin(x_1-1) + (x_1^2 + x_2^2)$ and write the result "hidden" in a sentence (`The result is 12.34!`) in a `result.txt` text file.
+This tutorial will only run on Unix systems (Linux, OSX etc.) but should also be informative for windows users.
+The following code will write a tiny bash script that uses `bc` to calculate $sin(x_1-1) + (x_1^2 + x_2^2)$ and write the result "hidden" in a sentence (`The result is 12.34!`) in a `result.txt` text file.
 
 ### The bash script
 
@@ -43,6 +44,7 @@ echo "The result is $result!" > "result.txt"
 echo "Finish calculation."
 '
 writeLines(lines, "fun.sh")
+# make it executable:
 system("chmod +x fun.sh")
 ```
 
@@ -53,7 +55,7 @@ Now we need a R function that starts the script, reads the result from the text 
 ```{r runScript}
 library(stringi)
 runScript = function(x) {
-  command = sprintf("./fun.sh %f %f", x['x1'], x['x2'])
+  command = sprintf("./fun.sh %f %f", x[['x1']], x[['x2']])
   error.code = system(command)
   if (error.code != 0) {
     stop("Simulation had error.code != 0!")
@@ -70,7 +72,7 @@ This function uses `stringi` and _regular expressions_ to match the result withi
 Depending on the output different strategies to read the result make sense.
 XML files can usually be accessed with `XML::xmlParse`, `XML::getNodeSet`, `XML::xmlAttrs` etc. using `XPath` queries.
 Sometimes the good old `read.table()` is also sufficient.
-If, for example, the output is written in file like this:
+If, for example, the output is written in a file like this:
 
 ```{r, eval=FALSE}
 value1 = 23.45
@@ -90,17 +92,19 @@ rm(EV)
 
 which will return a list with the entries `$value1` and `$value2`.
 
-### Make it ready for mlrMBO
+### Define bounds, wrap function.
 
 To evaluate the function from within **mlrMBO** it has to be wrapped in **smoof** function.
 The smoof function also contains information about the bounds and scales of the domain of the objective function defined in a _ParameterSet_.
 
 ```{r smoof}
 library(mlrMBO)
+# Defining the bounds of the parameters:
 par.set = makeParamSet(
   makeNumericParam("x1", lower = -3, upper = 3),
   makeNumericParam("x2", lower = -2.5, upper = 2.5)
 )
+# Wrapping everything in a smoof function:
 fn = makeSingleObjectiveFunction(
   id = "fun.sh", 
   fn = runScript,
@@ -122,25 +126,14 @@ This can be helpful but also annoying.
 If a lot of output is generated during a single call of `system()` it might even crash R.
 To avoid that I suggest to redirect the output into a file.
 This way no output is lost and the R console does not get flooded.
+We can simply achieve that by replacing the `command` in the function `runScript` from above with the following code:
 
-```{r redirectOutput}
-# optional: redirect console output:
-runScript = function(x) {
+```{r redirectOutput, eval = FALSE}
   # console output file output_1490030005_1.1_2.4.txt
-  output_file = sprintf("output_%i_%.1f_%.1f.txt", as.integer(Sys.time()), x['x1'], x['x2'])
+  output_file = sprintf("output_%i_%.1f_%.1f.txt", as.integer(Sys.time()), x[['x1']], x[['x2']])
   # redirect output with ./fun.sh 1.1 2.4 > output.txt
   # alternative: ./fun.sh 1.1 2.4 > /dev/null to drop it
-  command = sprintf("./fun.sh %f %f > %s", x['x1'], x['x2'], output_file)
-  error.code = system(command)
-  if (error.code != 0) {
-    stop("Simulation had error.code != 0!")
-  }
-  result = readLines("result.txt")
-  # the pattern matches 12 as well as 12.34 and .34
-  # the ?: makes the decimals a non-capturing group.
-  result = stri_match_first_regex(result, pattern = "\\d*(?:\\.\\d+)?(?=\\!)")
-  as.numeric(result)
-}
+  command = sprintf("./fun.sh %f %f > %s", x[['x1']], x[['x2']], output_file)
 ```
 
 ```{r smoof_redirectOutput, include=FALSE}
@@ -177,18 +170,28 @@ library(jsonlite)
 write_json(run[c("x","y")], "mbo_res.json")
 ```
 
-Let's assume we saved all of that above as an R-script under the name `runMBO.R` (actually it is available as a [gist](https://gist.github.com/jakob-r/6be022d49e135c7905fd4c097bc3d376)).
+Let's assume we saved all of that above as an R-script under the name [`runMBO.R` (actually it is available as a gist)](https://gist.github.com/jakob-r/6be022d49e135c7905fd4c097bc3d376).
 
-Then you can run it from the command line
+Then you can simply run it from the command line:
+
 ```{bash, eval = FALSE}
-R CMD BATCH runMBO.R 
+Rscript runMBO.R 
 ```
 
+As an extra the script in the gist also contains a simple handler for command line arguments.
+In this case you can define the number of optimization iterations and the maximal allowed time in seconds for the optimization.
+You can also define the seed to make runs reproducible:
+
+```{bash, eval = FALSE}
+Rscript runMBO.R iters=20 time=10 seed=3
+```
+
+If you want to build a more advanced command line interface you might want to have a [look](https://www.slideshare.net/EdwindeJonge1/docopt-user2014) [at](https://github.com/docopt/docopt.R) [docopt](https://cran.r-project.org/package=docopt).
 
 ### Clean up
 
 To clean up all the files generated by this script you can run:
-```{r cleanUp}
+```{r cleanUp, results='hide'}
 file.remove("result.txt")
 file.remove("fun.sh")
 file.remove("mbo_res.json")
