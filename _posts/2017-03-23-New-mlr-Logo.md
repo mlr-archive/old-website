@@ -2,7 +2,6 @@
 layout: post
 title: New mlr Logo
 author: mason
-draft: true
 ---
 
 We at mlr are currently deciding on a new logo, and in the spirit of open-source, we would like to involve the community in the voting process!
