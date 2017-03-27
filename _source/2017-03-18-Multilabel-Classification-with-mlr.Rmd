@@ -5,12 +5,13 @@ author: quay
 draft: true
 ---
 Multilabel classification has lately gained growing interest in the research community. 
-We implemented several methods, which make use of the standardized mlr framework. So if you're interested in using several multilabel algorithms and want to know how to use them in the mlr framework, then this post is for you!
+We implemented several methods, which make use of the standardized mlr framework. Every available binary learner can be used for multilabel problem transformation methods.
+So if you're interested in using several multilabel algorithms and want to know how to use them in the mlr framework, then this post is for you!
 
 
 <!--more-->
-### 1) Introduction into multilabel classification
-First, let me introduce you into multilabel classification. Basically, multilabel classification is a classification problem, where every instance can have more than one label. Before diving too deep into definitions, let's have a look at a typical multilabel dataset (which I, of course, download from the OpenML server, tag = *2016_multilabel_r_benchmark_paper*):
+### 1) Introduction to multilabel classification
+First, let me introduce you to multilabel classification. To keep it short, multilabel classification is a classification problem, where every instance can have more than one label. Let's have a look at a typical multilabel dataset (which I, of course, download from the OpenML server, tag = *2016_multilabel_r_benchmark_paper*):
 
 ```{r, results='hide', message=FALSE, warning=FALSE}
 library(OpenML)
@@ -20,13 +21,13 @@ scene = getOMLDataSet(data.id = 40595)
 ```
 
 ```{r}
-head(scene$data[, c(1, 2, 3, 295, 296, 297, 298, 299, 300)])
+head(scene$data[, c(1, 2, 295, 296, 297, 298, 299, 300)])
 ```
 
-As you can see above, one defining property of a multilabel dataset is, that the target variables (which are called *labels*) are binary. If you want to use your own data set, make sure to encode the variables in *logical*, where *TRUE* indicates the relevance of a label.
+As you can see above, one defining property of a multilabel dataset is, that the target variables (which are called *labels*) are binary. If you want to use your own data set, make sure to encode these variables in *logical*, where *TRUE* indicates the relevance of a label.
 
 The basic idea behind many multilabel classification algorithms is to make use of possible correlation between labels. Maybe a learner is very good at predicting the label *Beach*, but rather bad at predicting the label *Field*. Let's assume that beaches and fields typically don't appear together in one picture.
-If we now can predict that there is a beach in a picture, we should use this information, that there unlikely is a field in that picture, too.
+If we can now predict that there is a beach in a picture, we should use this information. There shouldn't be a field in the same picture.
 
 This approach is the main concept behind the so called *problem transformation methods*. The multilabel problem is transformed into binary classification problems. One for each label. Predicted labels are used as features for predicting other labels.
 
@@ -37,7 +38,7 @@ We implemented the following problem transformation methods:
 * Dependent binary relevance 
 * Stacking
 
-How these methods are defined can be read in the tutorial or in more detail in MULTILABEL PAPER. Enough theory now, let's apply these methods on our dataset.
+How these methods are defined can be read in the [mlr tutorial](http://mlr-org.github.io/mlr-tutorial/release/html/multilabel/index.html) or in more detail in MULTILABEL PAPER. Enough theory now, let's apply these methods on our dataset.
 
 ### 2) Let's Train and Predict!
 First we need to create a multilabel task.
@@ -57,25 +58,31 @@ n = getTaskSize(scene.task)
 train.set = seq(1, n, by = 2)
 test.set = seq(2, n, by = 2)
 
-scene.mod = train(lrnCC, scene.task, subset = train.set)
-scene.pred = predict(scene.mod, task = scene.task, subset = test.set)
+scene.mod.CC = train(lrnCC, scene.task, subset = train.set)
+scene.pred.CC = predict(scene.mod.CC, task = scene.task, subset = test.set)
 ```
 
-We also implemented usual multilabel performance measures:
+We also implemented common multilabel performance measures:
 
 ```{r}
-performance(scene.pred, measures = list(multilabel.hamloss, multilabel.subset01, multilabel.f1))
+performance(scene.pred.CC, measures = list(multilabel.hamloss, multilabel.subset01, multilabel.f1, multilabel.acc))
 ```
 
-Maybe you are interested in binary performance values:
-```{r}
-getMultilabelBinaryPerformances(scene.pred, measures = list(acc, tpr, tnr))
-```
-
-<!-- ### 3) A Small Benchmark -->
-<!-- Now let's see in a (really small) benchmark experiment, if it really is beneficial to use predicted labels as features for other labels. Let us compare the performance of the classifier chains method with the binary relevance method (the binary relevance method does not use predicted labels as features). -->
+<!-- Maybe you are interested in binary performance values: -->
 <!-- ```{r} -->
-<!-- lrnBR = makeMultilabelBinaryRelevanceWrapper(binary.learner) -->
-<!-- learners = list(CC = lrnCC, BR = lrnBR) -->
-<!-- benchmark(learners, scene.task) -->
+<!-- getMultilabelBinaryPerformances(scene.pred.CC, measures = list(acc, tpr, tnr)) -->
 <!-- ``` -->
+
+### 3) Comparison Binary Relevance vs. Classifier Chains
+Now let's see if it can be beneficial to use predicted labels as features for other labels. Let us compare the performance of the classifier chains method with the binary relevance method (this method does not use predicted labels as features).
+```{r}
+lrnBR = makeMultilabelBinaryRelevanceWrapper(binary.learner)
+
+scene.mod.BR = train(lrnBR, scene.task, subset = train.set)
+scene.pred.BR = predict(scene.mod.BR, task = scene.task, subset = test.set)
+
+performance(scene.pred.BR, measures = list(multilabel.hamloss, multilabel.subset01, multilabel.f1, multilabel.acc))
+```
+As can be seen here, it could indeed make sense to use more elaborate methods for multilabel classification, since classifier chains beat the binary relevance methods in many of these measures (Note, that hamming and subset01 are loss measures!).
+
+
