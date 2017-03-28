@@ -45,7 +45,7 @@ First we need to create a multilabel task.
 set.seed(1729)
 scene.task = makeMultilabelTask(data = scene$data, target = scene$target.features)
 ```
-We set a seed, because the classifier chain wrapper used a random chain order.
+We set a seed, because the classifier chain wrapper uses a random chain order.
 Next, we train a learner. I chose the classifier chain approach together with a decision tree for the binary classification problems. 
 ```{r}
 binary.learner = makeLearner("classif.rpart")
