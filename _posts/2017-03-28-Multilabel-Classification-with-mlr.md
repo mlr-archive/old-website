@@ -153,7 +153,7 @@ performance(scene.pred.br, measures = list(multilabel.hamloss, multilabel.subset
 ##      multilabel.acc 
 ##           0.5083818
 {% endhighlight %}
-As can be seen here, it could indeed make sense to use more elaborate methods for multilabel classification, since classifier chains beat the binary relevance methods in many of these measures (Note, that hamming and subset01 are loss measures!).
+As can be seen here, it could indeed make sense to use more elaborate methods for multilabel classification, since classifier chains beat the binary relevance methods in all of these measures (Note, that hamming and subset01 are loss measures!).
 
 
 ### 4) Resampling
@@ -184,7 +184,7 @@ r
 ## Task: scene$data
 ## Learner: multilabel.classif.rpart
 ## Aggr perf: multilabel.subset01.test.mean=0.484
-## Runtime: 19.957
+## Runtime: 20.3391
 {% endhighlight %}
 
 If you followed the mlr tutorial or if you are already familiar with mlr, you most likely saw, that using resampling in the multilabel setting isn't any different than generally using resampling in mlr.

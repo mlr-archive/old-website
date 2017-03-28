@@ -94,7 +94,7 @@ scene.pred.br = predict(scene.mod.br, task = scene.task, subset = test.set)
 
 performance(scene.pred.br, measures = list(multilabel.hamloss, multilabel.subset01, multilabel.f1, multilabel.acc))
 ```
-As can be seen here, it could indeed make sense to use more elaborate methods for multilabel classification, since classifier chains beat the binary relevance methods in many of these measures (Note, that hamming and subset01 are loss measures!).
+As can be seen here, it could indeed make sense to use more elaborate methods for multilabel classification, since classifier chains beat the binary relevance methods in all of these measures (Note, that hamming and subset01 are loss measures!).
 
 
 ### 4) Resampling
