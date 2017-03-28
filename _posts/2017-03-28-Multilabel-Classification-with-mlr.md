@@ -2,7 +2,7 @@
 layout: post
 title: Multilabel Classification with mlr
 author: quay
-# draft: true
+draft: true
 ---
 Multilabel classification has lately gained growing interest in the research community. 
 We implemented several methods, which make use of the standardized mlr framework. Every available binary learner can be used for multilabel problem transformation methods.
