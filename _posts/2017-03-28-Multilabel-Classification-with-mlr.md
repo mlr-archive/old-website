@@ -153,13 +153,13 @@ performance(scene.pred.br, measures = list(multilabel.hamloss, multilabel.subset
 ##      multilabel.acc 
 ##           0.5083818
 {% endhighlight %}
-As can be seen here, it could indeed make sense to use more elaborate methods for multilabel classification, since classifier chains beat the binary relevance methods in all of these measures (Note, that hamming and subset01 are loss measures!).
+As can be seen here, it could indeed make sense to use more elaborate methods for multilabel classification, since classifier chains beat the binary relevance methods in all of these measures (Note, that hamming loss and subset01 are loss measures!).
 
 
 ### 4) Resampling
 Here I'll show you how to use resampling methods in the multilabel setting. Resampling methods are key for assessing the performance of a learning algorithm. To read more about resampling, see the page on our [tutorial](http://mlr-org.github.io/mlr-tutorial/devel/html/resample/index.html).
 
-First, we need define a resampling strategy. I chose subsampling, which is also called Monte-Carlo cross-validation. The dataset is split into training and test set at a predefined ratio. The learner is trained on the training set, the performance is evaluated with the test set. This whole process is repeated many times and the performance values are averaged. In mlr this is done the following way:
+First, we need to define a resampling strategy. I chose subsampling, which is also called Monte-Carlo cross-validation. The dataset is split into training and test set at a predefined ratio. The learner is trained on the training set, the performance is evaluated with the test set. This whole process is repeated many times and the performance values are averaged. In mlr this is done the following way:
 
 
 {% highlight r %}
@@ -184,7 +184,7 @@ r
 ## Task: scene$data
 ## Learner: multilabel.classif.rpart
 ## Aggr perf: multilabel.subset01.test.mean=0.484
-## Runtime: 20.3391
+## Runtime: 19.649
 {% endhighlight %}
 
 If you followed the mlr tutorial or if you are already familiar with mlr, you most likely saw, that using resampling in the multilabel setting isn't any different than generally using resampling in mlr.
