@@ -94,13 +94,13 @@ scene.pred.br = predict(scene.mod.br, task = scene.task, subset = test.set)
 
 performance(scene.pred.br, measures = list(multilabel.hamloss, multilabel.subset01, multilabel.f1, multilabel.acc))
 ```
-As can be seen here, it could indeed make sense to use more elaborate methods for multilabel classification, since classifier chains beat the binary relevance methods in all of these measures (Note, that hamming and subset01 are loss measures!).
+As can be seen here, it could indeed make sense to use more elaborate methods for multilabel classification, since classifier chains beat the binary relevance methods in all of these measures (Note, that hamming loss and subset01 are loss measures!).
 
 
 ### 4) Resampling
 Here I'll show you how to use resampling methods in the multilabel setting. Resampling methods are key for assessing the performance of a learning algorithm. To read more about resampling, see the page on our [tutorial](http://mlr-org.github.io/mlr-tutorial/devel/html/resample/index.html).
 
-First, we need define a resampling strategy. I chose subsampling, which is also called Monte-Carlo cross-validation. The dataset is split into training and test set at a predefined ratio. The learner is trained on the training set, the performance is evaluated with the test set. This whole process is repeated many times and the performance values are averaged. In mlr this is done the following way:
+First, we need to define a resampling strategy. I chose subsampling, which is also called Monte-Carlo cross-validation. The dataset is split into training and test set at a predefined ratio. The learner is trained on the training set, the performance is evaluated with the test set. This whole process is repeated many times and the performance values are averaged. In mlr this is done the following way:
 
 ```{r}
 rdesc = makeResampleDesc("Subsample", iters = 10, split = 2/3)
