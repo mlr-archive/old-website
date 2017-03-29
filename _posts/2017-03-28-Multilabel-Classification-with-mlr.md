@@ -2,7 +2,6 @@
 layout: post
 title: Multilabel Classification with mlr
 author: quay
-draft: true
 ---
 Multilabel classification has lately gained growing interest in the research community. 
 We implemented several methods, which make use of the standardized mlr framework. Every available binary learner can be used for multilabel problem transformation methods.
@@ -184,7 +183,7 @@ r
 ## Task: scene$data
 ## Learner: multilabel.classif.rpart
 ## Aggr perf: multilabel.subset01.test.mean=0.484
-## Runtime: 19.649
+## Runtime: 21.2301
 {% endhighlight %}
 
 If you followed the mlr tutorial or if you are already familiar with mlr, you most likely saw, that using resampling in the multilabel setting isn't any different than generally using resampling in mlr.
