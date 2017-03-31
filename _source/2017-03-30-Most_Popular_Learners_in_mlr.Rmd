@@ -15,6 +15,7 @@ library(mlr)
 library(stringi)
 library(cranlogs)
 library(data.table)
+library(ggplot2)
 ```
 
 For the development of [mlr](https://github.com/mlr-org/mlr) as well as for an "machine learning expert" it can be handy to know what are the most popular learners used.
@@ -98,11 +99,21 @@ As we are just looking for the packages let's compress the table a bit further a
 ## final table
 
 ```{r compressTable, results='hide'}
-lrns[,list(learners = paste(class, collapse = ",")),by = .(package, downloads)]
+lrns.pgks = lrns[,list(learners = paste(class, collapse = ",")),by = .(package, downloads)]
+lrns.pgks
 ```
 _Here are the first 20 rows of the table:_
 ```{r compressTableKnit, echo=FALSE, results='asis'}
-knitr::kable(lrns[,list(learners = paste(class, collapse = ", ")),by = .(package, downloads)][1:20,])
+knitr::kable(lrns.pgks[1:20,])
+```
+
+And of course we want to have a small visualization:
+```{r compressTablePlot}
+library(ggplot2)
+library(forcats)
+lrns.pgks$learners = factor(lrns.pgks$learners, lrns.pgks$learners)
+g = ggplot(lrns.pgks[20:1], aes(x = fct_inorder(stri_sub(paste0(package,": ",learners), 0, 64)), y = downloads, fill = downloads))
+g + geom_bar(stat = "identity") + coord_flip() + xlab("") + scale_fill_continuous(guide=FALSE)
 ```
 
 ## Remarks

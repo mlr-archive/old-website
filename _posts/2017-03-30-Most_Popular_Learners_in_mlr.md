@@ -121,32 +121,45 @@ As we are just looking for the packages let's compress the table a bit further a
 
 
 {% highlight r %}
-lrns[,list(learners = paste(class, collapse = ",")),by = .(package, downloads)]
+lrns.pgks = lrns[,list(learners = paste(class, collapse = ",")),by = .(package, downloads)]
+lrns.pgks
 {% endhighlight %}
 _Here are the first 20 rows of the table:_
 
-|package          | downloads|learners                                                                                                                                                              |
-|:----------------|---------:|:---------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-|survival         |    153681|surv.coxph                                                                                                                                                            |
-|e1071            |    102249|classif.naiveBayes, classif.svm, regr.svm                                                                                                                             |
-|MASS             |     55852|classif.lda, classif.qda                                                                                                                                              |
-|randomForest     |     52094|classif.randomForest, regr.randomForest                                                                                                                               |
-|kernlab          |     44812|classif.gausspr, classif.ksvm, classif.lssvm, cluster.kkmeans, regr.gausspr, regr.ksvm, regr.rvm                                                                      |
-|glmnet           |     41179|classif.cvglmnet, classif.glmnet, regr.cvglmnet, regr.glmnet, surv.cvglmnet, surv.glmnet                                                                              |
-|party            |     36492|classif.cforest, classif.ctree, multilabel.cforest, regr.cforest, regr.ctree                                                                                          |
-|party,modeltools |     36492|regr.mob                                                                                                                                                              |
-|party,survival   |     36492|surv.cforest                                                                                                                                                          |
-|fpc              |     33664|cluster.dbscan                                                                                                                                                        |
-|rpart            |     28609|classif.rpart, regr.rpart, surv.rpart                                                                                                                                 |
-|RWeka            |     20583|classif.IBk, classif.J48, classif.JRip, classif.OneR, classif.PART, cluster.Cobweb, cluster.EM, cluster.FarthestFirst, cluster.SimpleKMeans, cluster.XMeans, regr.IBk |
-|gbm              |     19554|classif.gbm, regr.gbm, surv.gbm                                                                                                                                       |
-|nnet             |     19538|classif.multinom, classif.nnet, regr.nnet                                                                                                                             |
-|caret,pls        |     18106|classif.plsdaCaret                                                                                                                                                    |
-|pls              |     18106|regr.pcr, regr.plsr                                                                                                                                                   |
-|FNN              |     16107|classif.fnn, regr.fnn                                                                                                                                                 |
-|earth            |     15824|regr.earth                                                                                                                                                            |
-|neuralnet        |     15506|classif.neuralnet                                                                                                                                                     |
-|class            |     14493|classif.knn, classif.lvq1                                                                                                                                             |
+|package          | downloads|learners                                                                                                                                                    |
+|:----------------|---------:|:-----------------------------------------------------------------------------------------------------------------------------------------------------------|
+|survival         |    153681|surv.coxph                                                                                                                                                  |
+|e1071            |    102249|classif.naiveBayes,classif.svm,regr.svm                                                                                                                     |
+|MASS             |     55852|classif.lda,classif.qda                                                                                                                                     |
+|randomForest     |     52094|classif.randomForest,regr.randomForest                                                                                                                      |
+|kernlab          |     44812|classif.gausspr,classif.ksvm,classif.lssvm,cluster.kkmeans,regr.gausspr,regr.ksvm,regr.rvm                                                                  |
+|glmnet           |     41179|classif.cvglmnet,classif.glmnet,regr.cvglmnet,regr.glmnet,surv.cvglmnet,surv.glmnet                                                                         |
+|party            |     36492|classif.cforest,classif.ctree,multilabel.cforest,regr.cforest,regr.ctree                                                                                    |
+|party,modeltools |     36492|regr.mob                                                                                                                                                    |
+|party,survival   |     36492|surv.cforest                                                                                                                                                |
+|fpc              |     33664|cluster.dbscan                                                                                                                                              |
+|rpart            |     28609|classif.rpart,regr.rpart,surv.rpart                                                                                                                         |
+|RWeka            |     20583|classif.IBk,classif.J48,classif.JRip,classif.OneR,classif.PART,cluster.Cobweb,cluster.EM,cluster.FarthestFirst,cluster.SimpleKMeans,cluster.XMeans,regr.IBk |
+|gbm              |     19554|classif.gbm,regr.gbm,surv.gbm                                                                                                                               |
+|nnet             |     19538|classif.multinom,classif.nnet,regr.nnet                                                                                                                     |
+|caret,pls        |     18106|classif.plsdaCaret                                                                                                                                          |
+|pls              |     18106|regr.pcr,regr.plsr                                                                                                                                          |
+|FNN              |     16107|classif.fnn,regr.fnn                                                                                                                                        |
+|earth            |     15824|regr.earth                                                                                                                                                  |
+|neuralnet        |     15506|classif.neuralnet                                                                                                                                           |
+|class            |     14493|classif.knn,classif.lvq1                                                                                                                                    |
+
+And of course we want to have a small visualization:
+
+{% highlight r %}
+library(ggplot2)
+library(forcats)
+lrns.pgks$learners = factor(lrns.pgks$learners, lrns.pgks$learners)
+g = ggplot(lrns.pgks[20:1], aes(x = fct_inorder(stri_sub(paste0(package,": ",learners), 0, 64)), y = downloads, fill = downloads))
+g + geom_bar(stat = "identity") + coord_flip() + xlab("") + scale_fill_continuous(guide=FALSE)
+{% endhighlight %}
+
+![plot of chunk compressTablePlot](/figures/2017-03-30-Most_Popular_Learners_in_mlr/compressTablePlot-1.svg)
 
 ## Remarks
 
