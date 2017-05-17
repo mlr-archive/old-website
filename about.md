@@ -103,5 +103,5 @@ Visit my [personal website](http://florianfendt.com) to find out more about me.
 I am a graduate student at LMU Munich and a member of
 the working group compuational statistics.
 I am working on mlr for over a year now. Besides working on the main package,
-Flo Fendt and me are the main contributors of Shiny-mlr, a GUI for mlr.
+Flo Fendt and me are the main contributors of ShinyMlr, a GUI for mlr.
 
