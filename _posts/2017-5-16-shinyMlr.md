@@ -46,7 +46,7 @@ how to construct and modify our built-in learning algorithms:
 
 {% include youtubeplayer.html id="HPr-9dBbv6o" %}
 
-{% include youtubeplayer.html id="SjeQzvEjoaQ&t=3s" %}
+{% include youtubeplayer.html id="SjeQzvEjoaQ" %}
 
 
 The fifth part of our tutorials shows you how to tune your learners to find

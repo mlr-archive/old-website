@@ -98,3 +98,10 @@ projects I'm doing is concerning my Master's thesis,
 which implements ordinal regression tasks into our package.
 Visit my [personal website](http://florianfendt.com) to find out more about me. 
 
+#### Stefan Coors
+
+I am a graduate student at LMU Munich and a member of
+the working group compuational statistics.
+I am working on mlr for over a year now. Besides working on the main package,
+Flo Fendt and me are the main contributors of Shiny-mlr, a GUI for mlr.
+
