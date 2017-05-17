@@ -83,6 +83,12 @@ I am a PhD student in the working group computational statistics at the Ludwig-M
 My research interests focus on hyperparameter tuning, variable selection, visualizing the predictive performance and gaining insights from machine learning algorithms.
 Further information and contact info is at my [university website](http://www.compstat.statistik.uni-muenchen.de/people/casalicchio/).
 
+#### Quay Au
+
+I am a PhD student in the working group computational statistics at the Ludwig-Maximilians-University Munich.
+My research interests are in the area of machine learning, especially reinforcement learning in the context of Human-Machine-Interaction.
+You can find me on my [university website](http://www.compstat.statistik.uni-muenchen.de/people/au/). 
+
 #### Florian Fendt
 
 I am a graduate student at LMU Munich and also a member of
@@ -90,4 +96,5 @@ the working group compuational statistics.
 I am working on mlr for almost two years now. One of the noteworthy
 projects I'm doing is concerning my Master's thesis,
 which implements ordinal regression tasks into our package.
-Visit my [personal website](http://florianfendt.github.io/) to find out more about me. 
+Visit my [personal website](http://florianfendt.com) to find out more about me. 
+

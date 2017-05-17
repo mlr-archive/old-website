@@ -119,7 +119,14 @@ authors:
     display_name: Giuseppe Casalicchio
     email: giuseppe.casalicchio@stat.uni-muenchen.de
     github: giuseppec
+<<<<<<< HEAD
   flo:
     display_name: Florian Fendt
     email: flo_fendt@gmx.de
     github: florianfendt
+=======
+  quay:
+    display_name: Quay Au
+    email: quay.au@stat.uni-muenchen.de
+    github: QuayAu
+>>>>>>> master
