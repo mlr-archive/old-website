@@ -2,7 +2,6 @@
 layout: post
 title: "shinyMlr"
 author: flo
-draft: true
 ---
 
 shinyMlr is a web application, built with the
