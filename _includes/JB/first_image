@@ -24,9 +24,13 @@
   {% assign images = image_content | split:"<img " %}
   {% for image in images %}
     {% if image contains 'src' %}
-        {% assign img_src = image | split:"/>" | first | split:'src="' %}
-        {% assign img_src = img_src[1] | split:'"' | first %}
-        {% break %}
+      {% assign img_src = image | split:"/>" | first | split:'src="' %}
+      {% assign img_src = img_src[1] | split:'"' | first %}
+      {% if img_src contains "https://www.youtube.com/embed/" %}
+        {% assign img_src = img_src | split:'https://www.youtube.com/embed/' %}
+        {% assign img_src = "https://img.youtube.com/vi/" | append: img_src[1] | append: "/hqdefault.jpg" %}
+      {% endif %}
+      {% break %}
     {% endif %}
   {% endfor %}
 {% endunless %}

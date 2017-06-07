@@ -27,7 +27,10 @@
         {% else %}
             {% assign shareimage = site.shareimage %}
         {% endif %}
-        <meta property="og:image" content="{{ site.url }}{{ shareimage }}" />
+        {% unless shareimage | slice: 1,4 == "http" %}
+            {% assign shareimage = site.url | append: shareimage %}
+        {% endunless %}
+        <meta property="og:image" content="{{ shareimage }}" />
     {% endif %}
     {% if page.title %}
     <meta property="og:title" content="{{ page.title }}" />
