@@ -42,7 +42,7 @@ You can check out my contributions on [my github](https://github.com/jakob-r) an
 #### Bernd Bischl
 
 I am professor of computational statistics at the LMU Munich and created mlr a long time ago.
-Go to my [personal page](http://berndbischl.github.io/) for any further info on me.
+Go to my [personal page](https://www.compstat.statistik.uni-muenchen.de/people/bischl/) for any further info on me.
 
 #### Philipp Probst
 
@@ -64,18 +64,18 @@ my [personal page](http://masongallo.github.io/) to learn more about me.
 
 #### Heidi Seibold
 
-I am a PhD candidate in Biostatistics at the Universtiy of Zurich 
+I am a PhD candidate in Biostatistics at the Universtiy of Zurich
 ([EBPI](http://www.ebpi.uzh.ch/en/aboutus/people.html)).
 My research is on model-based recursive partitioning in the context of clinical trials.
 More information on my research is on my [website](http://www.ebpi.uzh.ch/en/aboutus/departments/biostatistics/teambiostats/seibold.html).
-I organize the [Zurich R User meetup](http://www.meetup.com/Zurich-R-User-Group/) and write a 
-[blog](http://heidiseibold.github.io/). 
+I organize the [Zurich R User meetup](http://www.meetup.com/Zurich-R-User-Group/) and write a
+[blog](http://heidiseibold.github.io/).
 
 #### Janek Thomas
 
 I am a PhD student in the working group computational statistics at the Ludwig-Maximilians-University Munich.
 Most on my work is on hyperparameter tuning, variable selection and gradient boosting.
-Further information and contact info is at my [university website](http://www.compstat.statistik.uni-muenchen.de/people/thomas/). 
+Further information and contact info is at my [university website](http://www.compstat.statistik.uni-muenchen.de/people/thomas/).
 
 #### Giuseppe Casalicchio
 
@@ -87,7 +87,7 @@ Further information and contact info is at my [university website](http://www.co
 
 I am a PhD student in the working group computational statistics at the Ludwig-Maximilians-University Munich.
 My research interests are in the area of machine learning, especially reinforcement learning in the context of Human-Machine-Interaction.
-You can find me on my [university website](http://www.compstat.statistik.uni-muenchen.de/people/au/). 
+You can find me on my [university website](http://www.compstat.statistik.uni-muenchen.de/people/au/).
 
 #### Florian Fendt
 
@@ -96,7 +96,7 @@ the working group compuational statistics.
 I am working on mlr for almost two years now. One of the noteworthy
 projects I'm doing is concerning my Master's thesis,
 which implements ordinal regression tasks into our package.
-Visit my [personal website](http://florianfendt.com) to find out more about me. 
+Visit my [personal website](http://florianfendt.com) to find out more about me.
 
 #### Stefan Coors
 
