@@ -31,9 +31,9 @@ This is where [**mlrHyperopt**](jakob-r.github.io/mlrHyperopt/) comes into play.
 
 **mlrHyperopt** offers
 
-* default search spaces for the most important learners in **mlr**.
-* parameter tuning in one line of code.
-* an API to add and access custom search spaces to the [mlrHyperopt Database](http://mlrhyperopt.jakob-r.de/parconfigs).
+* default search spaces for the most important learners in **mlr**,
+* parameter tuning in one line of code,
+* and an API to add and access custom search spaces from the [mlrHyperopt Database](http://mlrhyperopt.jakob-r.de/parconfigs).
 
 ### Installation
 
@@ -45,7 +45,7 @@ devtools::install_github("jakob-r/mlrHyperopt", dependencies = TRUE)
 ### Tuning in one line
 
 Tuning can be done in one line relying on the defaults.
-This will minimize the _missclassification rate_.
+The default will automatically minimize the _missclassification rate_.
 
 ```{r objectiveFunction, warning=FALSE, message=FALSE}
 library(mlrHyperopt)
@@ -81,23 +81,28 @@ Often you don't want to rely on the default procedures of **mlrHyperopt** and ju
 Here is one example how you can use the default search spaces for an easy benchmark:
 
 ```{r seed4benchmark, include=FALSE}
-set.seed(123)
+set.seed(3)
 ```
-```{r benchmark}
+```{r benchmark, message=FALSE}
 lrns = c("classif.xgboost", "classif.svm")
 lrns = makeLearners(lrns)
 tsk = pid.task
+rr = makeResampleDesc('CV', stratify = TRUE, iters = 10)
 lrns.tuned = lapply(lrns, function(lrn) {
-  pc = getDefaultParConfig(learner = lrn)
+  if (getLearnerName(lrn) == "xgboost") {
+    # for xgboost we download a custom ParConfig from the Database
+    pcs = downloadParConfigs(learner.name = getLearnerName(lrn))
+    pc = pcs[[1]]
+  } else {
+    pc = getDefaultParConfig(learner = lrn)
+  }
   ps = getParConfigParSet(pc)
   # some parameters are dependend on the data (eg. the number of columns)
   ps = evaluateParamExpressions(ps, dict = mlrHyperopt::getTaskDictionary(task = tsk))
   lrn = setHyperPars(lrn, par.vals = getParConfigParVals(pc))
   ctrl = makeTuneControlRandom(maxit = 20)
-  rr = makeResampleDesc('CV', stratify = TRUE, iters = 10)
   makeTuneWrapper(learner = lrn, resampling = rr, par.set = ps, control = ctrl)
 })
-rr = makeResampleDesc("CV", iters = 10, stratify = TRUE)
 res = benchmark(learners = c(lrns, lrns.tuned), tasks = tsk, resamplings = cv10)
 plotBMRBoxplots(res) 
 ```
