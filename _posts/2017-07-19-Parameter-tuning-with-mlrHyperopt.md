@@ -16,7 +16,7 @@ Hyperparameter tuning with [**mlr**](https://github.com/mlr-org/mlr#-machine-lea
 Also the search space is easily definable and customizable for each of the [60+ learners of mlr](https://mlr-org.github.io/mlr-tutorial/devel/html/integrated_learners/index.html) using the ParamSets from the [**ParamHelpers**](https://github.com/berndbischl/ParamHelpers) Package.
 
 The only drawback and shortcoming of **mlr** in comparison to [**caret**](http://topepo.github.io/caret/index.html) in this regard is that **mlr** itself does not have defaults for the search spaces.
-This is where [**mlrHyperopt**](jakob-r.github.io/mlrHyperopt/) comes into play.
+This is where [**mlrHyperopt**](http://jakob-r.de/mlrHyperopt/) comes into play.
 
 <!--more-->
 
