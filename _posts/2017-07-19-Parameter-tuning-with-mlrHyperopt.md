@@ -4,16 +4,7 @@ title: Parameter tuning with mlrHyperopt
 author: jakob
 ---
 
-```{r setup, include = FALSE, cache = FALSE, message = FALSE}
-knitr::opts_chunk$set(cache = TRUE, collapse = FALSE)
-knitr::knit_hooks$set(document = function(x){
-  gsub("```\n*```r*\n*", "", x)
-})
 
-set.seed(123)
-library(mlr)
-mlr::configureMlr(show.info = FALSE, show.learner.output = FALSE)
-```
 
 Hyperparameter tuning with [**mlr**](https://github.com/mlr-org/mlr#-machine-learning-in-r) is rich in options as they are multiple tuning methods:
 
@@ -37,38 +28,101 @@ This is where [**mlrHyperopt**](jakob-r.github.io/mlrHyperopt/) comes into play.
 
 ### Installation
 
-```{r installation, eval = FALSE}
+
+{% highlight r %}
 devtools::install_github("berndbischl/ParamHelpers") # version >= 1.11 needed.
 devtools::install_github("jakob-r/mlrHyperopt", dependencies = TRUE)
-```
+{% endhighlight %}
 
 ### Tuning in one line
 
 Tuning can be done in one line relying on the defaults.
 The default will automatically minimize the _missclassification rate_.
 
-```{r objectiveFunction, warning=FALSE, message=FALSE}
+
+{% highlight r %}
 library(mlrHyperopt)
 res = hyperopt(iris.task, learner = "classif.svm")
 res
-```
+{% endhighlight %}
+
+
+
+{% highlight text %}
+## Tune result:
+## Op. pars: cost=1.44e+03; gamma=0.00167
+## mmce.test.mean=0.0333333
+{% endhighlight %}
 
 We can find out what `hyperopt` did by inspecting the `res` object.
 
 Depending on the parameter space **mlrHyperopt** will automatically decide for a suitable tuning method:
 
-```{r resObjectControl}
+
+{% highlight r %}
 res$opt.path$par.set
+{% endhighlight %}
+
+
+
+{% highlight text %}
+##          Type len Def    Constr Req Tunable Trafo
+## cost  numeric   -   0 -15 to 15   -    TRUE     Y
+## gamma numeric   -  -2 -15 to 15   -    TRUE     Y
+{% endhighlight %}
+
+
+
+{% highlight r %}
 res$control
-```
+{% endhighlight %}
+
+
+
+{% highlight text %}
+## Tune control: TuneControlMBO
+## Same resampling instance: TRUE
+## Imputation value: 1
+## Start: <NULL>
+## 
+## Tune threshold: FALSE
+## Further arguments:
+{% endhighlight %}
 
 As the search space defined in the ParamSet is only numeric, sequential Bayesian optimization was chosen.
 We can look into the evaluated parameter configurations and we can visualize the optimization run.
 
-```{r resObjectOptPath, message=FALSE}
+
+{% highlight r %}
 tail(as.data.frame(res$opt.path))
+{% endhighlight %}
+
+
+
+{% highlight text %}
+##         cost      gamma mmce.test.mean dob eol error.message
+## 20 10.491840  -9.222250     0.03333333  20  NA          <NA>
+## 21 14.998822 -12.916888     0.04000000  21  NA          <NA>
+## 22  7.121047  -4.548062     0.04000000  22  NA          <NA>
+## 23  8.877556  -7.047145     0.03333333  23  NA          <NA>
+## 24 14.998896  -6.779985     0.04000000  24  NA          <NA>
+## 25 11.641461 -12.157508     0.04000000  25  NA          <NA>
+##    exec.time
+## 20     0.083
+## 21     0.083
+## 22     0.080
+## 23     0.091
+## 24     0.088
+## 25     0.077
+{% endhighlight %}
+
+
+
+{% highlight r %}
 plotOptPath(res$opt.path)
-```
+{% endhighlight %}
+
+![plot of chunk resObjectOptPath](/figures/2017-07-19-Parameter-tuning-with-mlrHyperopt/resObjectOptPath-1.svg)
 
 The upper left plot shows the distribution of the tried settings in the search space and contour lines indicate where regions of good configurations are located.
 The lower right plot shows the value of the objective (the miss-classification rate) and how it decreases over the time. 
@@ -80,11 +134,10 @@ If you just want to use **mlrHyperopt** to access the default parameter search s
 Often you don't want to rely on the default procedures of **mlrHyperopt** and just incorporate it into your **mlr**-workflow.
 Here is one example how you can use the default search spaces for an easy benchmark:
 
-```{r seed4benchmark, include=FALSE}
-set.seed(3)
-```
-```{r benchmark, message=FALSE}
-lrns = c("classif.xgboost", "classif.svm")
+
+
+{% highlight r %}
+lrns = c("classif.xgboost", "classif.nnet")
 lrns = makeLearners(lrns)
 tsk = pid.task
 rr = makeResampleDesc('CV', stratify = TRUE, iters = 10)
@@ -105,10 +158,12 @@ lrns.tuned = lapply(lrns, function(lrn) {
 })
 res = benchmark(learners = c(lrns, lrns.tuned), tasks = tsk, resamplings = cv10)
 plotBMRBoxplots(res) 
-```
+{% endhighlight %}
 
-As we can see we were able to improve the performance of xgboost and the support vevtor machine without any additional knowledge on what parameters we should tune.
-Especially for the SVM an improved performance is noticable.
+![plot of chunk benchmark](/figures/2017-07-19-Parameter-tuning-with-mlrHyperopt/benchmark-1.svg)
+
+As we can see we were able to improve the performance of xgboost and the nnet without any additional knowledge on what parameters we should tune.
+Especially for nnet improved performance is noticable.
 
 ### Additional Information
 
