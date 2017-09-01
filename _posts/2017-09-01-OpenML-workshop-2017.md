@@ -10,6 +10,8 @@ The field of Machine Learning has grown tremendously over the last years, and is
 
 OpenML is a networked science platform that aims to connect and organize all this knowledge online, linking data, algorithms, results and people into a coherent whole so that scientists and practitioners can easy build on prior work and collaborate in real time online.
 
+<!--more-->
+
 OpenML has an online interface on openml.org, and is integrated in the most popular machine learning tools and statistical environments such as R, Python, WEKA, MOA and RapidMiner. This allows researchers and students to easily import and export data from these tools and share them with others online, fully integrated into the context of the state of the art. On OpenML, researchers can connect to each other, start projects, and build on the results of others. It automatically keeps track of how often shared work is reused so that researchers can follow the wider impact of their work and become more visible.
 
 ## When and Where?
