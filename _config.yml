@@ -86,6 +86,7 @@ exclude:
     - knit2md
     - _source
     - "*.Rmd"
+
 authors:
   michel:
     display_name: Michel Lang
@@ -127,3 +128,7 @@ authors:
     display_name: Florian Fendt
     email: flo_fendt@gmx.de
     github: florianfendt
+  jann:
+    display_name: Jann Goschenhofer
+    email: jann.goschenhofer@posteo.de
+    github: Goschjann

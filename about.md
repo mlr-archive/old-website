@@ -105,3 +105,6 @@ the working group compuational statistics.
 I am working on mlr for over a year now. Besides working on the main package,
 Flo Fendt and me are the main contributors of ShinyMlr, a GUI for mlr.
 
+#### Jann Goschenhofer
+
+I am a graduate student at LMU Munich and also a member of the working group computational statistics. Together with two fellow statistics students I publish news and explanations around the machine learning world on our [blog new-sample.com](www.new-sample.com). 
