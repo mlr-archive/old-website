@@ -5,7 +5,7 @@ rvm:
 - 2.2.2
 
 # install gems
-install: gem install jekyll html-proofer jekyll-sitemap pygments.rb
+install: gem install bundler
 
 # run build on container-based infrastructure
 sudo: false
