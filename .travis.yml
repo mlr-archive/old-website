@@ -12,6 +12,7 @@ sudo: false
 
 before_script:
   # make scripts executable
+  - bundle install
   - chmod +x ./script/cibuild
 
 script:
