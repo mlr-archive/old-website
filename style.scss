@@ -309,11 +309,11 @@ article img {
 }
 
 a.site-avatar {
-  background: url("{{ site.avatar }}") top right;
+  background: url("{{ site.avatar }}") center center;
   text-indent: -9999px;
   background-color: white;
   border-radius: 5px;
-  background-size: contain;
+  background-size: 90%;
   background-repeat: no-repeat;
 }
 
