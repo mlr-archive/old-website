@@ -1,0 +1,17 @@
+---
+layout: post
+title: Training Courses for mlr: Machine Learning in R
+author: giuseppe
+draft: true
+---
+  
+We are happy to announce that we now offer training courses for mlr:
+
+- The 2-day predictive modelling part of the [Professional Certificate Program "Data Science"](http://www.datascience-certificate.de) introduces some basic functionality of the mlr package. Application deadline for the certificate course is 15th march 2018.
+
+- A 3-day course "Machine Learning and Data Mining in R" is already taught by the [Munich R Courses](http://www.muenchner-r-kurse.de/einfuehrung-maschinelles-lernen/) and focuses on the mlr package itself. 
+Save the next date for this course on 2nd May 2018 and [go to the registration page (German).](http://www.muenchner-r-kurse.de/kurs/machine-learning/).
+
+- We also give inhouse courses held in english or german. Send you request through the [Munich R Courses](http://www.muenchner-r-kurse.de/inhouse-schulungen/).
+
+- If you offer courses and want to include mlr in your course program, feel free to contact us at rcoures@stat.uni-muenchen.de
