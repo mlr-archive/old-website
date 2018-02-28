@@ -5,8 +5,6 @@ author: giuseppe
 draft: false
 ---
 
-<div style="text-align:center"><img src ="../images/mlrLogo_blue_on_white320square.png" /></div>
-
 The [`mlr`: Machine Learning in R](http://www.jmlr.org/papers/v17/15-066.html) package provides a generic, object-oriented and extensible framework for classification, regression, survival analysis and clustering for the statistical programming language R. 
 The package targets practitioners who want to quickly apply machine learning algorithms, as well as researchers who want to implement, benchmark, and compare their new methods in a structured environment.
 
@@ -22,3 +20,5 @@ The certificate program starts in May 2018 and the application deadline is March
 - You can request an inhouse R course in English or German via our [contact form.](http://www.muenchner-r-kurse.de/inhouse-schulungen/)
 
 - If you offer R or Data Science courses and want to include a course on [`mlr`: Machine Learning in R](http://www.jmlr.org/papers/v17/15-066.html) into your course program, feel free to contact us at [rkurse@stat.uni-muenchen.de](rkurse@stat.uni-muenchen.de).
+
+<div style="text-align:center"><img src ="../images/mlrLogo_blue_on_white320square.png" /></div>
