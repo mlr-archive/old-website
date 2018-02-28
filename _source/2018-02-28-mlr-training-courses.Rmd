@@ -20,4 +20,4 @@ Save the date! The next course starts on 2nd of May 2018 (in German) at [Munich 
 - We also give R inhouse courses in English or German. 
 Send your request through the form [here.](http://www.muenchner-r-kurse.de/inhouse-schulungen/)
 - If you offer R or Data Science courses and want to include a course on [`mlr`: Machine Learning in R](http://www.jmlr.org/papers/v17/15-066.html) in your course program, feel free to contact us at [rkurse@stat.uni-muenchen.de](rkurse@stat.uni-muenchen.de).
-- A short introduction to `mlr` is also given at the  [Professional Certificate Program "Data Science"](http://www.datascience-certificate.de) which is a brand new extra-occupational 10-day training at LMU starting in May 2018. The application deadline for the certificate course is 15 March 2018. 
+- A short introduction to `mlr` is also given at the  [Professional Certificate Program "Data Science"](http://www.datascience-certificate.de) which is a brand new extra-occupational 10-day training at the University of Munich starting in May 2018. The application deadline for the certificate course is 15 March 2018. 
