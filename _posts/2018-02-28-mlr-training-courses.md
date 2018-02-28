@@ -2,7 +2,7 @@
 layout: post
 title: "Training Courses for mlr: Machine Learning in R"
 author: giuseppe
-draft: true
+draft: false
 ---
 
 <div style="text-align:center"><img src ="../images/mlrLogo_blue_on_white320square.png" /></div>
