@@ -192,7 +192,7 @@ Now we can get a good sense of where the separation happens for each of the
 hyperparameters: in this particular example, we want lower values for `sigma` 
 and values around 1 for `C`.
 
-This was just a taste of mlr's hyperparameter tuning visualization capabilities. For the full tutorial, check out the [mlr tutorial](https://mlr-org.github.io/mlr-tutorial/devel/html/hyperpar_tuning_effects/index.html).
+This was just a taste of mlr's hyperparameter tuning visualization capabilities. For the full tutorial, check out the [mlr tutorial](https://mlr-org.github.io/mlr/devel/html/hyperpar_tuning_effects/index.html).
 
 Some features coming soon:
 

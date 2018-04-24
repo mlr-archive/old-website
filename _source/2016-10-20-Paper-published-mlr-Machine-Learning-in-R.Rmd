@@ -13,7 +13,7 @@ Our paper on *mlr* has been published in the open-access Journal of Machine Lear
 [![preview paper](/images/2016-10-20-Paper-published-mlr-Machine-Learning-in-R/paper-first-page.png)](http://www.jmlr.org/papers/v17/15-066.html)
 
 The paper gives a brief overview of the features of *mlr* and also includes a comparison with similar toolkits.
-For an in-depth understanding we still recommend our excellent [online mlr tutorial](https://mlr-org.github.io/mlr-tutorial/) which is now also available as a [PDF](https://arxiv.org/abs/1609.06146) on arxiv.org or as [zipped HTML files](https://mlr-org.github.io/mlr-tutorial/devel/mlr_tutorial.zip) for offline reading.
+For an in-depth understanding we still recommend our excellent [online mlr tutorial](https://mlr-org.github.io/mlr/) which is now also available as a [PDF](https://arxiv.org/abs/1609.06146) on arxiv.org or as [zipped HTML files](https://mlr-org.github.io/mlr/devel/mlr_tutorial.zip) for offline reading.
 
 Once *mlr 2.10* hits CRAN you can retrieve the citation information from within R:
 ```{r, eval=FALSE}

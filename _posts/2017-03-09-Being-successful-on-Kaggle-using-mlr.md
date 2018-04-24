@@ -55,7 +55,7 @@ To develop a good understanding of the Kaggle challenge, you should:
     
   - Explore the dataset:
     - Which features are numerical, categorical, ordinal or time dependent?
-    - Decide how to handle [*missing values*](https://mlr-org.github.io/mlr-tutorial/devel/html/impute/index.html). Some options:
+    - Decide how to handle [*missing values*](https://mlr-org.github.io/mlr/devel/html/impute/index.html). Some options:
         - Impute missing values with the mean, median or with values that are out of range (for numerical features).
         - Interpolate missing values if the feature is time dependent.
         - Introduce a new category for the missing values or use the mode (for categorical features).
@@ -94,7 +94,7 @@ You should therefore try to introduce new features containing valuable informati
       - to add the weekday as new feature
       - to use rolling mean or median of any other numerical feature
       - to add features with a lag...
-  - Remove noisy features: [*Feature selection / filtering*](https://mlr-org.github.io/mlr-tutorial/devel/html/feature_selection/index.html)
+  - Remove noisy features: [*Feature selection / filtering*](https://mlr-org.github.io/mlr/devel/html/feature_selection/index.html)
 
 
 ### 4. Tune your model
@@ -106,8 +106,8 @@ Typically you can focus on a single model (e.g. [*xgboost*](https://xgboost.read
   - Problem: 
   Some models have many hyperparameters that can be tuned.
   - Possible solutions: 
-    - [*Grid search or random search*](https://mlr-org.github.io/mlr-tutorial/devel/html/tune/index.html)
-    - Advanced procedures such as [*irace*](https://mlr-org.github.io/mlr-tutorial/devel/html/advanced_tune/index.html) 
+    - [*Grid search or random search*](https://mlr-org.github.io/mlr/devel/html/tune/index.html)
+    - Advanced procedures such as [*irace*](https://mlr-org.github.io/mlr/devel/html/advanced_tune/index.html) 
     or [*mbo (bayesian optimization)*](https://mlr-org.github.io/mlrMBO/articles/mlrMBO.html)
 
 
@@ -122,13 +122,13 @@ leaderboard is revealed.
 A better approach is to use validation to get an estimate of performane on unseen data: 
 
   - First figure out how the Kaggle data was split into train and test data. Your resampling strategy should follow the same method if possible. So if kaggle uses, e.g. a feature for splitting the data, you should not use random samples for creating cross-validation folds.
-  - Set up a [*resampling procedure*](https://mlr-org.github.io/mlr-tutorial/devel/html/resample), e.g., cross-validation (CV) to measure your model performance
+  - Set up a [*resampling procedure*](https://mlr-org.github.io/mlr/devel/html/resample), e.g., cross-validation (CV) to measure your model performance
   - Improvements on your local CV score should also lead to improvements on the leaderboard. 
   - If this is not the case, you can try
       - several CV folds (e.g., 3-fold, 5-fold, 8-fold)
       - repeated CV (e.g., 3 times 3-fold, 3 times 5-fold)
       - stratified CV
-  - `mlr` offers nice [*visualizations to benchmark*](https://mlr-org.github.io/mlr-tutorial/devel/html/benchmark_experiments/index.html#benchmark-analysis-and-visualization) different algorithms.
+  - `mlr` offers nice [*visualizations to benchmark*](https://mlr-org.github.io/mlr/devel/html/benchmark_experiments/index.html#benchmark-analysis-and-visualization) different algorithms.
   
   
 ### 6. Ensemble **different** models (see, e.g. [*this guide*](http://mlwave.com/kaggle-ensembling-guide)): 
