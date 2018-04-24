@@ -33,7 +33,7 @@ Again, see [Goldstein, Kapelner, Bleich, and Pitkin (2014)](http://arxiv.org/abs
 
 ## Partial Dependence
 
-Our implementation, following [mlr](http://github.com/mlr-org/mlr)'s [visualization](http://mlr-org.github.io/mlr-tutorial/devel/html/visualization/index.html) pattern, consists
+Our implementation, following [mlr](http://github.com/mlr-org/mlr)'s [visualization](https://mlr-org.github.io/mlr-tutorial/devel/html/visualization/index.html) pattern, consists
 of the above mentioned function `generatePartialDependenceData` and `plotPartialDependence`. The former generates input (objects of class `PartialDependenceData`) for the latter.
 
 The first step executed by `generatePartialDependenceData` is to generate a feature grid for every element of the character vector `features` passed. The data are given by the `input` argument, which can be a `Task` or a `data.frame`. The feature grid can be generated in several ways. A uniformly spaced grid of length `gridsize` (default 10) from the empirical minimum to the empirical maximum is created by default, but arguments `fmin` and `fmax` may be used to override the empirical default (the lengths of `fmin` and `fmax` must match the length of `features`). Alternatively the feature data can be resampled, either by using a bootstrap or by subsampling.

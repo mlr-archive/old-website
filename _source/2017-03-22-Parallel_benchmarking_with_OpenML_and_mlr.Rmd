@@ -15,7 +15,7 @@ The data that we will use here is stored on the open machine learning platform [
 
 <!--more-->
 
-If you have a small project and don't need to parallelize, you might want to just look at the previous blog post called [mlr loves OpenML](http://mlr-org.github.io/mlr-loves-OpenML/).
+If you have a small project and don't need to parallelize, you might want to just look at the previous blog post called [mlr loves OpenML](https://mlr-org.github.io/mlr-loves-OpenML/).
 
 The following packages are needed for this:
 ```{r, eval=TRUE, message=FALSE}
