@@ -122,7 +122,7 @@ leaderboard is revealed.
 A better approach is to use validation to get an estimate of performane on unseen data: 
 
   - First figure out how the Kaggle data was split into train and test data. Your resampling strategy should follow the same method if possible. So if kaggle uses, e.g. a feature for splitting the data, you should not use random samples for creating cross-validation folds.
-  - Set up a [*resampling procedure*](https://mlr-org.github.io/mlr/devel/html/resample), e.g., cross-validation (CV) to measure your model performance
+  - Set up a [*resampling procedure*](https://mlr-org.github.io/mlr/articles/tutorial/devel/resample.html), e.g., cross-validation (CV) to measure your model performance
   - Improvements on your local CV score should also lead to improvements on the leaderboard. 
   - If this is not the case, you can try
       - several CV folds (e.g., 3-fold, 5-fold, 8-fold)
