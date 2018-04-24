@@ -13,7 +13,7 @@ Hyperparameter tuning with [**mlr**](https://github.com/mlr-org/mlr#-machine-lea
 * Iterated F-Racing (via [**irace**](http://iridia.ulb.ac.be/irace/))
 * Sequential Model-Based Optimization (via [**mlrMBO**](https://mlr-org.github.io/mlrMBO/))
 
-Also the search space is easily definable and customizable for each of the [60+ learners of mlr](https://mlr-org.github.io/mlr/devel/html/integrated_learners/index.html) using the ParamSets from the [**ParamHelpers**](https://github.com/berndbischl/ParamHelpers) Package.
+Also the search space is easily definable and customizable for each of the [60+ learners of mlr](https://mlr-org.github.io/mlr/articles/tutorial/devel/integrated_learners.html) using the ParamSets from the [**ParamHelpers**](https://github.com/berndbischl/ParamHelpers) Package.
 
 The only drawback and shortcoming of **mlr** in comparison to [**caret**](http://topepo.github.io/caret/index.html) in this regard is that **mlr** itself does not have defaults for the search spaces.
 This is where [**mlrHyperopt**](http://jakob-r.de/mlrHyperopt/) comes into play.

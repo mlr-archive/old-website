@@ -55,7 +55,7 @@ To develop a good understanding of the Kaggle challenge, you should:
     
   - Explore the dataset:
     - Which features are numerical, categorical, ordinal or time dependent?
-    - Decide how to handle [*missing values*](https://mlr-org.github.io/mlr/devel/html/impute/index.html). Some options:
+    - Decide how to handle [*missing values*](https://mlr-org.github.io/mlr/articles/tutorial/devel/impute.html). Some options:
         - Impute missing values with the mean, median or with values that are out of range (for numerical features).
         - Interpolate missing values if the feature is time dependent.
         - Introduce a new category for the missing values or use the mode (for categorical features).
@@ -94,7 +94,7 @@ You should therefore try to introduce new features containing valuable informati
       - to add the weekday as new feature
       - to use rolling mean or median of any other numerical feature
       - to add features with a lag...
-  - Remove noisy features: [*Feature selection / filtering*](https://mlr-org.github.io/mlr/devel/html/feature_selection/index.html)
+  - Remove noisy features: [*Feature selection / filtering*](https://mlr-org.github.io/mlr/articles/tutorial/devel/feature_selection.html)
 
 
 ### 4. Tune your model
@@ -106,8 +106,8 @@ Typically you can focus on a single model (e.g. [*xgboost*](https://xgboost.read
   - Problem: 
   Some models have many hyperparameters that can be tuned.
   - Possible solutions: 
-    - [*Grid search or random search*](https://mlr-org.github.io/mlr/devel/html/tune/index.html)
-    - Advanced procedures such as [*irace*](https://mlr-org.github.io/mlr/devel/html/advanced_tune/index.html) 
+    - [*Grid search or random search*](https://mlr-org.github.io/mlr/articles/tutorial/devel/tune.html)
+    - Advanced procedures such as [*irace*](https://mlr-org.github.io/mlr/articles/tutorial/devel/advanced_tune.html) 
     or [*mbo (bayesian optimization)*](https://mlr-org.github.io/mlrMBO/articles/mlrMBO.html)
 
 
@@ -128,7 +128,7 @@ A better approach is to use validation to get an estimate of performane on unsee
       - several CV folds (e.g., 3-fold, 5-fold, 8-fold)
       - repeated CV (e.g., 3 times 3-fold, 3 times 5-fold)
       - stratified CV
-  - `mlr` offers nice [*visualizations to benchmark*](https://mlr-org.github.io/mlr/devel/html/benchmark_experiments/index.html#benchmark-analysis-and-visualization) different algorithms.
+  - `mlr` offers nice [*visualizations to benchmark*](https://mlr-org.github.io/mlr/articles/tutorial/devel/benchmark_experiments.html#benchmark-analysis-and-visualization) different algorithms.
   
   
 ### 6. Ensemble **different** models (see, e.g. [*this guide*](http://mlwave.com/kaggle-ensembling-guide)): 

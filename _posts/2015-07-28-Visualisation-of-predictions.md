@@ -10,7 +10,7 @@ This post is not a [tutorial](https://mlr-org.github.io/mlr/) but more a demonst
 
 <!--more-->
 
-First we define a list containing all the [learners](https://mlr-org.github.io/mlr/devel/html/integrated_learners/index.html) we want to visualize.
+First we define a list containing all the [learners](https://mlr-org.github.io/mlr/articles/tutorial/devel/integrated_learners.html) we want to visualize.
 Notice that most of the `mlr` methods are able to work with just the string (i.e. `"classif.svm"`) to know what learner you mean.
 Nevertheless you can define the learner more precisely with `makeLearner()` and set some parameters such as the `kernel` in this example.
 
