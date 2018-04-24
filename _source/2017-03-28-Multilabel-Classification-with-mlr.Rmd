@@ -3,7 +3,7 @@ layout: post
 title: Multilabel Classification with mlr
 author: quay
 ---
-Multilabel classification has lately gained growing interest in the research community. 
+Multilabel classification has lately gained growing interest in the research community.
 We implemented several methods, which make use of the standardized mlr framework. Every available binary learner can be used for multilabel problem transformation methods.
 So if you're interested in using several multilabel algorithms and want to know how to use them in the mlr framework, then this post is for you!
 
@@ -37,12 +37,12 @@ This approach is the main concept behind the so called *problem transformation m
 
 We implemented the following problem transformation methods:
 
-* Classifier chains 
+* Classifier chains
 * Nested stacking
-* Dependent binary relevance 
+* Dependent binary relevance
 * Stacking
 
-How these methods are defined, can be read in the [mlr tutorial](https://mlr-org.github.io/mlr/release/html/multilabel/index.html) or in more detail in our [paper](https://arxiv.org/pdf/1703.08991.pdf). Enough theory now, let's apply these methods on our dataset.
+How these methods are defined, can be read in the [mlr tutorial](https://mlr-org.github.io/mlr/devel/html/multilabel/index.html) or in more detail in our [paper](https://arxiv.org/pdf/1703.08991.pdf). Enough theory now, let's apply these methods on our dataset.
 
 ### 2) Let's Train and Predict!
 First we need to create a multilabel task.
@@ -52,7 +52,7 @@ target
 scene.task = makeMultilabelTask(data = scene$data, target = target)
 ```
 We set a seed, because the classifier chain wrapper uses a random chain order.
-Next, we train a learner. I chose the classifier chain approach together with a decision tree for the binary classification problems. 
+Next, we train a learner. I chose the classifier chain approach together with a decision tree for the binary classification problems.
 ```{r}
 binary.learner = makeLearner("classif.rpart")
 lrncc = makeMultilabelClassifierChainsWrapper(binary.learner)

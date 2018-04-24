@@ -10,7 +10,7 @@ This post is not a [tutorial](https://mlr-org.github.io/mlr/) but more a demonst
 
 <!--more-->
 
-First we define a list containing all the [learners](https://mlr-org.github.io/mlr/release/html/integrated_learners/index.html) we want to visualize.
+First we define a list containing all the [learners](https://mlr-org.github.io/mlr/devel/html/integrated_learners/index.html) we want to visualize.
 Notice that most of the `mlr` methods are able to work with just the string (i.e. `"classif.svm"`) to know what learner you mean.
 Nevertheless you can define the learner more precisely with `makeLearner()` and set some parameters such as the `kernel` in this example.
 
@@ -18,11 +18,11 @@ First we define the list of learners we want to visualize.
 
 {% highlight r %}
 library(mlr)
-learners = list( 
+learners = list(
   makeLearner("classif.svm", kernel = "linear"),
   makeLearner("classif.svm", kernel = "polynomial"),
   makeLearner("classif.svm", kernel = "radial"),
-  "classif.qda", 
+  "classif.qda",
   "classif.randomForest",
   "classif.knn"
   )
@@ -38,8 +38,8 @@ plotLearnerPrediction(learner = learners[[1]], task = iris.task)
 
 ![plot of chunk linear-svm](/figures/2015-07-28-Visualisation-of-predictions/linear-svm-1.svg)
 
-We can see clearly that in fact the decision boundary is indeed linear. 
-Furthermore the misclassified items are highlighted and a 10-fold cross validation to obtain the mean missclassification error is executed. 
+We can see clearly that in fact the decision boundary is indeed linear.
+Furthermore the misclassified items are highlighted and a 10-fold cross validation to obtain the mean missclassification error is executed.
 
 For the *polynomial* and the *radial kernel* the decision boundaries already look a bit more sophisticated:
 

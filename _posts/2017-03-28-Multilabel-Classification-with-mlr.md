@@ -3,7 +3,7 @@ layout: post
 title: Multilabel Classification with mlr
 author: quay
 ---
-Multilabel classification has lately gained growing interest in the research community. 
+Multilabel classification has lately gained growing interest in the research community.
 We implemented several methods, which make use of the standardized mlr framework. Every available binary learner can be used for multilabel problem transformation methods.
 So if you're interested in using several multilabel algorithms and want to know how to use them in the mlr framework, then this post is for you!
 
@@ -51,12 +51,12 @@ This approach is the main concept behind the so called *problem transformation m
 
 We implemented the following problem transformation methods:
 
-* Classifier chains 
+* Classifier chains
 * Nested stacking
-* Dependent binary relevance 
+* Dependent binary relevance
 * Stacking
 
-How these methods are defined, can be read in the [mlr tutorial](https://mlr-org.github.io/mlr/release/html/multilabel/index.html) or in more detail in our [paper](https://arxiv.org/pdf/1703.08991.pdf). Enough theory now, let's apply these methods on our dataset.
+How these methods are defined, can be read in the [mlr tutorial](https://mlr-org.github.io/mlr/devel/html/multilabel/index.html) or in more detail in our [paper](https://arxiv.org/pdf/1703.08991.pdf). Enough theory now, let's apply these methods on our dataset.
 
 ### 2) Let's Train and Predict!
 First we need to create a multilabel task.
@@ -69,7 +69,7 @@ target
 
 
 {% highlight text %}
-## [1] "Beach"       "Sunset"      "FallFoliage" "Field"      
+## [1] "Beach"       "Sunset"      "FallFoliage" "Field"
 ## [5] "Mountain"    "Urban"
 {% endhighlight %}
 
@@ -79,7 +79,7 @@ target
 scene.task = makeMultilabelTask(data = scene$data, target = target)
 {% endhighlight %}
 We set a seed, because the classifier chain wrapper uses a random chain order.
-Next, we train a learner. I chose the classifier chain approach together with a decision tree for the binary classification problems. 
+Next, we train a learner. I chose the classifier chain approach together with a decision tree for the binary classification problems.
 
 {% highlight r %}
 binary.learner = makeLearner("classif.rpart")
@@ -106,9 +106,9 @@ listMeasures("multilabel")
 
 
 {% highlight text %}
-##  [1] "multilabel.f1"       "multilabel.subset01" "multilabel.tpr"     
-##  [4] "multilabel.ppv"      "multilabel.acc"      "timeboth"           
-##  [7] "timepredict"         "multilabel.hamloss"  "featperc"           
+##  [1] "multilabel.f1"       "multilabel.subset01" "multilabel.tpr"
+##  [4] "multilabel.ppv"      "multilabel.acc"      "timeboth"
+##  [7] "timepredict"         "multilabel.hamloss"  "featperc"
 ## [10] "timetrain"
 {% endhighlight %}
 
@@ -121,9 +121,9 @@ performance(scene.pred.cc, measures = list(multilabel.hamloss, multilabel.subset
 
 
 {% highlight text %}
-##  multilabel.hamloss multilabel.subset01       multilabel.f1 
-##           0.1298144           0.5162095           0.5581602 
-##      multilabel.acc 
+##  multilabel.hamloss multilabel.subset01       multilabel.f1
+##           0.1298144           0.5162095           0.5581602
+##      multilabel.acc
 ##           0.5392075
 {% endhighlight %}
 
@@ -147,9 +147,9 @@ performance(scene.pred.br, measures = list(multilabel.hamloss, multilabel.subset
 
 
 {% highlight text %}
-##  multilabel.hamloss multilabel.subset01       multilabel.f1 
-##           0.1305071           0.5719036           0.5357163 
-##      multilabel.acc 
+##  multilabel.hamloss multilabel.subset01       multilabel.f1
+##           0.1305071           0.5719036           0.5357163
+##      multilabel.acc
 ##           0.5083818
 {% endhighlight %}
 As can be seen here, it could indeed make sense to use more elaborate methods for multilabel classification, since classifier chains beat the binary relevance methods in all of these measures (Note, that hamming loss and subset01 are loss measures!).
