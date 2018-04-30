@@ -108,3 +108,12 @@ Flo Fendt and me are the main contributors of ShinyMlr, a GUI for mlr.
 #### Jann Goschenhofer
 
 I am a graduate student at LMU Munich and also a member of the working group computational statistics. Together with two fellow statistics students I publish news and explanations around the machine learning world on our [blog new-sample.com](www.new-sample.com). 
+
+#### Christoph Molnar
+I am a PhD student in the working group computation statistics at the Ludwig-Maximilians-University Munich. 
+My research is focused on making black box machine learning models interpretable.
+I am the author of the book [Interpretable Machine Learning](https://leanpub.com/interpretable-machine-learning) and the [R package 'iml'](https://github.com/christophM/iml) for interpretable machine learning. 
+Further information and contact info is at my [university website](http://www.compstat.statistik.uni-muenchen.de/people/molnar/).
+
+
+
