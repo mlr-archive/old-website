@@ -92,7 +92,7 @@ Besides learning which features were important, we are interested in how the fea
 
 ```{r}
 pdp.obj = Partial$new(predictor, feature = "lstat")
-pdp.obj$plot()
+plot(pdp.obj)
 ```
 
 If we want to compute the partial dependence curves for another feature, we can simply reset the feature.
@@ -101,7 +101,7 @@ Also, we can center the curves at a feature value of our choice, which makes it 
 ```{r}
 pdp.obj$set.feature("rm")
 pdp.obj$center(min(Boston$rm))
-pdp.obj$plot()
+plot(pdp.obj)
 ```
 
 ## Surrogate model
@@ -137,14 +137,14 @@ Assume that for one data point, the feature values play a game together, in whic
 
 ```{r}
 shapley = Shapley$new(predictor, x.interest = X[1,])
-shapley$plot()
+plot(shapley)
 ```
 
 We can reuse the object to explain other data points:
 
 ```{r}
 shapley$explain(x.interest = X[2,])
-shapley$plot()
+plot(shapley)
 ```
 
 The results in data.frame form can be extracted like this:
