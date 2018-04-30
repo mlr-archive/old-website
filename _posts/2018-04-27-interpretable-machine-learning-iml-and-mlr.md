@@ -136,7 +136,7 @@ Besides learning which features were important, we are interested in how the fea
 
 {% highlight r %}
 pdp.obj = Partial$new(predictor, feature = "lstat")
-pdp.obj$plot()
+plot(pdp.obj)
 {% endhighlight %}
 
 ![plot of chunk unnamed-chunk-6](/figures/2018-04-27-interpretable-machine-learning-iml-and-mlr/unnamed-chunk-6-1.svg)
@@ -148,7 +148,7 @@ Also, we can center the curves at a feature value of our choice, which makes it 
 {% highlight r %}
 pdp.obj$set.feature("rm")
 pdp.obj$center(min(Boston$rm))
-pdp.obj$plot()
+plot(pdp.obj)
 {% endhighlight %}
 
 ![plot of chunk unnamed-chunk-7](/figures/2018-04-27-interpretable-machine-learning-iml-and-mlr/unnamed-chunk-7-1.svg)
@@ -224,7 +224,7 @@ Assume that for one data point, the feature values play a game together, in whic
 
 {% highlight r %}
 shapley = Shapley$new(predictor, x.interest = X[1,])
-shapley$plot()
+plot(shapley)
 {% endhighlight %}
 
 ![plot of chunk unnamed-chunk-11](/figures/2018-04-27-interpretable-machine-learning-iml-and-mlr/unnamed-chunk-11-1.svg)
@@ -234,7 +234,7 @@ We can reuse the object to explain other data points:
 
 {% highlight r %}
 shapley$explain(x.interest = X[2,])
-shapley$plot()
+plot(shapley)
 {% endhighlight %}
 
 ![plot of chunk unnamed-chunk-12](/figures/2018-04-27-interpretable-machine-learning-iml-and-mlr/unnamed-chunk-12-1.svg)
