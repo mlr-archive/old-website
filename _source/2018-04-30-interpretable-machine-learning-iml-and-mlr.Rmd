@@ -33,7 +33,7 @@ While the `mlr` package makes it super easy to train machine learning models, th
 
 If you want to learn more about the technical details of all the methods, read the [Interpretable Machine Learning book]( https://christophm.github.io/interpretable-ml-book/agnostic.html).
 
-![Time for Interpretable Machine Learning](../images/2018-04-27-interpretable-machine-learning-iml-and-mlr/iml-bear.jpg)
+![Time for Interpretable Machine Learning](../images/2018-04-30-interpretable-machine-learning-iml-and-mlr/iml-bear.jpg)
 
 Let's explore the `iml`-toolbox for interpreting an `mlr` machine learning model with concrete examples!
 
