@@ -9,6 +9,8 @@ This July we had the great honor to present mlr and its ecosystem at the [http:/
 You can find the slides [here](https://github.com/mlr-org/mlr-outreach).
 We want to thank the organizers for inviting us, providing us with great food and coffee and also many thanks to all participants for showing great interest in mlr.
 
+<!--more-->
+
 Hopefully, this will spark further improvements and inspire new features as a result of the many interesting discussions we had.
 This really encouraged us to work harder, in order to create even better software.
 We also hope the event created interest in participating and contributing to our project, as the community really thrives on knowledge and experience of a very diverse set of people and backgrounds. 
