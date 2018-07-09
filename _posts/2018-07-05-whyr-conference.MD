@@ -5,15 +5,20 @@ author: quay
 draft: false 
 ---
 
-This July we had the great honor to present mlr and its ecosystem at the [http://whyr2018.pl/](Why R 2018 Conference) in Wroclaw in Poland.
+This July we had the great honor to present mlr and its ecosystem at the [Why R 2018 Conference](http://whyr2018.pl/) in Wroclaw in Poland.
 You can find the slides [here](https://github.com/mlr-org/mlr-outreach).
 We want to thank the organizers for inviting us, providing us with great food and coffee and also many thanks to all participants for showing great interest in mlr.
 
 <!--more-->
+During a great talk session we had the chance to present the mlr ecosystem.
+Florian's talk was about functional data analysis in mlr [[link](https://github.com/mlr-org/mlr-outreach/blob/master/2018_07_wroclaw/mlr_functional_data.pdf)].
+Janek held a talk about optimising deep neural networks with mlr, also discussing the pros and cons of doing deep learning in R [[link](https://github.com/mlr-org/mlr-outreach/blob/master/2018_07_wroclaw/deeplearning_in_mlr.html/)].
+The next talk about a general introduction to interpretable machine learning was from Christoph [[link](https://github.com/mlr-org/mlr-outreach/blob/master/2018_07_wroclaw/mlr_iml.pdf)].
+Following, Quay presented how to do multilabel classification in mlr [[link](https://github.com/mlr-org/mlr-outreach/blob/master/2018_07_wroclaw/mlr_multilabel.pdf)].
+And finally, Xudong gave an introduction to his [rlR](https://github.com/smilesun/rlR) package for reinforcement learning in R [[link](https://github.com/mlr-org/mlr-outreach/blob/master/2018_07_wroclaw/rlR_wroclaw.pdf)].
 
-Hopefully, this will spark further improvements and inspire new features as a result of the many interesting discussions we had.
-This really encouraged us to work harder, in order to create even better software.
-We also hope the event created interest in participating and contributing to our project, as the community really thrives on knowledge and experience of a very diverse set of people and backgrounds. 
+The conference really encouraged us to work harder, in order to create even better software.
+We also hope the event created interest in participating and contributing to mlr, as the community really thrives on knowledge and experience of a very diverse set of people and backgrounds. 
 
 ![](../images/2018-07-05-whyr-conference/pic.jpg)
 
