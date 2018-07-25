@@ -110,10 +110,16 @@ Flo Fendt and me are the main contributors of ShinyMlr, a GUI for mlr.
 I am a graduate student at LMU Munich and also a member of the working group computational statistics. Together with two fellow statistics students I publish news and explanations around the machine learning world on our [blog new-sample.com](www.new-sample.com). 
 
 #### Christoph Molnar
+
 I am a PhD student in the working group computation statistics at the Ludwig-Maximilians-University Munich. 
 My research is focused on making black box machine learning models interpretable.
 I am the author of the book [Interpretable Machine Learning](https://leanpub.com/interpretable-machine-learning) and the [R package 'iml'](https://github.com/christophM/iml) for interpretable machine learning. 
 Further information and contact info is at my [university website](http://www.compstat.statistik.uni-muenchen.de/people/molnar/).
 
+#### Patrick Schratz
 
+I am a PhD candidate within the [GIScience group](http://www.geographie.uni-jena.de/Geoinformatik_p_1558.html) at the Department of Geography at University of Jena. 
+I focus on the application of statistical- and machine learning techniques to address research questions related to environmental issues. Beside the scientific part I am also interested in the development of (geo)statistical programming solutions to simplify todays data science challenges. 
+I like to write about the Linux world, R stuff and other technical topics that I find interesting.
+More information can be found on [my website](https://pjs-web.de/).
 
