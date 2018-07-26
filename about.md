@@ -21,7 +21,7 @@ We try to post neat stuff we learned and we want to promote on an irregular basi
 
 ## The Contributors
 
-All **mlr developers** are listed [here](https://github.com/mlr-org/mlr/wiki/mlr-developer-team-and-contributors-page).
+All **mlr developers** are listed [here](https://github.com/mlr-org/mlr/wiki/Misc#mlr-developer-team-and-contributors-page).
 
 ### Blog Authors
 
