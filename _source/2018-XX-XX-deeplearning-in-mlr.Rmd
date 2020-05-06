@@ -1,0 +1,310 @@
+---
+title: "Tuning feedforward neural networks using model-based optimization with mlr, mlrMBO and MXNet"
+output: html_document
+---
+
+# Introduction
+
+This post gives an introduction to tuning feedforward neural networks using `mlr` and `mlrMBO`.
+`mlr` provides a framework for machine learning in R that comes with a broad range of machine learning functionalities and is easily extendable. `mlrMBO` \cite{Bischl2017a} is a `R` toolbox which
+implements a generic SMBO framework for optimizing expensive black-box functions using
+MBO. It is highly flexible due to its modular design, for example supporting custom surrogate 
+models via the `mlr` toolbox.
+For a general introduction to tuning hyperparameters with `mlr` and `mlrMBO` please refer to [this tutorial](https://mlr-org.github.io/mlrMBO/articles/supplementary/machine_learning_with_mlrmbo.html).
+
+Training deep neural networks and tuning hyperparameters using model-based optimization are tasks
+that not only need a sound theoretical foundation but also a reliable and efficient codebase.
+Ideally, one would use state-of-the-art libraries for both endeavours and combine them. The
+`mlr` learner for classification tasks `classif.mxff` integrates a part of the deep learning framework MXNet's
+functionality for feedforward neural networks, enabling the user to combine the easy-to-use and
+sophisticated functionalities of `mlr` with performant deep learning models.
+
+# Notes on package installation
+
+To use `classif.mxff` you might need to install `mlr`'s development version running 
+```{r, eval=FALSE}
+devtools::install_github("mlr-org/mlr")
+```
+
+To install MXNet, visit the [website](https://mxnet.incubator.apache.org/install/index.html) to find the correct commands for your setup.
+
+# MXNet
+MXNet is a multi-language machine learning library focused on deep
+neural networks, designed
+to be flexible and efficient. It supports both declarative symbolic and imperative programming as
+well as mixtures of the two. A very simplistic way of describing the difference between those to
+programming paradigms is that in the former the user describes more abstractly what should be done
+(useful, e.\,g., for designing architectures) while in the latter the user specifies more how
+computations are performed. Currently, it supports interfaces for Python, `R`,
+Scala, C++ and Julia. It is very scalable, from mobile devices over CPUs to GPUs offering 
+parallelization with data parallelism or model parallelism. The following code example shows the
+difference between imperative and symbolic use.
+
+```{r, message=FALSE, warning=FALSE}
+library(mlr)
+library(mxnet)
+library(mlrMBO)
+```
+
+```{r}
+source("../R/mxff/RLearner_classif_mxff_tmp.R")
+```
+
+
+```{r, warning=FALSE, cache=TRUE}
+data(Sonar, package = "mlbench")
+
+Sonar[,61] = as.numeric(Sonar[,61]) - 1
+train.ind = c(1:50, 100:150)
+train.x = data.matrix(Sonar[train.ind, 1:60])
+train.y = Sonar[train.ind, 61]
+test.x = data.matrix(Sonar[-train.ind, 1:60])
+test.y = Sonar[-train.ind, 61]
+
+# imperative
+mod.imp = mx.mlp(train.x, train.y, hidden_node = 5, out_node = 2, out_activation = "softmax",
+  num.round = 3, array.batch.size = 15, learning.rate = 0.07, eval.metric = mx.metric.accuracy)
+
+# print the first 6 predicted probabilities
+predict(mod.imp, test.x)[2, 1:6]
+
+# symbolic
+sym = mx.symbol.Variable("data")
+sym = mx.symbol.FullyConnected(sym, num_hidden = 5)
+sym = mx.symbol.Activation(sym, act_type = "relu")
+sym = mx.symbol.FullyConnected(sym, num_hidden = 2)
+sym = mx.symbol.SoftmaxOutput(sym, name = "sm")
+mod.sym = mx.model.FeedForward.create(sym, X = train.x, y = train.y, num.round = 3,
+  array.batch.size = 15, learning.rate = 0.07, eval.metric = mx.metric.accuracy)
+
+# print the first 6 predicted probabilities
+predict(mod.sym, test.x)[2, 1:6]
+```
+
+# `classif.mxff`
+When using the learner, the user has two main options: One option is to use the learner by calling it like any other `mlr` learner. This does not
+provide as much flexibility in the architecture, but is more convenient and integrates nicely with
+all other `mlr` functionalities like tuning. Another option would be to construct a symbolic
+architecture with MXNet and pass it to the learner directly. In this case, the majority of
+hyperparameter settings of the learner is ignored and the symbol is evaluated directly. To
+illustrate this using an example, we create a feedforward neural network with:
+  - Two fully connected hidden layers with 5 units each and `tanh` as activation function.
+  - An output layer with 3 units and the `softmax` function as activation layer
+
+Using the `mlr` interface would yield:
+```{r}
+lrn = makeLearner("classif.mxff", layers = 2, num.layer1 = 5, num.layer2 = 5, act1 = "tanh",
+  act2 = "tanh", act.out = "softmax") 
+getHyperPars(lrn)
+```
+
+Note that we do not have to specify the number of output units, as the learner detects them from the
+data automatically at the time of training. Considering that `tanh` and `softmax` are 
+the default functions (also set at the time of training), the following would be sufficient: 
+
+```{r}
+lrn = makeLearner("classif.mxff", layers = 2, num.layer1 = 5, num.layer2 = 5) 
+getHyperPars(lrn)
+```
+
+Passing the symbol would look like this:
+```{r}
+sym = mxnet::mx.symbol.Variable("data")
+sym = mxnet::mx.symbol.FullyConnected(sym, num_hidden = 5)
+sym = mxnet::mx.symbol.Activation(sym, act_type = "tanh")
+sym = mxnet::mx.symbol.FullyConnected(sym, num_hidden = 5)
+sym = mxnet::mx.symbol.Activation(sym, act_type = "tanh")
+sym = mxnet::mx.symbol.FullyConnected(sym, num_hidden = 3)
+sym = mxnet::mx.symbol.SoftmaxOutput(sym)
+lrn = makeLearner("classif.mxff", symbol = sym)
+getHyperPars(lrn)
+```
+
+# Tuning hyperparameters
+
+## Iris data
+To demonstrate tuning hyperparameters of `classif.mxff` with `mlr` and 
+`mlrMBO`, tuning a very simple set of neural networks on the Iris data will serve as a toy
+example.
+
+```{r}
+lrn = makeLearner("classif.mxff", eval.metric = mx.metric.accuracy,
+  num.round = 20)
+par.set = makeParamSet(
+  makeIntegerParam(id = "layers", lower = 1L, upper = 2L),
+  makeIntegerParam(id = "num.layer1", lower = 5L, upper = 10L),
+  makeIntegerParam(id = "num.layer2", lower = 5L, upper = 10L,
+    requires = quote(layers > 1)),
+  makeDiscreteParam(id = "act1", c("tanh", "relu", "sigmoid")),
+  makeDiscreteParam(id = "act2", c("tanh", "relu", "sigmoid"),
+    requires = quote(layers > 1)),
+  makeNumericParam(id = "learning.rate", lower = 0.05, upper = 0.3)
+)
+ctrl = makeMBOControl()
+ctrl = setMBOControlTermination(ctrl, iters = 5)
+tune.ctrl = makeTuneControlMBO(mbo.control = ctrl)
+res = tuneParams(lrn, iris.task, cv3, par.set = par.set,
+  control = tune.ctrl, show.info = FALSE)
+res$x
+res$y
+```
+
+For practicality, the number of filters can be defined in two ways when using a convolutional 
+layer. In some cases, it may be more convenient to use the `num.layer` parameters, which are
+also used to specify the number of neurons in a fully connected layer. However, when constructing a
+parameter set for tuning, it may be desirable to have a different parameter, as the upper limit of
+neurons and filters may differ. In this case, the `num.filter` parameters can be used. The
+following toy parameter set demonstrates this.
+
+```{r}
+par.set = makeParamSet(
+  # layers parameter only included for comprehensibility
+  makeIntegerParam(id = "layers", lower = 1L, upper = 1L),
+  makeLogicalParam(id = "conv.layer1"),
+  makeIntegerParam(id = "num.layer1", lower = 50L, upper = 300L,
+    requires = quote(conv.layer1 == FALSE)),
+  makeIntegerParam(id = "num.filter1", lower = 10L, upper = 50L,
+    requires = quote(conv.layer1 == TRUE))
+)
+```
+
+# MNIST
+Next, we look at a more realistic example using the MNIST data set (available for download [here](https://www.cs.ubc.ca/labs/beta/Projects/autoweka/datasets/)).
+
+```{r, cache = TRUE}
+mnist.train = read.csv(paste("../Datasets/MNIST/train.csv", sep = ""), header = TRUE)
+mnist.task = makeClassifTask(id = "mnist", data = mnist.train, target = "label")
+```
+
+Depending on your device, you can run MXNet either on CPU (per default, all available CPUs are used)
+or on one or multiple GPUs:
+```{r}
+# multiple GPUs
+# ctx = list(mx.gpu(0), mx.gpu(1), mx.gpu(2), mx.gpu(3), mx.gpu(4), mx.gpu(5),
+#    mx.gpu(6), mx.gpu(7))
+
+# one GPU
+# ctx = mx.gpu()
+
+# CPUs
+ctx = mx.cpu()
+```
+
+When using multiple GPUs, the aggregation the gradients can be done either locally on the CPU or by
+GPU peer-to-peer communication. Peer-to-peer communication is recommended when using 4 or more GPUs
+on the [MXNet webiste](https://mxnet.incubator.apache.org/how_to/multi_devices.html) to enhance performance.
+However, personal experience has shown that using this peer-to-peer communication can sometimes lead to overflow of the GPU memory, crashing the R session. This canbe very unpleasant during a long process of tuning.
+So although local gradient aggregation may be slower, it is sometimes better to use due to its robustness.
+
+```{r}
+# kvstore = "device"
+kvstore = "local"
+```
+
+We use early stopping to stop after 5 steps of decreasing accuracy on a validation set, with a total number of 10 epochs (of course, these numbers will be higher in a real practical setting).
+This validation set will be randomly sampled from the training set, the size is set by `validation.ratio`.
+We now create the learner and set hyperparameters that we do not want to change like the shape of our data,
+which is 28 by 28 pixels for MNIST.
+
+```{r}
+lrn =  makeLearner("classif.mxff2", verbose = TRUE, optimizer = "sgd",
+  eval.metric = mx.metric.accuracy,
+  validation.ratio = 0.1,
+  epoch.end.callback = mx.callback.early.stop(bad.steps = 5, maximize = TRUE),
+  ctx = ctx,
+  num.round = 10,
+  conv.data.shape = c(28, 28),
+  kvstore = kvstore
+)
+```
+
+Now we create our parameterset as following:
+Our networks can have between one and three hidden layers, either fully connected (50-100 neurons) or convolutional (10-40 filters), where a fully connected layer cannot follow a convolutional layer and every
+convolutional layer is followed by max pooling. Additionally we tune the kernel and stride sizes
+for the the convolutional and pooling layers.
+Non-architectural hyperparameters we tune are the learning rate, momentum, whether or not to use dropout and if so
+the global dropout rate, whether or not to use batch normalization and the batch size.
+
+```{r}
+num.layer.lower = 50
+num.layer.upper = 100
+num.filter.lower = 10
+num.filter.upper = 40
+
+par.set = makeParamSet(
+  makeNumericParam(id = "learning.rate", lower = 0.05, upper = 0.3),
+  makeNumericParam(id = "momentum", lower = 0.7, upper = 0.99),
+  makeIntegerParam(id = "layers", lower = 1L, upper = 3L),
+# require needs to be this exact, otherwise generateDesign may produce some infeasible results
+# that the learner can handle but that cannot be added to the optPath of mbo()
+  makeIntegerParam(id = "num.layer1", lower = num.layer.lower, upper = num.layer.upper,
+    requires = quote(conv.layer1 == FALSE)),
+  makeIntegerParam(id = "num.layer2", lower = num.layer.lower, upper = num.layer.upper,
+    requires = quote(ifelse(layers > 1, ifelse(conv.layer1 == TRUE,
+      conv.layer2 != TRUE, TRUE), FALSE))),
+  makeIntegerParam(id = "num.layer3", lower = num.layer.lower, upper = num.layer.upper,
+    requires = quote(ifelse(layers > 2, ifelse(conv.layer1 == TRUE,
+      ifelse(conv.layer2 == TRUE, conv.layer3 != TRUE, TRUE), TRUE), FALSE))),
+  makeIntegerParam(id = "num.filter1", lower = num.filter.lower, upper = num.filter.upper,
+    requires = quote(conv.layer1 == TRUE)),
+  makeIntegerParam(id = "num.filter2", lower = num.filter.lower, upper = num.filter.upper,
+    requires = quote(ifelse(conv.layer1 == TRUE && layers > 1, conv.layer2 == TRUE, FALSE))),
+  makeIntegerParam(id = "num.filter3", lower = num.filter.lower, upper = num.filter.upper,
+    requires = quote(ifelse(conv.layer1 == TRUE && layers > 2, ifelse(conv.layer2 == TRUE,
+      conv.layer3 == TRUE, FALSE), FALSE))),
+  makeDiscreteParam(id = "act1", c("tanh", "relu", "sigmoid")),
+  makeDiscreteParam(id = "act2", c("tanh", "relu", "sigmoid"), requires = quote(layers > 1)),
+  makeDiscreteParam(id = "act3", c("tanh", "relu", "sigmoid"), requires = quote(layers > 2)),
+  makeLogicalParam(id = "conv.layer1"),
+  makeLogicalParam(id = "conv.layer2", default = FALSE,
+    requires = quote(layers > 1 && conv.layer1 == TRUE)),
+  makeLogicalParam(id = "conv.layer3", default = FALSE,
+    requires = quote(ifelse(layers > 2 && conv.layer1 == TRUE, conv.layer2 == TRUE, FALSE))),
+  makeIntegerVectorParam(id = "conv.kernel1", lower = 1, upper = 5, len = 1,
+    requires = quote(conv.layer1 == TRUE)),
+  makeIntegerVectorParam(id = "conv.stride1", lower = 1, upper = 3, len = 2,
+    requires = quote(conv.layer1 == TRUE)),
+  makeIntegerVectorParam(id = "pool.kernel1", lower = 1, upper = 5, len = 1,
+    requires = quote(conv.layer1 == TRUE)),
+  makeIntegerVectorParam(id = "pool.stride1", lower = 1, upper = 3, len = 2,
+    requires = quote(conv.layer1 == TRUE)),
+  makeIntegerVectorParam(id = "conv.kernel2", lower = 1, upper = 5, len = 1,
+    requires = quote(ifelse(conv.layer1 == TRUE && layers > 1, conv.layer2 == TRUE, FALSE))),
+  makeIntegerVectorParam(id = "conv.stride2", lower = 1, upper = 3, len = 2,
+    requires = quote(ifelse(conv.layer1 == TRUE && layers > 1, conv.layer2 == TRUE, FALSE))),
+  makeIntegerVectorParam(id = "pool.kernel2", lower = 1, upper = 5, len = 1,
+    requires = quote(ifelse(conv.layer1 == TRUE && layers > 1, conv.layer2 == TRUE, FALSE))),
+  makeIntegerVectorParam(id = "pool.stride2", lower = 1, upper = 3, len = 2,
+    requires = quote(ifelse(conv.layer1 == TRUE && layers > 1, conv.layer2 == TRUE, FALSE))),
+  makeIntegerVectorParam(id = "conv.kernel3", lower = 1, upper = 5, len = 1,
+    requires = quote(ifelse(conv.layer1 == TRUE && layers > 2, ifelse(conv.layer2 == TRUE,
+      conv.layer3 == TRUE, FALSE), FALSE))),
+  makeIntegerVectorParam(id = "conv.stride3", lower = 1, upper = 3, len = 2,
+    requires = quote(ifelse(conv.layer1 == TRUE && layers > 2, ifelse(conv.layer2 == TRUE,
+      conv.layer3 == TRUE, FALSE), FALSE))),
+  makeIntegerVectorParam(id = "pool.kernel3", lower = 1, upper = 5, len = 1,
+    requires = quote(ifelse(conv.layer1 == TRUE && layers > 2, ifelse(conv.layer2 == TRUE,
+      conv.layer3 == TRUE, FALSE), FALSE))),
+  makeIntegerVectorParam(id = "pool.stride3", lower = 1, upper = 3, len = 2,
+    requires = quote(ifelse(conv.layer1 == TRUE && layers > 2, ifelse(conv.layer2 == TRUE,
+      conv.layer3 == TRUE, FALSE), FALSE))),
+  makeLogicalParam(id = "dropout.global"),
+  makeNumericParam(id = "dropout.input", lower = 0.2, upper = 0.8,
+    requires = quote(dropout.global == TRUE)),
+  makeLogicalParam(id = "batch.normalization"),
+  makeIntegerParam(id = "array.batch.size", lower = 3, upper = 7, trafo = function(x) {2^x})
+)
+```
+
+Now we can go ahead and use mbo again. We tell the mbo control instance to impute the worst value of the performance measure we are using if the training of a model fails for some reason via the `impute.y.fun` argument
+in `makeMBOControl`.
+Also instead of specifying a fixed number of tuning iterations, we specify a time budget.
+
+```{r, eval=FALSE}
+meas = acc
+ctrl = makeMBOControl(impute.y.fun = function(x, y, opt.path) {return(meas$worst)})
+ctrl = setMBOControlTermination(ctrl, time.budget = 60)
+tune.ctrl = makeTuneControlMBO(mbo.control = ctrl)
+res = tuneParams(lrn, mnist.task, cv3, par.set = par.set,
+  control = tune.ctrl, show.info = FALSE)
+```
